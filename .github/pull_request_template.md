@@ -8,6 +8,8 @@ pull_request_template.md
   Please look at the following checklist to ensure that your PR can be accepted quickly:
 
   I do this related to this user story
+  I do this related to this user story
+
 -->
 
 ## Description
