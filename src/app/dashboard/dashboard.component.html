@@ -1,12 +1,16 @@
-<div class="row">
-  <span id="toggle-user-role" (click)="isAdmin = !isAdmin">
-    {{ isAdmin ? 'Admin' : 'User'}}
-  </span>
+<div class="bg-stone-900">
+  <div class="main-layout py-8">
+    <span id="toggle-user-role" (click)="isAdmin = !isAdmin" class="text-3xl font-semibold text-white">
+      Dashboard {{ isAdmin ? "Admin" : "User" }}
+    </span>
+  </div>
 </div>
 
-<div class="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-  <ng-container *ngFor="let tile of tiles">
-    <app-tile *ngIf="isAdmin || tile.title !== 'Parameters'" class="" [tileInfo]="tile">
-    </app-tile>
-  </ng-container>
-</div>
+<section class="main-layout py-8">
+  <div class="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+    <ng-container *ngFor="let tile of tiles">
+      <app-tile *ngIf="isAdmin || tile.title !== 'Parameters'" class="" [tileInfo]="tile">
+      </app-tile>
+    </ng-container>
+  </div>
+</section>
