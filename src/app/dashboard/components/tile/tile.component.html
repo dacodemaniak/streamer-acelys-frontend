@@ -1,13 +1,13 @@
-<div class="tile">
-  <div class="title">
-    {{ tileInfo.title }}
-  </div>
-
-  <blockquote>
-    {{ tileInfo.summary }}
-  </blockquote>
-
-  <div class="actions">
-    <button mat-raised-button type="button" (click)="onClick(tileInfo)">Go!</button>
+<div class="card bg-stone-100 p-0 sm:p-4">
+  <figure class="">
+    <img src="https://picsum.photos/800/500" alt="" class="rounded-xl object-cover" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{{ tileInfo.title }}</h2>
+    <p class="">{{ tileInfo.summary }}</p>
+    <div class="card-actions sm:mt-auto">
+      <button mat-button type="button" (click)="onClick(tileInfo)" class="btn primary">See more {{
+        tileInfo.title.toLowerCase() }}</button>
+    </div>
   </div>
 </div>

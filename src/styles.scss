@@ -5,6 +5,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "./assets/scss/components/index.scss";
+
 :root {
   $global-font: "Inter", sans-serif;
   font-family: $global-font;
