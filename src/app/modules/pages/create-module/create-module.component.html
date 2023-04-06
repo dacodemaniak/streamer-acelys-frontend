@@ -1,0 +1,59 @@
+<div class="grid grid-cols-2 gap-2">
+
+  <div class="flex flex-col  justify-start lg:items-center h-ful">
+
+    <div class="pt-0 px-2 flex flex-col items-center justify-center">
+      <h2 class="text-4xl leading-tight pt-8">Create a module</h2>
+    </div>
+    <div class="pt-10 px-2 flex flex-col items-center justify-center">
+      <form [formGroup]="moduleForm" mat-dialog-content>
+
+        <mat-form-field class="w-full">
+          <input matInput formControlName=" name" placeholder="Module name...">
+          <mat-error *ngIf="c['name'].errors && c['name'].touched">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <input matInput formControlName="objective" placeholder="Objective...">
+        </mat-form-field>
+      </form>
+
+      <button mat-flat-button color="primary" class="w-full my-4">Add an existing media</button>
+      <button mat-flat-button color="primary" class="w-full my-3">Create a media</button>
+
+      <div mat-dialog-actions class="mt-20">
+        <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
+        <button cdkFocusInitial mat-flat-button color="primary" [disabled]="moduleForm.invalid" (click)="onSubmit()"
+          class="mx-4">Add</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="shadow-lg w-3/4 mt-10 rounded-lg flex flex-col items-center justify-center p-6">
+
+    <div class="pt-0 px-2 w-full">
+      <h3 class="text-3xl leading-tight pt-6 text-center">Add media</h3>
+    </div>
+
+    <mat-form-field class="w-full">
+      <input matInput type="search" placeholder="Search your media" class="p-2">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <ul role="list" class="list-none space-y-2 w-full">
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+      <li class="bg-slate-100 px-6 py-4">Nom du super media</li>
+    </ul>
+
+  </div>
+
+</div>
