@@ -39,6 +39,7 @@ $xl: '75em';
 @media screen and (min-width: $xs) {
   .container {
     width: 100%;
+    height: 100vh;
   }
 }
 
