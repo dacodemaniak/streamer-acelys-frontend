@@ -72,7 +72,7 @@ export class UserService {
   }
 
   public recovery(credentials: any): Observable<HttpResponse<any>> {
-    const endPoint: string = `${environment.apiRootUri}students/byLoginAndEmail`
+    const endPoint: string = `${environment.apiRootUri}students/recovery`
     return this._httpClient.post<any>(
       endPoint,
       credentials,
@@ -80,14 +80,7 @@ export class UserService {
         observe: 'response'
       }
     ).pipe(
-      take(1),
-      tap((response: HttpResponse<any>) => {
-        if (response.status === 200) {
-          this._user = response.body
-          this._storageStrategy.store(credentials)
-          this._user$.next(this._user)
-        }
-      })
+      take(1)
     )
   }
 

@@ -59,15 +59,16 @@ export class LoginComponent implements OnInit {
         width: 'flex'
       }
     ).afterClosed().subscribe((result: HttpResponse<any> | undefined) => {
+      console.log(result)
       if (result !== undefined) {
-        this._dialog.open(
-          RecoveryPasswordComponent,
-          {
-            height: 'flex',
-            width: 'flex',
-            data: result
-          }
-          )
+        //this._dialog.open(
+         // RecoveryPasswordComponent,
+         // {
+          //  height: 'flex',
+         //   width: 'flex',
+         //   data: result
+        //  }
+        //  )
       }
     })
   }
