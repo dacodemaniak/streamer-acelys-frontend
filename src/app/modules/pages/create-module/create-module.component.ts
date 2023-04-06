@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MediaType } from 'src/app/course/types/media-type';
 
 @Component({
   selector: 'app-create-module',
@@ -9,8 +10,9 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class CreateModuleComponent implements OnInit {
 
   public moduleForm: FormGroup = new FormGroup({})
-  public addMediaVisible: boolean = false;
-  public createMediaVisible: boolean = false;
+  public addMediaVisible: boolean = false
+  public createMediaVisible: boolean = false
+  public medias: Array<MediaType> = new Array<MediaType>()
 
 
   constructor(private _formBuilder: FormBuilder) { }
@@ -37,10 +39,12 @@ export class CreateModuleComponent implements OnInit {
   }
 
   onNoClick(): void {
+
   }
 
   onSubmit(): void {
   }
+
 
   /** ADD MEDIA METHOD */
   public addMedia(): void {
@@ -60,7 +64,10 @@ export class CreateModuleComponent implements OnInit {
     } else {
       this.createMediaVisible = !this.createMediaVisible
     }
+  }
 
+  public closeCreate(value: boolean) {
+    this.createMediaVisible = value
   }
 
 

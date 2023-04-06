@@ -37,7 +37,7 @@
   </ng-container>
 
   <ng-container *ngIf="createMediaVisible">
-    <app-create-media></app-create-media>
+    <app-create-media [visibility]="createMediaVisible" (newItemEvent)="closeCreate($event)"></app-create-media>
   </ng-container>
 
 </div>
