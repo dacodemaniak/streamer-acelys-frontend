@@ -9,12 +9,16 @@ import { StudentModule } from './student/student.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { ConceptorComponent } from './dashboard/pages/conceptor/conceptor.component';
+import { StudentComponent } from './dashboard/pages/student/student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    TileComponent
+    TileComponent,
+    ConceptorComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
