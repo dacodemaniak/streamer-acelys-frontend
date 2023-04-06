@@ -5,14 +5,15 @@ import { SessionStorageStrategy } from './../../core/store/session-storage-strat
 import { LocalStorageStrategy } from './../../core/store/local-storage-strategy';
 import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { UserType } from '../types/user.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private _user: any = undefined
-  private _user$: BehaviorSubject<any  | undefined> = new BehaviorSubject(undefined)
+  private _user: UserType | undefined = undefined
+  private _user$: BehaviorSubject<UserType  | undefined> = new BehaviorSubject(this._user)
 
   private _storageStrategy: IStorageStrategy
 
@@ -28,21 +29,34 @@ export class UserService {
     this._storageStrategy = strategy
   }
 
-  public get user(): any {
-    if (this._user === undefined) {
-      this._user = this._storageStrategy.retrieve()
-    }
+  public get storageStrategy(): IStorageStrategy {
+    return this._storageStrategy
+  }
 
+  public get user(): any {
     return this._user
   }
 
+  set user(user: UserType) {
+    this._user = user
+    this._user$.next(this._user)
+  }
   public get user$() {
     return this._user$
   }
 
+  public validateToken(token: string): Observable<HttpResponse<any>> {
+    const endPoint: string = `${environment.apiRootUri}user/${token}`
+    return this._httpClient.get<HttpResponse<any>>(
+      endPoint,
+      {
+        observe: 'response'
+      }
+    )
+  }
   public authenticate(credentials: any): Observable<HttpResponse<any>> {
-    const endPoint: string = `${environment.apiRootUri}user/byEmailAndPassword`
-    return this._httpClient.post<any>(
+    const endPoint: string = `${environment.apiRootUri}user/login`
+    return this._httpClient.post<UserType>(
       endPoint,
       credentials,
       {
@@ -54,17 +68,7 @@ export class UserService {
         if (response.status === 200) {
           this._user = response.body
 
-          /**
-          let storage = this.user.stayConnected ? localStorage : sessionStorage
-          storage.setItem('auth', JSON.stringify(credentials))
-          storage.setItem('auth', credentials) /// BOUM !
-          if (this.user.stayConnected) {
-            localStorage.setItem('auth-key', JSON.stringify(credentials))
-          } else {
-            sessionStorage.setItem('auth', JSON.stringify(credentials))
-          }
-          */
-          this._storageStrategy.store(credentials)
+          this._storageStrategy.store(this._user?.jwtToken)
           this._user$.next(this._user)
         }
       })

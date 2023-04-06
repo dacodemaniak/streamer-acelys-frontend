@@ -8,3 +8,10 @@ span {
     text-decoration: none;
   }
 }
+
+button {
+  &.logout {
+    color: rgb(200, 20, 10);
+    font-weight: bold;
+  }
+}

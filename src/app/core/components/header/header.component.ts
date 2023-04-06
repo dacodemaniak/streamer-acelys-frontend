@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/user/services/user.service';
+import { UserType } from 'src/app/user/types/user.type';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/user/services/user.service';
 export class HeaderComponent implements OnInit {
 
   public user$: BehaviorSubject<any | undefined>
-  public user: any
+  public user: UserType | undefined = undefined
 
   constructor(
     private _userService: UserService,

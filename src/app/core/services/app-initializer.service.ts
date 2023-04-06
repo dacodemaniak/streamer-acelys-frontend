@@ -2,6 +2,7 @@ import { APP_INITIALIZER, Injectable } from '@angular/core';
 import { UserService } from './../../user/services/user.service';
 import { environment } from './../../../environments/environment';
 import { LocalStorageStrategy } from '../store/local-storage-strategy';
+import { HttpResponse } from '@angular/common/http';
 @Injectable()
 export class AppInitializerService {
 
@@ -11,12 +12,26 @@ export class AppInitializerService {
 
   init(): Promise<void> {
     return new Promise((resolve) => {
-      const jsonUser: string | null = localStorage.getItem(environment.storage.auth.key)
-      if (jsonUser) {
-        this._userService.storageStrategy = new LocalStorageStrategy()
-        this._userService.authenticate(JSON.parse(jsonUser)).subscribe()
+      let jsonToken: string | null = localStorage.getItem(environment.storage.auth.key)
+      if (!jsonToken) {
+        jsonToken  = sessionStorage.getItem(environment.storage.auth.key)
       }
-      resolve()
+
+      if (jsonToken) {
+        this._userService.storageStrategy = new LocalStorageStrategy()
+        this._userService.validateToken(JSON.parse(jsonToken))
+          .subscribe({
+            next: (response: HttpResponse<any>) => {
+              this._userService.user = response.body
+            },
+            error: (error: any) => {
+              this._userService.storageStrategy.remove()
+            },
+            complete: () => resolve()
+          })
+      } else {
+        resolve()
+      }
     })
   }
 
