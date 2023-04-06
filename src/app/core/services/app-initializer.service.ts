@@ -12,7 +12,11 @@ export class AppInitializerService {
 
   init(): Promise<void> {
     return new Promise((resolve) => {
-      const jsonToken: string | null = localStorage.getItem(environment.storage.auth.key)
+      let jsonToken: string | null = localStorage.getItem(environment.storage.auth.key)
+      if (!jsonToken) {
+        jsonToken  = sessionStorage.getItem(environment.storage.auth.key)
+      }
+
       if (jsonToken) {
         this._userService.storageStrategy = new LocalStorageStrategy()
         this._userService.validateToken(JSON.parse(jsonToken))
