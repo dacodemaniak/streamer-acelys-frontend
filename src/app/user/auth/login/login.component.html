@@ -1,0 +1,100 @@
+<!-- <form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="col xs12">
+    <input matInput placeholder="Your login..." formControlName="login">
+    <mat-error *ngIf="form.controls['login'].touched && form.controls['login'].errors">
+      Login is required...
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="col xs12">
+    <div class="password">
+      <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Your password..."
+        formControlName="password">
+      <mat-error *ngIf="form.controls['password'].touched && form.controls['password'].errors">
+        Password is required...
+      </mat-error>
+
+      <button type="button" mat-button (click)="passwordToggle()" [disabled]="showPassword">
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </div>
+  </mat-form-field>
+
+  <div class="col xs12">
+    <button mat-raised-button color="primary" [disabled]="form.invalid">
+      Login
+    </button>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col xs12">
+    <mat-label>
+      Stay connected ?
+    </mat-label>
+    <mat-slide-toggle [(ngModel)]="stayConnected" (ngModelChange)="changeStrategy()">
+      {{ stayConnected ? 'Yes' : 'No'}}
+    </mat-slide-toggle>
+  </div>
+</div> -->
+
+<section class="layout">
+  <div class="mx-auto flex flex-col justify-center lg:items-center h-ful">
+    <div class="pt-0 px-2 flex flex-col items-center justify-center">
+      <h2 class="text-4xl leading-tight pt-8">STREAM</h2>
+    </div>
+    <div class="pt-16 px-2 flex flex-col items-center justify-center">
+      <h3 class="text-2xl sm:text-3xl xl:text-2xl font-bold leading-tight">Sign up to your account</h3>
+    </div>
+    <form action="" [formGroup]="form" (ngSubmit)="onSubmit()"
+      class="w-full sm:w-4/6 md:w-3/6 lg:w-4/12 xl:w-3/12 py-12 px-2 sm:px-0 mx-auto">
+
+      <fieldset>
+        <div class="flex flex-col space-y-4">
+          <mat-form-field>
+            <mat-label for="email" class="text-lg leading-relaxed">Email</mat-label>
+            <input matInput type="text" class="form-control" name="login" placeholder="Username" formControlName="login"
+              autocomplete="off" class="h-10 px-2 w-full">
+            <mat-error *ngIf="form.controls['login'].errors && form.controls['login'].touched">
+              <span *ngIf="form.controls['login'].hasError('required')">
+                Login cannot be empty.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="password" class="text-lg leading-relaxed">Password</mat-label>
+            <input matInput type="password" class="form-control" [type]="showPassword ? 'text' : 'password'"
+              name="password" placeholder=" password" autocomplete="off" formControlName="password"
+              class="h-10 px-2 w-full">
+            <mat-icon matSuffix (click)="passwordToggle();">{{showPassword ? 'visibility' :
+              'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="form.controls['password'].errors && form.controls['password'].touched">
+              <span *ngIf="form.controls['password'].hasError('required')">
+                Password cannot be empty.
+              </span>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="pt-6 w-full flex justify-between items-center px-2">
+            <div class="flex items-center gap-4">
+              <mat-label>
+                Stay connected ?
+              </mat-label>
+              <mat-slide-toggle [(ngModel)]="stayConnected" [ngModelOptions]="{standalone: true}"
+                (ngModelChange)="changeStrategy()">
+                {{ stayConnected ? 'Yes' : 'No'}}
+              </mat-slide-toggle>
+            </div>
+
+            <!-- <a class="text-xs" href="javascript: void(0)">Forgot Password?</a> -->
+          </div>
+
+          <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Sign in
+          </button>
+
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

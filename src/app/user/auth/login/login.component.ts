@@ -1,11 +1,11 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { LocalStorageStrategy } from 'src/app/core/store/local-storage-strategy';
 import { SessionStorageStrategy } from 'src/app/core/store/session-storage-strategy';
-import { environment } from './../../../environments/environment'
-import { HttpResponse } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         next: (response: HttpResponse<any>) => {
           this._router.navigate(['/'])
         },
-        error: (error: any) => {},
+        error: (error: any) => { },
         complete: () => {
           this.form.controls['login'].setValue('')
           this.form.controls['password'].setValue('')
