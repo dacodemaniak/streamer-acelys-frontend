@@ -31,8 +31,8 @@ export class DashboardComponent implements OnInit {
 
   // Display the role of the current user in the dashboard, and return the string base on role
   showRole(currentUser: any): string {
-    if (currentUser.role === 'ADMIN') {
-      return 'Admin'
+    if (currentUser.role === 'MANAGER') {
+      return 'Manager'
     } else if (currentUser.role === 'STUDENT') {
       return 'Student'
     } else if (currentUser.role === 'CONCEPTOR') {
