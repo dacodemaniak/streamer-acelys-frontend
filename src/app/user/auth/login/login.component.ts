@@ -6,6 +6,9 @@ import { LocalStorageStrategy } from 'src/app/core/store/local-storage-strategy'
 import { SessionStorageStrategy } from 'src/app/core/store/session-storage-strategy';
 import { environment } from '../../../../environments/environment';
 import { UserService } from '../../services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RecoveryPasswordComponent } from '../../dialogs/recovery-password/recovery-password.component';
+import { RecoveryComponent } from '../../dialogs/recovery/recovery.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    private _router: Router
+    private _router: Router,
+    private _dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +49,27 @@ export class LoginComponent implements OnInit {
     } else {
       this._userService.storageStrategy = new SessionStorageStrategy()
     }
+  }
+
+  openRecovery(): void {
+    this._dialog.open(
+      RecoveryComponent,
+      {
+        height: 'flex',
+        width: 'flex'
+      }
+    ).afterClosed().subscribe((result: HttpResponse<any> | undefined) => {
+      if (result !== undefined) {
+        this._dialog.open(
+          RecoveryPasswordComponent,
+          {
+            height: 'flex',
+            width: 'flex',
+            data: result
+          }
+          )
+      }
+    })
   }
 
   onSubmit(): void {
