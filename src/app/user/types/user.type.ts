@@ -6,6 +6,6 @@ export type UserType = {
   firstName: string
   phoneNumber?: string
   email: string
-  roles: Array<UserRoleType>
+  roles: UserRoleType
   jwtToken: string
 }
