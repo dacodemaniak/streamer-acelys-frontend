@@ -1,0 +1,52 @@
+<div class="flex flex-col  justify-start lg:items-center h-ful  w-3/4">
+
+  <div class="pt-0 px-2 flex flex-col items-center justify-center">
+    <h2 class="text-4xl leading-tight pt-8">Create a media</h2>
+  </div>
+  <div class="pt-10 px-2 flex flex-col items-center justify-center">
+    <form [formGroup]="mediaForm" mat-dialog-content>
+
+      <mat-form-field class="w-full">
+        <input matInput formControlName="title" placeholder="Media title...">
+        <mat-error *ngIf="c['title'].errors && c['title'].touched">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <input matInput formControlName="summary" placeholder="Summary...">
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <input matInput formControlName="duration" placeholder="Media duration in seconds..." type="number">
+        <mat-error *ngIf="c['duration'].errors && c['duration'].touched">
+          Duration is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <input matInput formControlName="url" placeholder="Media url...">
+        <mat-error *ngIf="c['url'].errors && c['url'].touched">
+          Url is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Media type</mat-label>
+        <select matNativeControl required>
+          <option value="video">Video</option>
+          <option value="slide">Slide</option>
+          <option value="document">Document</option>
+        </select>
+      </mat-form-field>
+    </form>
+
+    <div mat-dialog-actions class="mt-20">
+      <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
+      <button cdkFocusInitial mat-flat-button color="primary" [disabled]="mediaForm.invalid" (click)="onSubmit()"
+        class="mx-4">Create</button>
+    </div>
+  </div>
+
+
+</div>

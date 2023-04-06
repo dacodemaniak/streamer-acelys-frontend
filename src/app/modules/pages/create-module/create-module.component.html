@@ -21,7 +21,7 @@
       </form>
 
       <button mat-flat-button color="primary" class="w-full my-4" (click)="addMedia()">Add an existing media</button>
-      <button mat-flat-button color="primary" class="w-full my-3">Create a media</button>
+      <button mat-flat-button color="primary" class="w-full my-3" (click)="createMedia()">Create a media</button>
 
       <div mat-dialog-actions class="mt-20">
         <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
@@ -34,6 +34,10 @@
 
   <ng-container *ngIf="addMediaVisible">
     <app-add-media></app-add-media>
+  </ng-container>
+
+  <ng-container *ngIf="createMediaVisible">
+    <app-create-media></app-create-media>
   </ng-container>
 
 </div>

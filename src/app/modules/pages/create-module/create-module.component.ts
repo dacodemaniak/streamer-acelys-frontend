@@ -10,6 +10,7 @@ export class CreateModuleComponent implements OnInit {
 
   public moduleForm: FormGroup = new FormGroup({})
   public addMediaVisible: boolean = false;
+  public createMediaVisible: boolean = false;
 
 
   constructor(private _formBuilder: FormBuilder) { }
@@ -43,7 +44,23 @@ export class CreateModuleComponent implements OnInit {
 
   /** ADD MEDIA METHOD */
   public addMedia(): void {
-    this.addMediaVisible = !this.addMediaVisible
+    if (this.createMediaVisible) {
+      this.createMediaVisible = false
+      this.addMediaVisible = !this.addMediaVisible
+    } else {
+      this.addMediaVisible = !this.addMediaVisible
+    }
+  }
+
+  /** CREATE MEDIA METHOD */
+  public createMedia(): void {
+    if (this.addMediaVisible) {
+      this.addMediaVisible = false
+      this.createMediaVisible = !this.createMediaVisible
+    } else {
+      this.createMediaVisible = !this.createMediaVisible
+    }
+
   }
 
 

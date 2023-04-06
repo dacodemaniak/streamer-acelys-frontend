@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AddMediaComponent implements OnInit {
 
-  @Input() addMedia: any;
 
   constructor() { }
 

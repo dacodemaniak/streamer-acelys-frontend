@@ -4,6 +4,7 @@ import { CreateModuleComponent } from './pages/create-module/create-module.compo
 import { CommonModule } from '@angular/common';
 import { UpdateModuleComponent } from './pages/update-module/update-module.component';
 import { AddMediaComponent } from './pages/create-module/add-media/add-media.component';
+import { CreateMediaComponent } from './pages/create-module/create-media/create-media.component';
 
 
 
@@ -11,7 +12,8 @@ import { AddMediaComponent } from './pages/create-module/add-media/add-media.com
   declarations: [
     CreateModuleComponent,
     UpdateModuleComponent,
-    AddMediaComponent
+    AddMediaComponent,
+    CreateMediaComponent
   ],
   imports: [
     SharedModule,
