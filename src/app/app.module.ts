@@ -5,22 +5,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { TileComponent } from './dashboard/components/tile/tile.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AdminComponent } from './dashboard/pages/admin/admin.component';
-import { ConceptorComponent } from './dashboard/pages/conceptor/conceptor.component';
-import { StudentComponent } from './dashboard/pages/student/student.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { StudentModule } from './student/student.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    TileComponent,
-    ConceptorComponent,
-    StudentComponent,
-    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +19,8 @@ import { StudentModule } from './student/student.module';
     StudentModule,
     BrowserAnimationsModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
