@@ -1,12 +1,44 @@
-<mat-toolbar color="primary">
-  <span>
-    <a [routerLink]="['/']">Streamer</a>
-  </span>
-  <span class="spacer"></span>
-  <button mat-icon-button *ngIf="user$ | async" (click)="logout()">
-    <mat-icon>logout</mat-icon>
-  </button>
-  <span *ngIf="user !== undefined">
-    {{ user.login }}
-  </span>
-</mat-toolbar>
+<div class="bg-primary-500">
+  <nav class="2xl:container 2xl:mx-auto sm:py-6 sm:px-7 py-5 px-4">
+    <!-- For large and Medium-sized Screen -->
+    <div class="flex justify-between">
+      <div class="flex space-x-3 items-center">
+        <h1 class="font-normal text-2xl leading-6 text-stone-100">STREAM</h1>
+      </div>
+      <div class="hidden sm:flex flex-row space-x-4">
+        <button class="btn-border-header btn-border-color" *ngIf="user$ | async" (click)="signOut()">
+          Sign
+          Out</button>
+      </div>
+
+
+      <!-- Burger Icon -->
+      <div (click)="menuDropdown()"
+        class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 flex justify-center items-center sm:hidden cursor-pointer">
+        <svg [ngClass]="menu ? 'hidden' : 'block'" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path class="transform duration-150" d="M4 6H20" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M4 12H20" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path class="transform duration-150" d="M4 18H20" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <svg *ngIf="menu === true" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M6 6L18 18" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Mobile and small-screen devices -->
+    <div [ngClass]="'mt-4 ' + (menu ? ' ' : 'hidden sm:hidden')" class="sm:hidden">
+      <div class="flex flex-col gap-4 mt-4 mx-auto">
+        <button class="btn-border-header btn-border-color w-full" *ngIf="user$ | async">Sign
+          Out</button>
+        <button class="btn-border-header btn-border-color w-full">Sign
+          Out</button>
+      </div>
+    </div>
+  </nav>
+</div>
