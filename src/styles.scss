@@ -10,6 +10,14 @@ body {
 **/
 $cols: 12;
 
+/**
+* Breakpoints
+**/
+$xs: '36em';
+$sm: '48em';
+$md: '62em';
+$lg: ' 75em';
+$xl: '75em';
 @mixin col-basis($basis) {
   grid-column: span $basis;
 }
@@ -28,19 +36,19 @@ $cols: 12;
   width: 100%;
 }
 
-@media screen and (min-width: 36em) {
+@media screen and (min-width: $xs) {
   .container {
     width: 100%;
   }
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: $sm) {
   .container {
     width: 100%;
   }
 }
 
-@media screen and (min-width: 62em) {
+@media screen and (min-width: $md) {
   .container {
     width: 62em;
     margin: 0 auto;
@@ -52,7 +60,7 @@ $cols: 12;
   }
 }
 
-@media screen and (min-width: 75em) {
+@media screen and (min-width: $lg) {
   .container {
     width: 75em;
     margin: 0 auto;
@@ -75,25 +83,33 @@ $cols: 12;
     @include col-x-list("xs");
     /** .row .col.xs1 ... .row .col.xs12 **/
 
-    &.sm-hidden {
-      display: none;
+    @media screen and (min-width: $sm) {
+      &.sm-hidden {
+        display: none;
+      }
+      @include col-x-list("sm");
     }
-    @include col-x-list("sm");
 
-    &.md-hidden {
-      display: none;
+    @media screen and (min-width: $md) {
+      &.md-hidden {
+        display: none;
+      }
+      @include col-x-list("md");
     }
-    @include col-x-list("md");
 
-    &.lg-hidden {
+    @media screen and (min-width: $lg) {
+      &.lg-hidden {
       display: none;
+      }
+      @include col-x-list("lg");
     }
-    @include col-x-list("lg");
 
-    &.xl-hidden {
-      display: none;
+    @media screen and (min-width: $xl) {
+      &.xl-hidden {
+        display: none;
+      }
+      @include col-x-list("xl");
     }
-    @include col-x-list("xl");
   }
 }
 
