@@ -14,6 +14,7 @@ export class TileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(JSON.stringify(this.tileInfo))
   }
 
   public onClick(object: any): void {
