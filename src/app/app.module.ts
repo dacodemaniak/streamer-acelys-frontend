@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ConceptorComponent } from './dashboard/pages/conceptor/conceptor.component';
 import { StudentComponent } from './dashboard/pages/student/student.component';
+import { AdminComponent } from './dashboard/pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { StudentComponent } from './dashboard/pages/student/student.component';
     DashboardComponent,
     TileComponent,
     ConceptorComponent,
-    StudentComponent
+    StudentComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
