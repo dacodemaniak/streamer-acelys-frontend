@@ -3,10 +3,26 @@
     <a [routerLink]="['/']">Streamer</a>
   </span>
   <span class="spacer"></span>
-  <button mat-icon-button *ngIf="user$ | async" (click)="logout()">
-    <mat-icon>logout</mat-icon>
-  </button>
-  <span *ngIf="user !== undefined">
-    {{ user.login }}
-  </span>
+  <ng-container *ngIf="user !== undefined">
+    <button mat-icon-button *ngIf="user$ | async" [matMenuTriggerFor]="menu">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>
+        <span>{{ user!.login }}</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item disabled>
+        {{ user!.firstName}} {{ user!.lastName }}
+      </button>
+      <button mat-menu-item disabled>
+        {{ user!.role.role}}
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()" class="logout">
+        Logout
+      </button>
+    </mat-menu>
+  </ng-container>
 </mat-toolbar>
+
