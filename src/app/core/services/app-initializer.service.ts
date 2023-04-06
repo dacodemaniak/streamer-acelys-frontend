@@ -25,6 +25,8 @@ export class AppInitializerService {
             },
             complete: () => resolve()
           })
+      } else {
+        resolve()
       }
     })
   }
