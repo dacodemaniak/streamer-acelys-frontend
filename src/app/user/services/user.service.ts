@@ -71,16 +71,17 @@ export class UserService {
     )
   }
 
-  public recovery(credentials: any): Observable<HttpResponse<any>> {
+  public recovery(credentials: any): Observable<HttpResponse<string>> {
     const endPoint: string = `${environment.apiRootUri}students/recovery`
-    return this._httpClient.post<any>(
+    return this._httpClient.post<string>(
       endPoint,
       credentials,
       {
         observe: 'response'
       }
     ).pipe(
-      take(1)
+      take(1),
+      tap((u: HttpResponse<any>)=>{console.log(u.body)})
     )
   }
 
