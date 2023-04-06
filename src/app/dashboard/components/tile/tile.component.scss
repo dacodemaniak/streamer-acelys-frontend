@@ -8,6 +8,10 @@ div {
     border: solid 1px rgb(128, 128, 128);
     box-shadow: 1px 1px 3px rgb(128, 128, 128);
 
+    blockquote {
+      height: 4em;
+    }
+
     div {
       &.title {
         display: flex;
