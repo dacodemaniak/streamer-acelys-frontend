@@ -8,8 +8,8 @@
 
 <section class="main-layout py-8">
   <div class="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-    <dashboard-admin *ngIf="currentUser.isAdmin"></dashboard-admin>
-    <dashboard-conceptor *ngIf="currentUser.isConceptor"></dashboard-conceptor>
-    <dashboard-student *ngIf="currentUser.isStudent"></dashboard-student>
+    <dashboard-admin *ngIf="currentUser.role === 'ADMIN'"></dashboard-admin>
+    <dashboard-conceptor *ngIf="currentUser.role === 'MANAGER'"></dashboard-conceptor>
+    <dashboard-student *ngIf="currentUser.role === 'STUDENT'"></dashboard-student>
   </div>
 </section>

@@ -19,10 +19,7 @@ export class DashboardComponent implements OnInit {
   public isAdmin: boolean = true
 
   public currentUser = {
-    id: '3',
-    username: 'John Doe',
-    email: 'test@httpcourse.com',
-    role: 'ADMIN'
+    role: 'STUDENT'
   };
 
   constructor(
@@ -58,20 +55,16 @@ export class DashboardComponent implements OnInit {
   }
 
   // Display the role of the current user in the dashboard, and return the string base on role
-  showRole(): string {
-    if (this.currentUser.role === 'ADMIN') {
+  showRole(currentUser: any): string {
+    if (currentUser.role === 'ADMIN') {
       return 'Admin'
-    } else if (this.currentUser.role === 'STUDENT') {
+    } else if (currentUser.role === 'STUDENT') {
       return 'Student'
-    } else if (this.currentUser.role === 'CONCEPTOR') {
+    } else if (currentUser.role === 'CONCEPTOR') {
       return 'Conceptor'
     } else {
       return 'User'
     }
   }
 
-
-
-
-  }
 }
