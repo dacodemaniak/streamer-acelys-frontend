@@ -1,14 +1,11 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { LocalStorageStrategy } from 'src/app/core/store/local-storage-strategy';
 import { SessionStorageStrategy } from 'src/app/core/store/session-storage-strategy';
-import { environment } from './../../../environments/environment'
-import { HttpResponse } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { RecoveryComponent } from '../dialogs/recovery/recovery.component';
-import { RecoveryPasswordComponent } from '../dialogs/recovery-password/recovery-password.component';
+import { environment } from '../../../../environments/environment';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,8 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    private _router: Router,
-    private _dialog: MatDialog
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -40,27 +36,6 @@ export class LoginComponent implements OnInit {
     if (this.showPassword) {
       setTimeout(() => this.showPassword = false, 800)
     }
-  }
-
-  openRecovery(): void {
-    this._dialog.open(
-      RecoveryComponent,
-      {
-        height: 'flex',
-        width: 'flex'
-      }
-    ).afterClosed().subscribe((result: HttpResponse<any> | undefined) => {
-      if (result !== undefined) {
-        this._dialog.open(
-          RecoveryPasswordComponent,
-          {
-            height: 'flex',
-            width: 'flex',
-            data: result
-          }
-          )
-      }
-    })
   }
 
   changeStrategy(): void {
@@ -79,7 +54,7 @@ export class LoginComponent implements OnInit {
         next: (response: HttpResponse<any>) => {
           this._router.navigate(['/'])
         },
-        error: (error: any) => {},
+        error: (error: any) => { },
         complete: () => {
           this.form.controls['login'].setValue('')
           this.form.controls['password'].setValue('')
