@@ -5,6 +5,8 @@ import { AddComponent } from './student/add/add.component';
 import { ListComponent } from './student/list/list.component';
 import { UpdateComponent } from './student/update/update.component';
 import { AuthGuard } from './user/guards/auth.guard';
+import { CreateModuleComponent } from './modules/pages/create-module/create-module.component';
+import { UpdateModuleComponent } from './modules/pages/update-module/update-module.component';
 
 @NgModule({
   imports: [RouterModule.forRoot(AppRoutingModule.routes)],
@@ -20,6 +22,20 @@ export class AppRoutingModule {
     {
       path: 'dashboard',
       component: DashboardComponent,
+      canActivate: [
+        AuthGuard
+      ]
+    },
+    {
+      path: 'modules/add',
+      component: CreateModuleComponent,
+      canActivate: [
+        AuthGuard
+      ]
+    },
+    {
+      path: 'modules/update',
+      component: UpdateModuleComponent,
       canActivate: [
         AuthGuard
       ]
