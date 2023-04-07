@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CreateModuleComponent } from '../../create-module/create-module.component';
 
 @Component({
   selector: 'app-add-media',
@@ -8,9 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AddMediaComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private _createModule: CreateModuleComponent) { }
 
   ngOnInit(): void {
+
+    console.log(this._createModule.medias)
+  }
+
+  public addMedia() {
+    console.log("he")
   }
 
 }

@@ -56,6 +56,7 @@ export class CreateModuleComponent implements OnInit {
     }
   }
 
+
   /** CREATE MEDIA METHOD */
   public createMedia(): void {
     if (this.addMediaVisible) {

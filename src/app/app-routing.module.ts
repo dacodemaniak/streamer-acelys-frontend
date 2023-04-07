@@ -64,7 +64,7 @@ export class AppRoutingModule {
     {
       path: 'course',
       loadChildren: () => import('./course/course.module').then((m) => m.CourseModule),
-      canActivate: [AuthGuard]
+      // canActivate: [AuthGuard]
     },
     {
       path: 'user',
