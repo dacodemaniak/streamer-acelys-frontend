@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Member } from 'src/app/user/models/member';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +42,11 @@ export class LocalStorageService {
   public key(index: number): string | null {
     return localStorage.key(index);
   }
+
+  public getMemberFromStorage(): Member {
+    const user = new Member(this.getItem(`${environment.storage.member.key}`));
+    return user;
+  }
+
 
 }
