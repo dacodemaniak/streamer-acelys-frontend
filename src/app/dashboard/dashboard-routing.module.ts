@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CourseListComponent } from '../course/pages/conceptor/course-list/course-list.component';
 import { AuthGuard } from '../user/guards/auth.guard';
 import { DashboardComponent } from './dashboard.component';
-import { ConceptorGuard } from './guards/conceptor.guard';
+import { ConceptorComponent } from './pages/conceptor/conceptor.component';
+import { ManagerComponent } from './pages/manager/manager.component';
+import { StudentComponent } from './pages/student/student.component';
 
 @NgModule({
   imports: [[RouterModule.forChild(DashboardRoutingModule.routes)]],
@@ -14,17 +15,24 @@ export class DashboardRoutingModule {
     {
       path: '',
       component: DashboardComponent,
-      pathMatch: 'full',
-    },
-    // add a course page base on the role of the member
-    {
-      path: 'courses',
-      component: CourseListComponent,
-      canActivate: [AuthGuard, ConceptorGuard],
-      data: {
-        role: ['CONCEPTOR'],
-        title: 'Courses',
-      }
+      canActivate: [AuthGuard],
+      children: [
+        {
+          path: 'conceptor',
+          component: ConceptorComponent,
+          data: { roles: ['CONCEPTOR'], title: "Conceptor" }
+        },
+        {
+          path: 'manager',
+          component: ManagerComponent,
+          data: { roles: ['MANAGER'], title: "Manager" }
+        },
+        {
+          path: 'student',
+          component: StudentComponent,
+          data: { roles: ['STUDENT'], title: "Student" }
+        },
+      ]
     },
     {
       path: '**',
