@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TileComponent } from './dashboard/components/tile/tile.component';
-import { StudentModule } from './student/student.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ModulesModule } from './modules/modules.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SharedModule } from './shared/shared.module';
+import { StudentModule } from './student/student.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    TileComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +22,8 @@ import { ModulesModule } from './modules/modules.module';
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    ModulesModule
+    ModulesModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

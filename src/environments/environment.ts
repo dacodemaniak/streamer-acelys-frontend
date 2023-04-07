@@ -10,7 +10,8 @@ export const environment = {
       strategy: 'session',
       key: 'auth'
     }
-  }
+  },
+  version: require('../../package.json').version
 };
 
 /*
