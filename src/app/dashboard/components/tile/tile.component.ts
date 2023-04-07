@@ -13,9 +13,7 @@ export class TileComponent implements OnInit {
     private _router: Router
   ) { }
 
-  ngOnInit(): void {
-    console.log(JSON.stringify(this.tileInfo))
-  }
+  ngOnInit(): void {}
 
   public onClick(object: any): void {
     this._router.navigate(object.action);

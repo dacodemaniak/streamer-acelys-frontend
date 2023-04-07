@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StudentModel } from '../../models/student-model';
+import { UserModel } from '../../../user/models/user-model';
 import { StudentFormService } from '../../services/student-form.service';
 
 @Component({
@@ -15,13 +15,13 @@ export class StudentFormComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({})
 
-  private _student: StudentModel
+  private _student: UserModel
 
   constructor(
     public dialogRef: MatDialogRef<StudentFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _studentFormService: StudentFormService
-  ) { 
+  ) {
     this._student = this.data.student
     if (this._student.id) {
       this.okButtonLabel = 'Update'
@@ -49,7 +49,7 @@ export class StudentFormComponent implements OnInit {
    */
   public onSubmit(): void {
     this._studentFormService.onSubmit()
-      .subscribe((student: StudentModel) => {
+      .subscribe((student: UserModel) => {
         this.dialogRef.close(student)
       })
   }

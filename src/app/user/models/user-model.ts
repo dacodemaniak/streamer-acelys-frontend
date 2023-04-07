@@ -1,4 +1,6 @@
-export class StudentModel {
+import { UserRoleType } from "../types/user-role.type"
+
+export class UserModel {
   private _id?: number
   private _lastName: string = ''
   private _firstName?: string = ''
@@ -6,6 +8,10 @@ export class StudentModel {
   private _phoneNumber?: string = ''
   private _login: string = ''
   private _password: string = ''
+  private _role: UserRoleType = {
+    id: 2,
+    role: 'Student'
+  }
 
   /**
    * @usage
@@ -67,5 +73,13 @@ export class StudentModel {
 
   set password(val: string) {
     this._password = val
+  }
+
+  get role(): UserRoleType {
+    return this._role
+  }
+
+  set role(role: UserRoleType) {
+    this._role = role
   }
 }

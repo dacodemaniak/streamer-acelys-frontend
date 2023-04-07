@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { ToastService } from 'src/app/core/toast.service';
 import { IStudent } from '../interfaces/i-student';
-import { StudentModel } from '../models/student-model';
+import { UserModel } from '../../user/models/user-model';
 import { StudentFormService } from '../services/student-form.service';
 import { StudentService } from '../services/student.service';
 
@@ -15,8 +15,8 @@ import { StudentService } from '../services/student.service';
 })
 export class AddComponent implements OnInit {
   public form: FormGroup = new FormGroup({})
-  public student: StudentModel = new StudentModel()
-   
+  public student: UserModel = new UserModel()
+
   constructor(
     private _formService: StudentFormService,
     private _service: StudentService,
@@ -49,12 +49,12 @@ export class AddComponent implements OnInit {
       error: (badRequest: any) => {
         this._snackBar.cssClass = 'failed'
         if (badRequest.status === 409) {
-          
+
           this._snackBar.show(
             badRequest.error.reason,
             'Got it!'
           )
-  
+
           this.form.controls[badRequest.error.attribute].setValue('')
         } else {
           this._snackBar.show(

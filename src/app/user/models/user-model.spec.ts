@@ -1,12 +1,12 @@
-import { StudentModel } from './student-model';
+import { UserModel } from './user-model';
 
 describe('StudentModel', () => {
   it('should create an instance', () => {
-    expect(new StudentModel()).toBeTruthy();
+    expect(new UserModel()).toBeTruthy();
   });
 
   it (`Should have 'Aubert' as lastName`, () => {
-    const student: StudentModel = new StudentModel()
+    const student: UserModel = new UserModel()
     // Fill student object
     student.lastName = 'Aubert'
     student.email = 'jean-luc.aubert@aelion.fr'

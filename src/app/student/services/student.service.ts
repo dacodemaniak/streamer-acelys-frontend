@@ -2,14 +2,16 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take, tap } from 'rxjs';
 import { IStudent } from '../interfaces/i-student';
-import { StudentModel } from '../models/student-model';
+import { UserModel } from '../../user/models/user-model';
 import { SimpleStudent } from '../types/simple-student-type';
 
 import { environment } from './../../../environments/environment'
+import { IUserService } from 'src/app/user/interfaces/i-user-service';
+import { instanceToPlain } from 'class-transformer';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class StudentService implements IUserService {
 
   private readonly endpoint: string = `${environment.apiRootUri}students`
 
@@ -33,7 +35,7 @@ export class StudentService {
     )
   }
 
-  public findOne(id: number): Observable<StudentModel> {
+  public findOne(id: number): Observable<UserModel> {
     return this._httpClient.get<any>(
       this.endpoint + '/' + id
     )
@@ -50,15 +52,15 @@ export class StudentService {
 
   public findByLoginOrEmail(email: string, login: string): void {}
 
-  public add(student: IStudent): Observable<any> {
-    return this._httpClient.post<IStudent>(
+  public add(student: UserModel): Observable<any> {
+    return this._httpClient.post<UserModel>(
       this.endpoint,
-      student
+      instanceToPlain(student)
     )
   }
 
-  public update(student: StudentModel): Observable<HttpResponse<any>> {
-    return this._httpClient.put<StudentModel>(
+  public update(student: UserModel): Observable<HttpResponse<any>> {
+    return this._httpClient.put<UserModel>(
       this.endpoint,
       student,
       {
@@ -68,7 +70,7 @@ export class StudentService {
   }
 
   public remove(id: number): Observable<HttpResponse<any>> {
-    return this._httpClient.delete<StudentModel>(
+    return this._httpClient.delete<UserModel>(
       `${this.endpoint}/${id}`,
       {
         observe: 'response'

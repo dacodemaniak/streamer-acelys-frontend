@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { StudentModel } from '../models/student-model';
+import { UserModel } from '../../user/models/user-model';
 import { StudentFormService } from '../services/student-form.service';
 import { StudentService } from '../services/student.service';
 
@@ -14,7 +14,7 @@ import { StudentService } from '../services/student.service';
 export class UpdateComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({})
-  public student: StudentModel | null = null
+  public student: UserModel | null = null
 
   constructor(
     private _route: ActivatedRoute,
@@ -27,7 +27,7 @@ export class UpdateComponent implements OnInit {
     const id: number = +this._route.snapshot.paramMap.get('id')!
     this._service.findOne(id)
       .subscribe({
-        next: (student: StudentModel) => {
+        next: (student: UserModel) => {
           this.student = student
           this._studentFormService.buildForm(this.student)
           this.form = this._studentFormService.form
