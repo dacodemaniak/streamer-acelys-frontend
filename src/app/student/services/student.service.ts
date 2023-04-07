@@ -52,7 +52,7 @@ export class StudentService implements IUserService {
   public findByLoginOrEmail(email: string, login: string): void {}
 
   public add(student: UserModel): Observable<any> {
-    return this._httpClient.post<IStudent>(
+    return this._httpClient.post<UserModel>(
       this.endpoint,
       student
     )

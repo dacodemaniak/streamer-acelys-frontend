@@ -4,8 +4,17 @@
   </div>
 </div>
 <table>
-  <caption>Students - <span (click)="openForm()">Add</span></caption>
   <thead>
+    <tr>
+      <th colspan="5">
+        Student List
+      </th>
+      <th>
+        <button mat-mini-fab color="primary" (click)="openForm()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </th>
+    </tr>
     <tr>
       <th colspan="5">
         Remove {{ this.checkedStudents.length }} of {{ this.students.length }}
