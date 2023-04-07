@@ -13,6 +13,7 @@ import { ModuleType } from 'src/app/course/types/module-type';
 })
 export class CourseListComponent implements OnInit {
   public courses: Array<CourseListType> = [];
+  public coursesConceptor: Array<CourseListType> = [];
 
   constructor(
     private _courseService: CourseService,
@@ -25,7 +26,18 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
+
+        /*   this.coursesConceptor = this.courses.filter((course) => {
+          return course.conceptorId = this.currentUserID;
+        })
+ */
+        //recuperer l'utilisateur courant
+        /*        this._userService.getCurrentUser().pipe(take(1)).subscribe((user) => {
+          this.currentUserId = user.id;
+        }); */
       });
+
+    // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
   }
 
   onCourseToggle(course: CourseListType): void {
@@ -63,5 +75,30 @@ export class CourseListComponent implements OnInit {
           this.courses.splice(this.courses.indexOf(course), 1);
         },
       });
+  }
+
+  onCopyCourse(course: CourseListType) {
+    this.coursesConceptor.push(course);
+
+    /*  this._courseService
+      .copyCourse(course)
+      .pipe(take(1))
+      .subscribe({
+        complete: () => {
+          this.coursesConceptor = this.courses.splice(
+            this.courses.indexOf(course),
+            1
+          );
+        },
+      }); */
+
+    /*  this._courseService
+      .copyCourse(course)
+      .pipe(take(1))
+      .subscribe({
+        complete: () => {
+          this.coursesConceptor.push(course);
+        },
+      }); */
   }
 }

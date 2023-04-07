@@ -5,6 +5,7 @@ import { ToastService } from './../../core/toast.service';
 import { CourseService } from '../services/course.service';
 import { CourseListType } from '../types/course-list-type';
 import { ModuleType } from '../types/module-type';
+import { log } from 'console';
 
 @Component({
   selector: 'app-list',
@@ -64,4 +65,11 @@ export class ListComponent implements OnInit {
         },
       });
   }
+
+  /* onCopyCourse(course: CourseListType) {
+    this._courseService
+      .copyCourse(course)
+      .pipe(take(1))
+      .subscribe(() => console.log(`${course}`));
+  } */
 }

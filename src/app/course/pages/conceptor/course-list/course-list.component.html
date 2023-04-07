@@ -12,18 +12,30 @@
   </div>
 
   <div class="col xs1 course-number">
-    {{ courses.length }} courses
+    {{ coursesConceptor.length }} courses
   </div>
 
 </div>
 <div class=" mx-10  rounded-sm border-2 border-slate-400 ">
 
-  <ng-container *ngIf="courses.length">
+  <!-- <ng-container *ngIf="courses.length">
     <ng-container *ngFor="let course of courses"   >
       <app-course-tile
       [course]="course"
       (onToggleCourse)="onCourseToggle($event)"
       (onRemoveCourse)="doRemoveCourse($event)"
+      (onCopyCourse)="onCopyCourse($event)"
+      ></app-course-tile>
+    </ng-container>
+  </ng-container>
+ -->
+  <ng-container *ngIf="coursesConceptor.length">
+    <ng-container *ngFor="let course of coursesConceptor"   >
+      <app-course-tile
+      [course]="course"
+      (onToggleCourse)="onCourseToggle($event)"
+      (onRemoveCourse)="doRemoveCourse($event)"
+      (onCopyCourse)="onCopyCourse($event)"
       ></app-course-tile>
     </ng-container>
   </ng-container>
@@ -48,6 +60,7 @@
       [course]="course"
       (onToggleCourse)="onCourseToggle($event)"
       (onRemoveCourse)="doRemoveCourse($event)"
+      (onCopyCourse)="onCopyCourse($event)"
       ></app-course-tile>
     </ng-container>
   </ng-container>
