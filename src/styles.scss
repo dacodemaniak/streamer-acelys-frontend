@@ -17,7 +17,6 @@ body {
   font-variant: normal;
 }
 
-
 /**
 * Helpers
 **/
@@ -149,4 +148,13 @@ body {
 
 .main-layout {
   @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+// Remove the background color on webkit browser (Chrome, Safari..)
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
