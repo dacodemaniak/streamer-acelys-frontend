@@ -29,13 +29,16 @@ export class RecoveryComponent implements OnInit {
 
     this._userService.recovery(this.form.value)
       .subscribe({
-        next: (response: HttpResponse<any>) => {
+        next: (response: HttpResponse<string>) => {
+          console.log(response)
           this.dialogRef.close(response)
         },
-        error: (error: any) => {},
-        complete: () => {
+        error: (error: any) => {
+          console.log(error)
           this.form.controls['login'].setValue('')
           this.form.controls['email'].setValue('')
+        },
+        complete: () => {
         }
       })
   }
