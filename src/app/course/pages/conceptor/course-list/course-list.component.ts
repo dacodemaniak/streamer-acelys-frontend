@@ -1,19 +1,19 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { ToastService } from './../../core/toast.service';
-import { CourseService } from '../services/course.service';
-import { CourseListType } from '../types/course-list-type';
-import { ModuleType } from '../types/module-type';
-import { log } from 'console';
+import { ToastService } from 'src/app/core/toast.service';
+import { CourseService } from 'src/app/course/services/course.service';
+import { CourseListType } from 'src/app/course/types/course-list-type';
+import { ModuleType } from 'src/app/course/types/module-type';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.scss'],
 })
-export class ListComponent implements OnInit {
+export class CourseListComponent implements OnInit {
   public courses: Array<CourseListType> = [];
+  public coursesConceptor: Array<CourseListType> = [];
 
   constructor(
     private _courseService: CourseService,
@@ -26,7 +26,18 @@ export class ListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
+
+        /*   this.coursesConceptor = this.courses.filter((course) => {
+          return course.conceptorId = this.currentUserID;
+        })
+ */
+        //recuperer l'utilisateur courant
+        /*        this._userService.getCurrentUser().pipe(take(1)).subscribe((user) => {
+          this.currentUserId = user.id;
+        }); */
       });
+
+    // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
   }
 
   onCourseToggle(course: CourseListType): void {
@@ -66,10 +77,28 @@ export class ListComponent implements OnInit {
       });
   }
 
-  /* onCopyCourse(course: CourseListType) {
-    this._courseService
+  onCopyCourse(course: CourseListType) {
+    this.coursesConceptor.push(course);
+
+    /*  this._courseService
       .copyCourse(course)
       .pipe(take(1))
-      .subscribe(() => console.log(`${course}`));
-  } */
+      .subscribe({
+        complete: () => {
+          this.coursesConceptor = this.courses.splice(
+            this.courses.indexOf(course),
+            1
+          );
+        },
+      }); */
+
+    /*  this._courseService
+      .copyCourse(course)
+      .pipe(take(1))
+      .subscribe({
+        complete: () => {
+          this.coursesConceptor.push(course);
+        },
+      }); */
+  }
 }

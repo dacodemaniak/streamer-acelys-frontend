@@ -9,63 +9,68 @@ import { AuthGuard } from './user/guards/auth.guard';
 
 @NgModule({
   imports: [RouterModule.forRoot(AppRoutingModule.routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
   public static readonly routes: Routes = [
     {
       path: '', // Mean : http://localhost:4200
       redirectTo: 'dashboard', // Redirect to another Route object
-      pathMatch: 'full' // Mean Angular read the whole URI instead of first matching occ
+      pathMatch: 'full', // Mean Angular read the whole URI instead of first matching occ
     },
     {
       path: 'dashboard',
+      component: DashboardComponent,
       loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-      canActivate: [AuthGuard]
+      /*  canActivate: [
+        AuthGuard
+      ] */
     },
     {
       path: 'modules/add',
       component: CreateModuleComponent,
-      canActivate: [
+      /*  canActivate: [
         AuthGuard
-      ]
+      ] */
     },
     {
       path: 'modules/update',
       component: UpdateModuleComponent,
-      canActivate: [
+            /*  canActivate: [
         AuthGuard
-      ]
+      ] */
     },
     {
       path: 'student/list',
       component: ListComponent,
-      canActivate: [
+      /*  canActivate: [
         AuthGuard
-      ]
+      ] */
     },
     {
       path: 'student/add',
       component: AddComponent,
-      canActivate: [
+      /*  canActivate: [
         AuthGuard
-      ]
+      ] */
     },
     {
       path: 'student/:id/update', // :id => sera remplacé par l'ID d'un Student à l'exécution
       component: UpdateComponent,
-      canActivate: [
+      /*  canActivate: [
         AuthGuard
-      ]
+      ] */
     },
     {
       path: 'course',
-      loadChildren: () => import('./course/course.module').then((m) => m.CourseModule),
-      canActivate: [AuthGuard]
+      loadChildren: () =>
+        import('./course/course.module').then((m) => m.CourseModule),
+      /* canActivate: [AuthGuard] */
     },
     {
       path: 'user',
-      loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+      loadChildren: () =>
+        import('./user/user.module').then((m) => m.UserModule),
     },
     {
       path: 'medias',
@@ -74,7 +79,7 @@ export class AppRoutingModule {
     {
       path: '**',
       redirectTo: 'dashboard', // Or any 404  component you want !
-      pathMatch: 'full'
-    }
-  ]
+      pathMatch: 'full',
+    },
+  ];
 }
