@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,31 +10,36 @@ export class DashboardComponent implements OnInit {
   /**
    * Tiles to display in the HTML template
    */
-  public tiles: Array<any> = []
+  // public tiles: Array<Tile> = []
 
   /**
    * Specify if a "user" is admin or not (default true)
    */
   public isAdmin: boolean = true
 
+  public currentUser = {
+    role: 'CONCEPTOR'
+  };
+
   constructor(
+    private _userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.tiles.push({
-      title: 'Parameters',
-      summary: 'Parameters management',
-      action: ['dashboard']
-    },
-    {
-      title: 'Students',
-      summary: 'Add, remove, view students',
-      action: ['/', 'student', 'list']
-    },
-    {
-      title: 'Courses',
-      summary: 'Manage courses and medias',
-      action: ['course']
-    })
+
   }
+
+  // Display the role of the current user in the dashboard, and return the string base on role
+  showRole(currentUser: any): string {
+    if (currentUser.role === 'MANAGER') {
+      return 'Manager'
+    } else if (currentUser.role === 'STUDENT') {
+      return 'Student'
+    } else if (currentUser.role === 'CONCEPTOR') {
+      return 'Conceptor'
+    } else {
+      return 'User'
+    }
+  }
+
 }
