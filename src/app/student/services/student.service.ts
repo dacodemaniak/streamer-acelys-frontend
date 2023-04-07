@@ -7,6 +7,7 @@ import { SimpleStudent } from '../types/simple-student-type';
 
 import { environment } from './../../../environments/environment'
 import { IUserService } from 'src/app/user/interfaces/i-user-service';
+import { instanceToPlain } from 'class-transformer';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +55,7 @@ export class StudentService implements IUserService {
   public add(student: UserModel): Observable<any> {
     return this._httpClient.post<UserModel>(
       this.endpoint,
-      student
+      instanceToPlain(student)
     )
   }
 
