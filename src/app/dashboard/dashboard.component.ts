@@ -10,7 +10,7 @@ import { Member } from '../user/models/member';
 })
 export class DashboardComponent implements OnInit {
   public isAdmin: boolean = true
-  public currentUser: any;
+  public currentUser!: Member;
 
   private _envKey: string = `${environment.storage.member.key}`;
   private _localStorageService = LocalStorageService.getInstance();
