@@ -16,7 +16,7 @@ export class UserService {
   private _user$: BehaviorSubject<any | undefined> = new BehaviorSubject(undefined)
 
   private _storageStrategy: IStorageStrategy
-  private _dataStorageService: LocalStorageService = new LocalStorageService();
+  private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
 
   constructor(
     private _httpClient: HttpClient
@@ -58,8 +58,7 @@ export class UserService {
       tap((response: HttpResponse<any>) => {
         if (response.status === 200) {
           this._user = response.body
-          this._dataStorageService.setItem(`${environment.storage.member.key}`, this._user)
-          console.log(this._user);
+          this._localStorageService.setItem(`${environment.storage.member.key}`, this._user)
           /**
           let storage = this.user.stayConnected ? localStorage : sessionStorage
           storage.setItem('auth', JSON.stringify(credentials))
@@ -93,7 +92,7 @@ export class UserService {
   }
 
   public logout(): void {
-    this._dataStorageService.removeItem(`${environment.storage.member.key}`)
+    this._localStorageService.removeItem(`${environment.storage.member.key}`)
     this._storageStrategy.remove()
     this._user = undefined
     this._user$.next(this._user)
