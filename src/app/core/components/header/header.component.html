@@ -6,9 +6,10 @@
         <h1 class="font-normal text-2xl leading-6 text-stone-100 dark:text-stone-50">STREAM</h1>
       </div>
       <div class="hidden sm:flex flex-row space-x-4">
-        <button class="btn outlined dark:border-header dark:border-color" *ngIf="user$ | async" (click)="signOut()">
+        <member-avatar *ngIf="user$ | async"></member-avatar>
+        <!-- <button class="btn outlined dark:border-header dark:border-color" *ngIf="user$ | async" (click)="signOut()">
           Sign Out
-        </button>
+        </button> -->
       </div>
 
 
@@ -34,7 +35,7 @@
     <!-- Mobile and small-screen devices -->
     <div [ngClass]="'mt-4 ' + (menu ? ' ' : 'hidden sm:hidden')" class="sm:hidden">
       <div class="flex flex-col gap-4 mt-4 mx-auto">
-        <button class="btn-border-header btn-border-color w-full dark:border-header dark:border-color"
+        <button class="btn-border-header btn-border-color w-full text-white dark:border-header dark:border-color"
           *ngIf="user$ | async">Sign Out</button>
       </div>
     </div>
