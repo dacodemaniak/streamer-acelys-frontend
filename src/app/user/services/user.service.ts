@@ -1,10 +1,10 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { IStorageStrategy } from './../../core/store/i-storage-strategy';
-import { SessionStorageStrategy } from './../../core/store/session-storage-strategy';
 import { LocalStorageStrategy } from './../../core/store/local-storage-strategy';
-import { BehaviorSubject, Observable, take, tap } from 'rxjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { SessionStorageStrategy } from './../../core/store/session-storage-strategy';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 export class UserService {
 
   private _user: any = undefined
-  private _user$: BehaviorSubject<any  | undefined> = new BehaviorSubject(undefined)
+  private _user$: BehaviorSubject<any | undefined> = new BehaviorSubject(undefined)
 
   private _storageStrategy: IStorageStrategy
 
@@ -22,6 +22,9 @@ export class UserService {
     this._storageStrategy = environment.storage.auth.strategy === 'session' ?
       new SessionStorageStrategy() :
       new LocalStorageStrategy()
+
+    this._user = this._storageStrategy.retrieve()
+    this._user$.next(this._user)
   }
 
   public set storageStrategy(strategy: IStorageStrategy) {
@@ -81,7 +84,7 @@ export class UserService {
       }
     ).pipe(
       take(1),
-      tap((u: HttpResponse<any>)=>{console.log(u.body)})
+      tap((u: HttpResponse<any>) => { console.log(u.body) })
     )
   }
 
