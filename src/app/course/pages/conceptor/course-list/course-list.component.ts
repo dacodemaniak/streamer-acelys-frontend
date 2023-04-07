@@ -27,6 +27,8 @@ export class CourseListComponent implements OnInit {
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
 
+        // si l'id est egal a 1 qui correspond a celui du concepteur alors je push
+
         /*   this.coursesConceptor = this.courses.filter((course) => {
           return course.conceptorId = this.currentUserID;
         })
@@ -92,13 +94,6 @@ export class CourseListComponent implements OnInit {
         },
       }); */
 
-    /*  this._courseService
-      .copyCourse(course)
-      .pipe(take(1))
-      .subscribe({
-        complete: () => {
-          this.coursesConceptor.push(course);
-        },
-      }); */
+    /*  this._courseService.copyCourse(course).subscribe(); */
   }
 }
