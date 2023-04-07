@@ -9,7 +9,7 @@ import { environment } from './../../../environments/environment';
 })
 export class HttpInterceptorService implements HttpInterceptor {
   private readonly _notSecuredUris: Array<string> = [
-    `${environment.apiRootUri}user/login`
+    `${environment.apiRootUri}user`
   ]
 
   constructor(
@@ -41,7 +41,9 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   private _isNotSecuredUri(reqUrl: string): boolean {
-    return this._notSecuredUris.filter((uri: string) => uri === reqUrl).length > 0
+    return this._notSecuredUris.filter((uri: string) => {
+      return reqUrl.startsWith(uri)
+    }).length > 0
   }
 }
 
