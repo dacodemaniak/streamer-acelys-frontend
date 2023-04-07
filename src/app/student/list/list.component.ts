@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { StudentFormComponent } from '../dialogs/student-form/student-form.component';
 import { IStudent } from '../interfaces/i-student';
-import { StudentModel } from '../models/student-model';
+import { UserModel } from '../../user/models/user-model';
 import { StudentService } from '../services/student.service';
 import { SimpleStudent } from '../types/simple-student-type';
 
@@ -44,10 +44,10 @@ export class ListComponent implements OnInit {
    */
   public openForm(student: SimpleStudent | null = null): void {
     if (!student) {
-      this._openDialog(new StudentModel())
+      this._openDialog(new UserModel())
     } else {
       this._studentService.findOne(student.id)
-        .subscribe((completeStudent: StudentModel) => {
+        .subscribe((completeStudent: UserModel) => {
           this._openDialog(completeStudent)
         })
     }
@@ -110,7 +110,7 @@ export class ListComponent implements OnInit {
     this.checkedStudents = this.students.filter((s: SimpleStudent) => s.isSelected);
   }
 
-  private _openDialog(student: StudentModel): void {
+  private _openDialog(student: UserModel): void {
     const dialogRef = this._matDialog.open(StudentFormComponent, {
       width: '500px',
       height: '500px',
