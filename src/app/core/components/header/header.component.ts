@@ -13,6 +13,10 @@ export class HeaderComponent implements OnInit {
   public user$: BehaviorSubject<any | undefined>
   public user: any
 
+  public menu: boolean = false;
+  public isMemberConnected: boolean = false;
+
+
   constructor(
     private _userService: UserService,
     private _router: Router
@@ -27,7 +31,11 @@ export class HeaderComponent implements OnInit {
       })
   }
 
-  logout(): void {
+  public menuDropdown(): void {
+    this.menu = !this.menu;
+  }
+
+  signOut(): void {
     this._userService.logout()
     this._router.navigate(['/', 'user'])
   }

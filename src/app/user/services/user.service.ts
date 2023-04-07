@@ -41,7 +41,7 @@ export class UserService {
   }
 
   public authenticate(credentials: any): Observable<HttpResponse<any>> {
-    const endPoint: string = `${environment.apiRootUri}user/byEmailAndPassword`
+    const endPoint: string = `${environment.apiRootUri}students/byLoginAndPassword`
     return this._httpClient.post<any>(
       endPoint,
       credentials,
@@ -68,6 +68,20 @@ export class UserService {
           this._user$.next(this._user)
         }
       })
+    )
+  }
+
+  public recovery(credentials: any): Observable<HttpResponse<string>> {
+    const endPoint: string = `${environment.apiRootUri}students/recovery`
+    return this._httpClient.post<string>(
+      endPoint,
+      credentials,
+      {
+        observe: 'response'
+      }
+    ).pipe(
+      take(1),
+      tap((u: HttpResponse<any>)=>{console.log(u.body)})
     )
   }
 

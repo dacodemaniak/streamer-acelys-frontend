@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateModuleComponent } from './modules/pages/create-module/create-module.component';
+import { UpdateModuleComponent } from './modules/pages/update-module/update-module.component';
 import { AddComponent } from './student/add/add.component';
 import { ListComponent } from './student/list/list.component';
 import { UpdateComponent } from './student/update/update.component';
@@ -20,7 +21,22 @@ export class AppRoutingModule {
     {
       path: 'dashboard',
       component: DashboardComponent,
+      loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       /*  canActivate: [
+        AuthGuard
+      ] */
+    },
+    {
+      path: 'modules/add',
+      component: CreateModuleComponent,
+      /*  canActivate: [
+        AuthGuard
+      ] */
+    },
+    {
+      path: 'modules/update',
+      component: UpdateModuleComponent,
+            /*  canActivate: [
         AuthGuard
       ] */
     },
@@ -55,6 +71,10 @@ export class AppRoutingModule {
       path: 'user',
       loadChildren: () =>
         import('./user/user.module').then((m) => m.UserModule),
+    },
+    {
+      path: 'medias',
+      loadChildren: () => import('./medias/medias.module').then((m) => m.MediasModule),
     },
     {
       path: '**',
