@@ -29,16 +29,16 @@ export class AppRoutingModule {
     {
       path: 'modules/add',
       component: CreateModuleComponent,
-      // canActivate: [
-      //   AuthGuard
-      // ]
+      canActivate: [
+        AuthGuard
+      ]
     },
     {
       path: 'modules/update',
       component: UpdateModuleComponent,
-      // canActivate: [
-      //   AuthGuard
-      // ]
+      canActivate: [
+        AuthGuard
+      ]
     },
     {
       path: 'student/list',
@@ -64,7 +64,7 @@ export class AppRoutingModule {
     {
       path: 'course',
       loadChildren: () => import('./course/course.module').then((m) => m.CourseModule),
-      // canActivate: [AuthGuard]
+      canActivate: [AuthGuard]
     },
     {
       path: 'user',
