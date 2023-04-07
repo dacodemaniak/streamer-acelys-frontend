@@ -68,6 +68,10 @@ export class AppRoutingModule {
       loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     },
     {
+      path: 'medias',
+      loadChildren: () => import('./medias/medias.module').then((m) => m.MediasModule),
+    },
+    {
       path: '**',
       redirectTo: 'dashboard', // Or any 404  component you want !
       pathMatch: 'full'
