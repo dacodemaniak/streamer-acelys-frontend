@@ -144,6 +144,10 @@ body {
 
 // * GLOBAL STYLES *******************************
 
+.no-styles {
+  @apply bg-transparent border-0 shadow-none text-current w-auto max-w-none p-0 m-0 leading-normal text-left outline-none;
+}
+
 // LAYOUT
 
 .main-layout {
