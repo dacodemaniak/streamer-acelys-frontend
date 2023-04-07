@@ -33,7 +33,11 @@ export class HeaderComponent implements OnInit {
     this.menu = !this.menu;
   }
 
-  signOut(): void {
+  public goToDashboard(): void {
+    this._router.navigate(['/dashboard']);
+  }
+
+  public signOut(): void {
     this._userService.logout()
   }
 }
