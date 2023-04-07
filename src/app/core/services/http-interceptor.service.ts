@@ -19,6 +19,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
+
     if (this._isNotSecuredUri(req.url)) {
       return next.handle(req)
     }
