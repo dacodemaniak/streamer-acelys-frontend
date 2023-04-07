@@ -1,31 +1,43 @@
-<div class="mx-auto flex flex-col justify-center lg:items-center h-ful">
+<div class="grid grid-cols-2 gap-2">
 
-  <div class="pt-0 px-2 flex flex-col items-center justify-center">
-    <h2 class="text-4xl leading-tight pt-8">Update a module</h2>
-  </div>
+  <div class="flex flex-col  justify-start lg:items-center h-ful">
 
-  <div class="pt-10 px-2 flex flex-col items-center justify-center">
-    <form [formGroup]="moduleForm" mat-dialog-content>
-      <div class="row">
-        <mat-form-field class="col xs12">
+    <div class="pt-0 px-2 flex flex-col items-center justify-center">
+      <h2 class="text-4xl leading-tight pt-8">Update a module</h2>
+    </div>
+    <div class="pt-10 px-2 flex flex-col items-center justify-center">
+      <form [formGroup]="moduleForm" mat-dialog-content>
+
+        <mat-form-field class="w-full">
           <input matInput formControlName="name" placeholder="Module name...">
           <mat-error *ngIf="c['name'].errors && c['name'].touched">
             Name is required
           </mat-error>
         </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field class="col xs12">
+
+        <mat-form-field class="w-full">
           <input matInput formControlName="objective" placeholder="Objective...">
         </mat-form-field>
+      </form>
+
+      <button mat-flat-button color="primary" class="w-full my-4" (click)="addMedia()">Add an existing media</button>
+      <button mat-flat-button color="primary" class="w-full my-3" (click)="createMedia()">Create a media</button>
+
+      <div mat-dialog-actions class="mt-20">
+        <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
+        <button cdkFocusInitial mat-flat-button color="primary" [disabled]="moduleForm.invalid" (click)="onSubmit()"
+          class="mx-4">Add</button>
       </div>
-    </form>
 
-
-    <div mat-dialog-actions class="mt-20">
-      <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
-      <button cdkFocusInitial mat-flat-button color="primary" [disabled]="moduleForm.invalid" (click)="onSubmit()"
-        class="mx-4">Update</button>
     </div>
   </div>
+
+  <ng-container *ngIf="addMediaVisible">
+    <app-add-media></app-add-media>
+  </ng-container>
+
+  <ng-container *ngIf="createMediaVisible">
+    <app-create-media [visibility]="createMediaVisible" (newItemEvent)="closeCreate($event)"></app-create-media>
+  </ng-container>
+
 </div>
