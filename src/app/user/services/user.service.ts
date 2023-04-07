@@ -1,5 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { environment } from './../../../environments/environment';
@@ -19,7 +20,8 @@ export class UserService {
   private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
 
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _router: Router
   ) {
     this._storageStrategy = environment.storage.auth.strategy === 'session' ?
       new SessionStorageStrategy() :
@@ -100,5 +102,6 @@ export class UserService {
     this._storageStrategy = environment.storage.auth.strategy === 'session' ?
       new SessionStorageStrategy() :
       new LocalStorageStrategy()
+    this._router.navigate(['/', 'user'])
   }
 }
