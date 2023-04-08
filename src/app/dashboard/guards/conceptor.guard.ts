@@ -34,7 +34,7 @@ export class ConceptorGuard implements CanActivate {
       return true;
     }
 
-    this._router.navigate(['/dashboard']);
+    this._router.navigate(['/not-found']);
 
     return false
   }

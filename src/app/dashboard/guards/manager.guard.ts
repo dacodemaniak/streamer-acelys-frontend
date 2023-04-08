@@ -34,7 +34,7 @@ export class ManagerGuard implements CanActivate {
       return true;
     }
 
-    this._router.navigate(['https://google.com']);
+    this._router.navigate(['/not-found']);
 
     return false
   }
