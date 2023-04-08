@@ -101,8 +101,4 @@ export class CourseListComponent implements OnInit {
 
     /*  this._courseService.copyCourse(course).subscribe(); */
   }
-
-  nextStep() {
-    console.log('yes');
-  }
 }
