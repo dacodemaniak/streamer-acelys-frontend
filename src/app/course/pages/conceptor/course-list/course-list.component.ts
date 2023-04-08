@@ -1,5 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { take } from 'rxjs';
 import { ToastService } from 'src/app/core/toast.service';
 import { CourseService } from 'src/app/course/services/course.service';
@@ -15,10 +17,12 @@ export class CourseListComponent implements OnInit {
   public courses: Array<CourseListType> = [];
   public coursesConceptor: Array<CourseListType> = [];
   panelOpenState = false;
+  panel!: MatExpansionPanel;
 
   constructor(
     private _courseService: CourseService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private _dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -96,5 +100,9 @@ export class CourseListComponent implements OnInit {
       }); */
 
     /*  this._courseService.copyCourse(course).subscribe(); */
+  }
+
+  nextStep() {
+    console.log('yes');
   }
 }
