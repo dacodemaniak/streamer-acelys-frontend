@@ -14,6 +14,7 @@ import { ModuleType } from 'src/app/course/types/module-type';
 export class CourseListComponent implements OnInit {
   public courses: Array<CourseListType> = [];
   public coursesConceptor: Array<CourseListType> = [];
+  panelOpenState = false;
 
   constructor(
     private _courseService: CourseService,
