@@ -13,10 +13,9 @@ export class Member {
     private _role?: string = '';
 
     private _roles: Role = {
-        ADMIN: 'Admin',
+        MANAGER: 'Manager',
         STUDENT: 'Student',
         CONCEPTOR: 'Conceptor',
-        USER: 'User'
     }
 
     constructor(member: {

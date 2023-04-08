@@ -14,8 +14,6 @@ export class HeaderComponent implements OnInit {
   public user: any
 
   public menu: boolean = false;
-  public isMemberConnected: boolean = false;
-
 
   constructor(
     private _userService: UserService,
@@ -35,8 +33,11 @@ export class HeaderComponent implements OnInit {
     this.menu = !this.menu;
   }
 
-  signOut(): void {
+  public goToDashboard(): void {
+    this._router.navigate(['/dashboard']);
+  }
+
+  public signOut(): void {
     this._userService.logout()
-    this._router.navigate(['/', 'user'])
   }
 }

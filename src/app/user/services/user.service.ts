@@ -1,6 +1,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, take, tap } from 'rxjs';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { environment } from './../../../environments/environment';
 import { IStorageStrategy } from './../../core/store/i-storage-strategy';
 import { LocalStorageStrategy } from './../../core/store/local-storage-strategy';
@@ -15,9 +17,11 @@ export class UserService {
   private _user$: BehaviorSubject<any | undefined> = new BehaviorSubject(undefined)
 
   private _storageStrategy: IStorageStrategy
+  private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
 
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _router: Router
   ) {
     this._storageStrategy = environment.storage.auth.strategy === 'session' ?
       new SessionStorageStrategy() :
@@ -56,7 +60,7 @@ export class UserService {
       tap((response: HttpResponse<any>) => {
         if (response.status === 200) {
           this._user = response.body
-
+          this._localStorageService.setItem(`${environment.storage.member.key}`, this._user)
           /**
           let storage = this.user.stayConnected ? localStorage : sessionStorage
           storage.setItem('auth', JSON.stringify(credentials))
@@ -67,6 +71,7 @@ export class UserService {
             sessionStorage.setItem('auth', JSON.stringify(credentials))
           }
           */
+
           this._storageStrategy.store(credentials)
           this._user$.next(this._user)
         }
@@ -89,6 +94,7 @@ export class UserService {
   }
 
   public logout(): void {
+    this._localStorageService.removeItem(`${environment.storage.member.key}`)
     this._storageStrategy.remove()
     this._user = undefined
     this._user$.next(this._user)
@@ -96,5 +102,6 @@ export class UserService {
     this._storageStrategy = environment.storage.auth.strategy === 'session' ?
       new SessionStorageStrategy() :
       new LocalStorageStrategy()
+    this._router.navigate(['/', 'user'])
   }
 }
