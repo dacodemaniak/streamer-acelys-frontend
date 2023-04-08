@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CourseListComponent } from '../course/pages/conceptor/course-list/course-list.component';
 import { DashboardComponent } from './dashboard.component';
-import { ConceptorGuard } from './guards/conceptor.guard';
-import { ManagerGuard } from './guards/manager.guard';
+import { RoleGuard } from './guards/role.guard';
 import { ConceptorComponent } from './pages/conceptor/conceptor.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 import { StudentComponent } from './pages/student/student.component';
@@ -17,24 +16,25 @@ export class DashboardRoutingModule {
     {
       path: '',
       component: DashboardComponent,
+      canActivate: [RoleGuard],
       data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'] },
       children: [
         {
           path: 'conceptor',
           component: ConceptorComponent,
-          canActivate: [ConceptorGuard],
+          canActivate: [RoleGuard],
           data: { allowedRoles: ['CONCEPTOR'], title: 'Conceptor' },
         },
         {
           path: 'courses',
           component: CourseListComponent,
-          canActivate: [ConceptorGuard],
+          canActivate: [RoleGuard],
           data: { allowedRoles: ['CONCEPTOR'], title: 'Course List' },
         },
         {
           path: 'manager',
           component: ManagerComponent,
-          canActivateChild: [ManagerGuard],
+          canActivateChild: [RoleGuard],
           data: { allowedRoles: ['MANAGER'], title: 'Manager' },
         },
         {
@@ -45,5 +45,6 @@ export class DashboardRoutingModule {
         }
       ],
     },
+    // { path: '**', redirectTo: '/dashboard' },
   ];
 }

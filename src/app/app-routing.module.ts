@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateModuleComponent } from './modules/pages/create-module/create-module.component';
 import { UpdateModuleComponent } from './modules/pages/update-module/update-module.component';
+import { NotFoundComponent } from './pages/erros/not-found/not-found.component';
 import { AddComponent } from './student/add/add.component';
 import { ListComponent } from './student/list/list.component';
 import { UpdateComponent } from './student/update/update.component';
@@ -75,8 +76,8 @@ export class AppRoutingModule {
     },
     {
       path: '**',
-      redirectTo: 'dashboard', // Or any 404  component you want !
-      pathMatch: 'full',
+      component: NotFoundComponent,
+      pathMatch: 'full'
     },
   ];
 }
