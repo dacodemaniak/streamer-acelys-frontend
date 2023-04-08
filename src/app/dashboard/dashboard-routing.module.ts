@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../user/guards/auth.guard';
+import { CourseListComponent } from '../course/pages/conceptor/course-list/course-list.component';
 import { DashboardComponent } from './dashboard.component';
+import { ConceptorGuard } from './guards/conceptor.guard';
+import { ManagerGuard } from './guards/manager.guard';
 import { ConceptorComponent } from './pages/conceptor/conceptor.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 import { StudentComponent } from './pages/student/student.component';
@@ -15,29 +17,33 @@ export class DashboardRoutingModule {
     {
       path: '',
       component: DashboardComponent,
-      canActivate: [AuthGuard],
+      data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'] },
       children: [
         {
           path: 'conceptor',
           component: ConceptorComponent,
-          data: { roles: ['CONCEPTOR'], title: "Conceptor" }
+          canActivate: [ConceptorGuard],
+          data: { allowedRoles: ['CONCEPTOR'], title: 'Conceptor' },
+        },
+        {
+          path: 'courses',
+          component: CourseListComponent,
+          canActivate: [ConceptorGuard],
+          data: { allowedRoles: ['CONCEPTOR'], title: 'Course List' },
         },
         {
           path: 'manager',
           component: ManagerComponent,
-          data: { roles: ['MANAGER'], title: "Manager" }
+          canActivateChild: [ManagerGuard],
+          data: { allowedRoles: ['MANAGER'], title: 'Manager' },
         },
         {
           path: 'student',
           component: StudentComponent,
-          data: { roles: ['STUDENT'], title: "Student" }
-        },
-      ]
-    },
-    {
-      path: '**',
-      redirectTo: 'dashboard',
-      pathMatch: 'full',
+          // canActivate: [StudentGuard],
+          data: { allowedRoles: ['STUDENT'], title: 'Student' },
+        }
+      ],
     },
   ];
 }
