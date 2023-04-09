@@ -1,13 +1,22 @@
+import { Expose } from "class-transformer"
 import { UserRoleType } from "../types/user-role.type"
 
 export class UserModel {
+  @Expose({name: 'id'})
   private _id?: number
+  @Expose({name: 'lastName'})
   private _lastName: string = ''
+  @Expose({name: 'firstName'})
   private _firstName?: string = ''
+  @Expose({name: 'email'})
   private _email: string = ''
+  @Expose({name: 'phoneNumber'})
   private _phoneNumber?: string = ''
+  @Expose({name: 'login'})
   private _login: string = ''
+  @Expose({name: 'password'})
   private _password: string = ''
+  @Expose({name: 'role'})
   private _role: UserRoleType = {
     id: 2,
     role: 'Student'
