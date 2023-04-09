@@ -19,25 +19,36 @@ export class RoleGuard implements CanActivate {
     const allowedRoles = next.data['allowedRoles'];
     const userRole = new Member(this._localStorageService.getMemberFromStorage()).getRoleName().toUpperCase();
 
+    console.log(userRole);
+
+    // Check if the user's role is allowed to access this page
     if (!allowedRoles.includes(userRole)) {
+      // If not, navigate to the not-found page and return false
       this._router.navigate(['/not-found']);
       return false;
     }
+    // The user is allowed to access this page but need to check the member's role
+    console.log('Authorized but need to check the member\'s role');
 
-    console.log('Authorized');
+    // Create a new Map object that maps each role to its corresponding URL
+    // Conceptor member should be able to access /dashboard/conceptor
     const urlMap = new Map<string, string>([
       ['CONCEPTOR', '/dashboard/conceptor'],
-      // ['CONCEPTOR', '/dashboard/courses'],
       ['MANAGER', '/dashboard/manager'],
       ['STUDENT', '/dashboard/student'],
     ]);
 
+    // Get the correct URL for the user's role from a Map object
     const correctUrl = urlMap.get(userRole);
-    if (correctUrl && state.url !== correctUrl) {
+    // Check if the correct URL exists and if the current URL does not start with it
+    if (correctUrl && !state.url.startsWith(correctUrl)) {
+      console.log(correctUrl);
+      // Navigate to the correct URL
       this._router.navigateByUrl(correctUrl);
       return false;
     }
 
+    // The user is allowed to access this page
     return true;
   }
 

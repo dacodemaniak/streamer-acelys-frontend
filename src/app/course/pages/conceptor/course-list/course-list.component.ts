@@ -18,7 +18,7 @@ export class CourseListComponent implements OnInit {
   constructor(
     private _courseService: CourseService,
     private _toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._courseService
@@ -62,9 +62,8 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: HttpResponse<any>) => {
-          const message: string = `${course.title} was removed. ${
-            course.modules!.length
-          } modules were affected`;
+          const message: string = `${course.title} was removed. ${course.modules!.length
+            } modules were affected`;
           this._toastService.show(message);
         },
         error: (error: any) => {

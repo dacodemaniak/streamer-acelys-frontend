@@ -24,23 +24,25 @@ export class DashboardRoutingModule {
           component: ConceptorComponent,
           canActivate: [RoleGuard],
           data: { allowedRoles: ['CONCEPTOR'], title: 'Conceptor' },
-        },
-        {
-          path: 'courses',
-          component: CourseListComponent,
-          canActivate: [RoleGuard],
-          data: { allowedRoles: ['CONCEPTOR'], title: 'Course List' },
+          children: [
+            {
+              path: 'courses',
+              component: CourseListComponent,
+              canActivate: [RoleGuard],
+              data: { allowedRoles: ['CONCEPTOR'], title: 'Course List' },
+            }
+          ]
         },
         {
           path: 'manager',
           component: ManagerComponent,
-          canActivateChild: [RoleGuard],
+          // canActivateChild: [RoleGuard],
           data: { allowedRoles: ['MANAGER'], title: 'Manager' },
         },
         {
           path: 'student',
           component: StudentComponent,
-          // canActivate: [StudentGuard],
+          // canActivate: [RoleGuard],
           data: { allowedRoles: ['STUDENT'], title: 'Student' },
         }
       ],
