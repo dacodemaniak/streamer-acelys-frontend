@@ -27,6 +27,7 @@ export class RoleGuard implements CanActivate {
     console.log('Authorized');
     const urlMap = new Map<string, string>([
       ['CONCEPTOR', '/dashboard/conceptor'],
+      ['CONCEPTOR', '/dashboard/courses'],
       ['MANAGER', '/dashboard/manager'],
       ['STUDENT', '/dashboard/student'],
     ]);
