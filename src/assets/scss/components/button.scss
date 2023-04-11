@@ -1,18 +1,11 @@
 .btn {
     @apply inline-flex cursor-pointer select-none flex-wrap items-center justify-center border-transparent text-center transition duration-200 ease-in-out;
-    @apply h-10 px-4 text-sm rounded-xl;
+    @apply h-10 px-4 text-sm rounded;
     line-height: 1em;
 
     &-disabled,
     &[disabled] {
         @apply pointer-events-none;
-    }
-
-    &-square {
-        @apply h-12 w-12 p-0;
-    }
-    &-circle {
-        @apply h-12 w-12 rounded-full p-0;
     }
 
     &.loading {
@@ -31,24 +24,24 @@
         }
     }
 
-    &.primary {
-        @apply bg-primary-500 text-white hover:bg-primary-700;
+    &.outlined {
+        @apply border border-white text-white;
+        &:hover {
+            @apply bg-primary-400;
+        }
+        &:focus {
+            @apply bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2;
+        }
+    }
+
+    .primary {
+        @apply bg-primary-500 text-white;
+        &:hover {
+            @apply bg-primary-700;
+        }
     }
 
     // Mettre les autres couleurs ici avec &.nomdeclasse ex -> &.accent {}
-}
-@media (prefers-reduced-motion: reduce) {
-    .btn.loading:before {
-        animation: spin 10s linear infinite;
-    }
-}
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 .mat-button,

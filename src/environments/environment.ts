@@ -8,7 +8,10 @@ export const environment = {
   storage: {
     auth: {
       strategy: 'session',
-      key: 'auth'
+      key: 'auth',
+    },
+    member: {
+      key: 'memberData',
     }
   },
   version: require('../../package.json').version

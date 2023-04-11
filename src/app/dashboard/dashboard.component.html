@@ -1,15 +1,12 @@
-<div class="bg-stone-900">
-  <div class="main-layout py-8">
-    <span id="toggle-user-role" (click)="isAdmin = !isAdmin" class="text-3xl font-semibold text-white">
+<header class="bg-stone-50 dark:bg-neutral-900 shadow-sm">
+  <div class="main-layout px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold leading-tight tracking-tight  text-stone-900 dark:text-white">
       Dashboard {{ showRole(currentUser) }}
-    </span>
+    </h1>
+    <p class="mt-1.5 text-sm text-stone-500">Hello {{currentUser.firstName}} !</p>
   </div>
-</div>
+</header>
 
 <section class="main-layout py-8">
-  <div class="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-    <dashboard-manager *ngIf="currentUser.role === 'MANAGER'"></dashboard-manager>
-    <dashboard-conceptor *ngIf="currentUser.role === 'CONCEPTOR'"></dashboard-conceptor>
-    <dashboard-student *ngIf="currentUser.role === 'STUDENT'"></dashboard-student>
-  </div>
+  <router-outlet></router-outlet>
 </section>

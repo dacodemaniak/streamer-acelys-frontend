@@ -17,7 +17,6 @@ body {
   font-variant: normal;
 }
 
-
 /**
 * Helpers
 **/
@@ -37,44 +36,44 @@ $cols: 12;
 /**
 * Responsive Grid system
 **/
-.container {
-  width: 100%;
-}
+// .container {
+//   width: 100%;
+// }
 
-@media screen and (min-width: 36em) {
-  .container {
-    width: 100%;
-  }
-}
+// @media screen and (min-width: 36em) {
+//   .container {
+//     width: 100%;
+//   }
+// }
 
-@media screen and (min-width: 48em) {
-  .container {
-    width: 100%;
-  }
-}
+// @media screen and (min-width: 48em) {
+//   .container {
+//     width: 100%;
+//   }
+// }
 
-@media screen and (min-width: 62em) {
-  .container {
-    width: 62em;
-    margin: 0 auto;
+// @media screen and (min-width: 62em) {
+//   .container {
+//     width: 62em;
+//     margin: 0 auto;
 
-    &.fluid {
-      width: 100%;
-      margin: 0;
-    }
-  }
-}
+//     &.fluid {
+//       width: 100%;
+//       margin: 0;
+//     }
+//   }
+// }
 
-@media screen and (min-width: 75em) {
-  .container {
-    width: 75em;
-    margin: 0 auto;
-    &.fluid {
-      width: 100%;
-      margin: 0;
-    }
-  }
-}
+// @media screen and (min-width: 75em) {
+//   .container {
+//     width: 75em;
+//     margin: 0 auto;
+//     &.fluid {
+//       width: 100%;
+//       margin: 0;
+//     }
+//   }
+// }
 
 .row {
   display: grid;
@@ -145,8 +144,21 @@ body {
 
 // * GLOBAL STYLES *******************************
 
+.no-styles {
+  @apply bg-transparent border-0 shadow-none text-current w-auto max-w-none p-0 m-0 leading-normal text-left outline-none;
+}
+
 // LAYOUT
 
 .main-layout {
-  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  @apply mx-auto max-w-7xl p-6 lg:px-8;
+}
+
+// Remove the background color on webkit browser (Chrome, Safari..)
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }

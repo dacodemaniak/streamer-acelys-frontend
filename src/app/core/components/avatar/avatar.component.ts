@@ -3,48 +3,45 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Member } from 'src/app/user/models/member';
 import { UserService } from 'src/app/user/services/user.service';
+import { environment } from 'src/environments/environment';
 import { LocalStorageService } from '../../services/local-storage.service';
 
+
+
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'member-avatar',
+  templateUrl: './avatar.component.html',
+  styleUrls: ['./avatar.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class AvatarComponent implements OnInit {
+  public isOpenedList: any;
+  public memberData!: Member;
 
-  public user$: BehaviorSubject<any | undefined>
-  public user: any
-
-  public menu: boolean = false;
+  public user$: BehaviorSubject<any | undefined> | undefined
+  public user!: Member
 
   private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
-
-  private _member: Member = new Member(this._localStorageService.getMemberFromStorage());
 
   constructor(
     private _userService: UserService,
     private _router: Router
-  ) {
-    this.user$ = this._userService.user$
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.getMemberData();
     this._userService.user$
       .subscribe((_user: any) => {
         this.user = _user
-      })
+      });
   }
 
-  public menuDropdown(): void {
-    this.menu = !this.menu;
+  // Get the username of the member
+  getMemberData(): void {
+    this.memberData = new Member(this._localStorageService.getItem(`${environment.storage.member.key}`))
   }
 
-  public goToDashboard(): void {
-    const role = this._member.getRoleName().toLowerCase();
-    this._router.navigate(['/dashboard', role]);
-  }
-
-  public signOut(): void {
+  signOut(): void {
     this._userService.logout()
   }
+
 }
