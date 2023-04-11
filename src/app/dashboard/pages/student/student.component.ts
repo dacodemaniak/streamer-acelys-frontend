@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'dashboard-student',
@@ -9,9 +8,8 @@ import { Title } from '@angular/platform-browser';
 export class StudentComponent implements OnInit {
   public tiles: Array<any> = [];
 
-  constructor(private title: Title) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.title.setTitle('Dashboard Students');
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'dashboard-manager',
@@ -8,10 +7,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class ManagerComponent implements OnInit {
 
-  constructor(private title: Title) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.title.setTitle('Dashboard Manager');
   }
 
 }

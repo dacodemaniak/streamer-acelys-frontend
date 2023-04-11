@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'dashboard-conceptor',
@@ -9,10 +8,10 @@ import { Title } from '@angular/platform-browser';
 export class ConceptorComponent implements OnInit {
   public tiles: Array<any> = []
 
-  constructor(private title: Title) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.title.setTitle('Dashboard Conceptor');
+
   }
 
 }
