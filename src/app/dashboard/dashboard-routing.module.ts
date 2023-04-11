@@ -17,19 +17,19 @@ export class DashboardRoutingModule {
       path: '',
       component: DashboardComponent,
       canActivate: [RoleGuard],
-      data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'] },
+      data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'], title: 'Dashboard' },
       children: [
         {
           path: 'conceptor',
           component: ConceptorComponent,
           canActivate: [RoleGuard],
-          data: { allowedRoles: ['CONCEPTOR'], title: 'Conceptor' },
+          data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Conceptor' },
           children: [
             {
               path: 'courses',
               component: CourseListComponent,
               canActivate: [RoleGuard],
-              data: { allowedRoles: ['CONCEPTOR'], title: 'Course List' },
+              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | All Course' },
             }
           ]
         },
@@ -37,13 +37,13 @@ export class DashboardRoutingModule {
           path: 'manager',
           component: ManagerComponent,
           // canActivateChild: [RoleGuard],
-          data: { allowedRoles: ['MANAGER'], title: 'Manager' },
+          data: { allowedRoles: ['MANAGER'], title: 'Dashboard | Manager' },
         },
         {
           path: 'student',
           component: StudentComponent,
           // canActivate: [RoleGuard],
-          data: { allowedRoles: ['STUDENT'], title: 'Student' },
+          data: { allowedRoles: ['STUDENT'], title: 'Dashboard | Student' },
         }
       ],
     },

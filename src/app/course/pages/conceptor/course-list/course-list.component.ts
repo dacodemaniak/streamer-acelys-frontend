@@ -17,7 +17,7 @@ export class CourseListComponent implements OnInit {
 
   constructor(
     private _courseService: CourseService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
   ) { }
 
   ngOnInit(): void {

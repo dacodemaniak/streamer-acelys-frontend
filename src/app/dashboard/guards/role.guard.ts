@@ -19,7 +19,7 @@ export class RoleGuard implements CanActivate {
     const allowedRoles = next.data['allowedRoles'];
     const userRole = new Member(this._localStorageService.getMemberFromStorage()).getRoleName().toUpperCase();
 
-    console.log(userRole);
+    // console.log(userRole);
 
     // Check if the user's role is allowed to access this page
     if (!allowedRoles.includes(userRole)) {
@@ -28,7 +28,7 @@ export class RoleGuard implements CanActivate {
       return false;
     }
     // The user is allowed to access this page but need to check the member's role
-    console.log('Authorized but need to check the member\'s role');
+    // console.log('Authorized but need to check the member\'s role');
 
     // Create a new Map object that maps each role to its corresponding URL
     // Conceptor member should be able to access /dashboard/conceptor

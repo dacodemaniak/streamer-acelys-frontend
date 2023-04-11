@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ConceptorComponent } from './pages/conceptor/conceptor.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 import { StudentComponent } from './pages/student/student.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 
@@ -16,7 +17,8 @@ import { StudentComponent } from './pages/student/student.component';
     ConceptorComponent,
     StudentComponent,
     ManagerComponent,
-    TileComponent
+    TileComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
