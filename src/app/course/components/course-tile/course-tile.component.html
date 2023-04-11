@@ -23,7 +23,7 @@
         <button mat-menu-item>
           <span>View course</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onUpdateClick(course)">
           <span>Update course</span>
         </button>
         <button mat-menu-item (click)="onRemoveClick(course)">

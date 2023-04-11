@@ -17,6 +17,7 @@ export class CourseHandlerComponent implements OnInit {
   public form: FormGroup
   public useModule: boolean = true
   public modules: Array<ModuleType> = []
+  public course : CourseType;
 
   constructor(
     private _formBuilder: FormCourseBuilderService,
@@ -24,6 +25,12 @@ export class CourseHandlerComponent implements OnInit {
     private _router: Router,
     private _dialog: MatDialog
   ) { 
+    this.course =JSON.parse( sessionStorage.getItem("ModifiedCourse")+"");
+    this._formBuilder.buildForm(this.course)
+
+    this.course.modules?.forEach((m)=>{
+      this.modules.push(m);
+    })
     this.form = this._formBuilder.form
   }
 
@@ -33,6 +40,7 @@ export class CourseHandlerComponent implements OnInit {
   get c(): {[key: string]: AbstractControl} {
     return this.form.controls
   }
+
 
   addModule(): void {
     this._dialog.open(
@@ -63,7 +71,7 @@ export class CourseHandlerComponent implements OnInit {
     }
     this._courseService.add(course)
       .subscribe((courseType: CourseType) => {
-        this._router.navigate(['/', 'course'])
+        this._router.navigate(['/','dashboard', 'conceptor', 'course'])
       })
   }
 

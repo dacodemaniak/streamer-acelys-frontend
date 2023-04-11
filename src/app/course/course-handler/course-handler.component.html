@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
-        <mat-form-field class="col xs12">
+        <mat-form-field class="col xs8">
             <input matInput formControlName="title" placeholder="Course title...">
             <mat-error *ngIf="c['title'].errors && c['title'].touched">
                 Title is required
@@ -8,7 +8,7 @@
         </mat-form-field>
     </div>
     <div class="row">
-        <mat-form-field class="col xs12">
+        <mat-form-field class="col xs8">
             <input matInput formControlName="objective" placeholder="Objective...">
         </mat-form-field>
     </div>

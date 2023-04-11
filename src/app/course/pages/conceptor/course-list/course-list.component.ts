@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { ToastService } from 'src/app/core/toast.service';
 import { CourseService } from 'src/app/course/services/course.service';
@@ -17,7 +18,8 @@ export class CourseListComponent implements OnInit {
 
   constructor(
     private _courseService: CourseService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private _router:Router
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,11 @@ export class CourseListComponent implements OnInit {
       });
 
     // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
+  }
+  goToAddCourse():void{
+    sessionStorage.removeItem("ModifiedCourse");
+    console.log("heho");
+    this._router.navigate(['/', 'course', 'add']);
   }
 
   onCourseToggle(course: CourseListType): void {
