@@ -21,6 +21,7 @@ export class CourseListComponent implements OnInit {
   panel!: MatExpansionPanel;
 
   constructor(
+    private _localStorageService: LocalStorageService,
     private _courseService: CourseService,
     private _studentService: StudentService,
     private _toastService: ToastService,
@@ -96,6 +97,6 @@ export class CourseListComponent implements OnInit {
         },
       }); */
 
-    /*  this._courseService.copyCourse(course).subscribe(); */
+    this._courseService.copyCourse(course).subscribe();
   }
 }
