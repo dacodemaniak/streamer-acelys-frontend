@@ -1,0 +1,13 @@
+.breadcrumb-item {
+    display: flex;
+
+    & span:before {
+        content: ">";
+        margin: 0 0.5em;
+    }
+
+    & span:first-child:before {
+        content: "";
+        margin: 0;
+    }
+}
