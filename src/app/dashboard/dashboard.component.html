@@ -8,10 +8,10 @@
       </h1>
       <p class="mt-1.5 text-sm text-stone-500">Hello {{currentUser.firstName}} !</p>
     </div>
-    <div class="action-user flex flex-row gap-2 justify-center mt-4" *ngIf="currentUser.role == 'CONCEPTOR'">
+    <div class="action-user flex flex-row gap-2 justify-center mt-4 sm:mt-0" *ngIf="currentUser.role == 'CONCEPTOR'">
       <button mat-flat-button color="primary" class="btn" onclick="">+ Course</button>
       <button mat-flat-button color="primary" class="btn" onclick="">+ Module</button>
-      <button mat-flat-button color="primary" class="btn" onclick="">+ Media</button>
+      <button mat-flat-button color="primary" class="btn" (click)="goToMediaAdd()">+ Media</button>
     </div>
   </div>
 </header>
