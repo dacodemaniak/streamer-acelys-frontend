@@ -1,12 +1,12 @@
 .breadcrumb-item {
     display: flex;
 
-    & span:before {
+    & a:before {
         content: ">";
         margin: 0 0.5em;
     }
 
-    & span:first-child:before {
+    & a:first-child:before {
         content: "";
         margin: 0;
     }

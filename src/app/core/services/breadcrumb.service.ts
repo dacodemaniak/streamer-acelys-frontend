@@ -46,12 +46,13 @@ export class BreadcrumbService {
       if (route.data['breadcrumb']) {
         const breadcrumb = {
           label: this.getLabel(route.data),
-          url: '/' + routeUrl.join('/'),
+          url: 'http://localhost:4200/' + routeUrl.join('/'),
         };
+        console.log(breadcrumb);
         breadcrumbs.push(breadcrumb);
       }
 
-      console.log(routeUrl);
+
 
       // Add another element for the next route part
       this.addBreadcrumb(route.firstChild!, routeUrl, breadcrumbs);
