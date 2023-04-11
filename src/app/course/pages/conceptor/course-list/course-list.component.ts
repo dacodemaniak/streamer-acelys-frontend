@@ -35,13 +35,13 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
+        console.log(this.courses);
       });
 
     this._studentService
       .findOne(3)
       .pipe(take(1))
       .subscribe((response: any) => {
-        console.log(response);
         this.coursesConceptor = response.courses;
       });
   }

@@ -122,7 +122,15 @@
               <button mat-button color="primary"  mat-icon-button [matMenuTriggerFor]="menuModule" (click)="$event.stopPropagation()">...</button>
             </mat-action-row>
           </mat-expansion-panel-header>
-          <p *ngFor="let media of module.medias"> {{media.title}}</p>
+          <ng-container *ngFor="let media of module.medias" >
+            <mat-panel-description class="flex justify-around justify-items-center " >
+
+              <p > {{media.title}} </p>
+              <p>time : {{media.duration}} min</p>
+              <p>Type media : {{media.typeMedia.title}}</p>
+            </mat-panel-description>
+
+          </ng-container>
         </mat-expansion-panel>
       </mat-accordion>
 
