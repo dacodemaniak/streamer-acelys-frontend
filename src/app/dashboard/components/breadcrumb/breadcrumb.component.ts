@@ -1,23 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IBreadcrumb } from 'src/app/core/interfaces/i-breadcrumb';
+import { BreadcrumbService } from 'src/app/core/services/breadcrumb.service';
 
 @Component({
-  selector: 'dashboard-breadcrumb',
+  selector: 'nav[dashboard-breadcrumb]',
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.scss']
+  styleUrls: ['./breadcrumb.component.scss'],
 })
-export class BreadcrumbComponent implements OnInit {
-  private _baseBreadcrumb: string = "Dashboard";
-  private _divideSymbol: string = " / ";
+export class BreadcrumbComponent {
+  public breadcrumbs$: Observable<IBreadcrumb[]>;
 
-  constructor(private _routeData: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    console.log(this._routeData.root);
+  constructor(private _breadcrumbService: BreadcrumbService) {
+    this.breadcrumbs$ = this._breadcrumbService.breadcrumbs$;
   }
-
-  getBreadcrumb(): string {
-    return this._baseBreadcrumb;
-  }
-
 }

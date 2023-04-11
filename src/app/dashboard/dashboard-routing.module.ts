@@ -17,19 +17,19 @@ export class DashboardRoutingModule {
       path: '',
       component: DashboardComponent,
       canActivate: [RoleGuard],
-      data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'], title: 'Dashboard' },
+      data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'], title: 'Dashboard', breadcrumb: 'Dashboard' },
       children: [
         {
           path: 'conceptor',
           component: ConceptorComponent,
           canActivate: [RoleGuard],
-          data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Conceptor' },
+          data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Conceptor', breadcrumb: 'Conceptor' },
           children: [
             {
               path: 'courses',
               component: CourseListComponent,
               canActivate: [RoleGuard],
-              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | All Course' },
+              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | All Course', breadcrumb: 'Managed my courses' },
             }
           ]
         },

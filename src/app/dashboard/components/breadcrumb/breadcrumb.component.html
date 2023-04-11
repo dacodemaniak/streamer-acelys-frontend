@@ -1,1 +1,4 @@
-<span class="text-white text-sm">{{ getBreadcrumb() }}</span>
+<ng-container *ngFor="let breadcrumb of (breadcrumbs$ | async); let last = last">
+    <span class="text-white text-sm">{{breadcrumb.label}}</span>
+    <span *ngIf="!last" class="text-white text-sm">/</span>
+</ng-container>
