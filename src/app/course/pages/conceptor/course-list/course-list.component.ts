@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { take } from 'rxjs';
 import { ToastService } from 'src/app/core/toast.service';
 import { CourseService } from 'src/app/course/services/course.service';
@@ -17,10 +18,12 @@ export class CourseListComponent implements OnInit {
 
   constructor(
     private _courseService: CourseService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private title: Title
   ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Dashboard | All Courses');
     this._courseService
       .findFullCourses()
       .pipe(take(1))
