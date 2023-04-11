@@ -22,10 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserDatas() {
-    const currentUserJson = this._localStorageService.getItem(this._envKey);
-    if (currentUserJson) {
-      this.currentUser = new Member(currentUserJson);
-    }
+    this.currentUser = this._localStorageService.getMemberFromStorage()
   }
 
   showRole(currentUser: Member): string {
