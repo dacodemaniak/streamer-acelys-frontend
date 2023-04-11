@@ -60,18 +60,8 @@ export class UserService {
       tap((response: HttpResponse<any>) => {
         if (response.status === 200) {
           this._user = response.body
+          // ? Store the user data in local storage
           this._localStorageService.setItem(`${environment.storage.member.key}`, this._user)
-          /**
-          let storage = this.user.stayConnected ? localStorage : sessionStorage
-          storage.setItem('auth', JSON.stringify(credentials))
-          storage.setItem('auth', credentials) /// BOUM !
-          if (this.user.stayConnected) {
-            localStorage.setItem('auth-key', JSON.stringify(credentials))
-          } else {
-            sessionStorage.setItem('auth', JSON.stringify(credentials))
-          }
-          */
-
           this._storageStrategy.store(credentials)
           this._user$.next(this._user)
         }
