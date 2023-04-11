@@ -8,16 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu'
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    ...UiModule.materials
-  ]
+  imports: [CommonModule],
+  exports: [...UiModule.materials],
 })
 export class UiModule {
   public static materials = [
@@ -29,6 +26,7 @@ export class UiModule {
     MatDialogModule,
     MatIconModule,
     MatMenuModule,
-    MatSlideToggleModule
-  ]
+    MatSlideToggleModule,
+    MatExpansionModule,
+  ];
 }

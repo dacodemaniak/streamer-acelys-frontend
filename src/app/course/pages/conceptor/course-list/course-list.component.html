@@ -16,23 +16,75 @@
   </div>
 
 </div>
-<div class=" mx-10  rounded-sm border-2 border-slate-400 ">
+
+<div class="mx-10">
+  <mat-accordion *ngIf="coursesConceptor.length">
+    <mat-expansion-panel   *ngFor="let course of coursesConceptor">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{course.title}}
+        </mat-panel-title>
+        <mat-panel-description class="flex-row-reverse">
+          {{ course.modules!.length }} items
+        </mat-panel-description>
+        <mat-action-row>
+          <button mat-button color="primary"  mat-icon-button [matMenuTriggerFor]="menu"  (click)="$event.stopPropagation()">...</button>
+        </mat-action-row>
+      </mat-expansion-panel-header>
+      <mat-accordion  *ngFor="let module of course.modules">
+        <mat-expansion-panel class="mb-2">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{module.name}}
+            </mat-panel-title>
+            <mat-panel-description class="flex-row-reverse">
+              {{module.medias.length }} media
+            </mat-panel-description>
+            <mat-action-row>
+              <button mat-button color="primary"  mat-icon-button [matMenuTriggerFor]="menuModule"  (click)="$event.stopPropagation()">...</button>
+            </mat-action-row>
+          </mat-expansion-panel-header>
+          <p *ngFor="let media of module.medias"> {{media.title}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
 
 
-  <ng-container *ngIf="coursesConceptor.length">
-    <ng-container *ngFor="let course of coursesConceptor"   >
-      <app-course-tile
-      [course]="course"
-      (onToggleCourse)="onCourseToggle($event)"
-      (onRemoveCourse)="doRemoveCourse($event)"
-      (onCopyCourse)="onCopyCourse($event)"
-      ></app-course-tile>
-    </ng-container>
-  </ng-container>
+
+    <mat-menu #menu="matMenu"  >
+      <button mat-menu-item>
+        <span>View course</span>
+      </button>
+      <button mat-menu-item>
+        <span>Update course</span>
+      </button>
+      <button mat-menu-item  >
+        <span class="hot-action" (click)="doRemoveCourse(course)">Remove course</span>
+      </button>
+      <button mat-menu-item >
+        <span class="hot-action" (click)="onCopyCourse(course)">Copy course</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #menuModule="matMenu"  >
+      <button mat-menu-item>
+        <span>View module</span>
+      </button>
+      <button mat-menu-item>
+        <span>Update module</span>
+      </button>
+      <button mat-menu-item  >
+        <span class="hot-action" >Remove course</span>
+      </button>
+      <button mat-menu-item >
+        <span class="hot-action" >Copy course</span>
+      </button>
+    </mat-menu>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 
-
-<!-- Display title and number -->
+<!-- Other list -->
 <div class="row m-10">
   <div class="col xs11 course-title">
     Other list
@@ -43,15 +95,74 @@
 
 </div>
 
-<div class=" mx-10 ">
-  <ng-container *ngIf="courses.length">
-    <ng-container *ngFor="let course of courses">
-      <app-course-tile
-      [course]="course"
-      (onToggleCourse)="onCourseToggle($event)"
-      (onRemoveCourse)="doRemoveCourse($event)"
-      (onCopyCourse)="onCopyCourse($event)"
-      ></app-course-tile>
-    </ng-container>
-  </ng-container>
+<div class="mx-10 ">
+  <mat-accordion *ngIf="courses.length" >
+    <mat-expansion-panel    *ngFor="let course of courses ">
+      <mat-expansion-panel-header  >
+        <mat-panel-title >
+          {{course.title}}
+        </mat-panel-title>
+        <mat-panel-description class="flex-row-reverse">
+          {{ course.modules!.length }} items
+        </mat-panel-description>
+        <mat-action-row>
+          <button mat-button color="primary"  mat-icon-button [matMenuTriggerFor]="menu"  (click)="$event.stopPropagation()">...</button>
+        </mat-action-row>
+      </mat-expansion-panel-header>
+      <mat-accordion  *ngFor="let module of course.modules">
+        <mat-expansion-panel class="mb-2">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{module.name}}
+            </mat-panel-title>
+            <mat-panel-description  class="flex-row-reverse" >
+              {{module.medias.length }} media
+            </mat-panel-description>
+            <mat-action-row>
+              <button mat-button color="primary"  mat-icon-button [matMenuTriggerFor]="menuModule" (click)="$event.stopPropagation()">...</button>
+            </mat-action-row>
+          </mat-expansion-panel-header>
+          <p *ngFor="let media of module.medias"> {{media.title}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    <mat-menu #menu="matMenu"  >
+      <button mat-menu-item>
+        <span>View course</span>
+      </button>
+      <button mat-menu-item>
+        <span>Update course</span>
+      </button>
+      <button mat-menu-item  >
+        <span class="hot-action" (click)="doRemoveCourse(course)">Remove course</span>
+      </button>
+      <button mat-menu-item >
+        <span class="hot-action" (click)="onCopyCourse(course)">Copy course</span>
+      </button>
+    </mat-menu>
+
+
+    <mat-menu #menuModule="matMenu"  >
+      <button mat-menu-item>
+        <span>View module</span>
+      </button>
+      <button mat-menu-item>
+        <span>Update module</span>
+      </button>
+      <button mat-menu-item  >
+        <span class="hot-action" >Remove module</span>
+      </button>
+      <button mat-menu-item >
+        <span class="hot-action" >Copy module</span>
+      </button>
+    </mat-menu>
+
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
 </div>
+
+
+
