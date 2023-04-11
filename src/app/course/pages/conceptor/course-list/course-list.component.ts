@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { take } from 'rxjs';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ToastService } from 'src/app/core/toast.service';
 import { CourseService } from 'src/app/course/services/course.service';
 import { CourseListType } from 'src/app/course/types/course-list-type';
@@ -45,22 +46,6 @@ export class CourseListComponent implements OnInit {
       });
   }
 
-  onCourseToggle(course: CourseListType): void {
-    if (course.isSelected) {
-      this.courses
-        .filter((inCourse: CourseListType) => inCourse.isSelected)
-        .forEach((inCourse: CourseListType) => {
-          if (course.id !== inCourse.id) {
-            inCourse.isSelected = false;
-            // Close all modules too...
-            inCourse.modules!.forEach(
-              (module: ModuleType) => (module.selected = false)
-            );
-          }
-        });
-    }
-  }
-
   doRemoveCourse(course: CourseListType): void {
     this._courseService
       .remove(course.id!)
@@ -85,17 +70,10 @@ export class CourseListComponent implements OnInit {
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
 
-    /*  this._courseService
-      .copyCourse(course)
-      .pipe(take(1))
-      .subscribe({
-        complete: () => {
-          this.coursesConceptor = this.courses.splice(
-            this.courses.indexOf(course),
-            1
-          );
-        },
-      }); */
+    const newCreator: any = {
+      id: this._localStorageService.getMemberFromStorage().id,
+    };
+    course.creator = newCreator;
 
     this._courseService.copyCourse(course).subscribe();
   }

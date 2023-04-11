@@ -16,20 +16,7 @@
   </div>
 
 </div>
-<!-- <div class=" mx-10  rounded-sm border-2 border-slate-400 "> -->
 
-  <!-- <ng-container *ngIf="coursesConceptor.length">
-    <ng-container *ngFor="let course of coursesConceptor"   >
-      <app-course-tile
-      [course]="course"
-      (onToggleCourse)="onCourseToggle($event)"
-      (onRemoveCourse)="doRemoveCourse($event)"
-      (onCopyCourse)="onCopyCourse($event)"
-      ></app-course-tile>
-    </ng-container>
-  </ng-container>
-</div>
- -->
 <div class="mx-10">
   <mat-accordion *ngIf="coursesConceptor.length">
     <mat-expansion-panel   *ngFor="let course of coursesConceptor">
@@ -37,7 +24,7 @@
         <mat-panel-title>
           {{course.title}}
         </mat-panel-title>
-        <mat-panel-description>
+        <mat-panel-description class="flex-row-reverse">
           {{ course.modules!.length }} items
         </mat-panel-description>
         <mat-action-row>
@@ -50,7 +37,7 @@
             <mat-panel-title>
               {{module.name}}
             </mat-panel-title>
-            <mat-panel-description>
+            <mat-panel-description class="flex-row-reverse">
               {{module.medias.length }} media
             </mat-panel-description>
             <mat-action-row>
@@ -178,20 +165,4 @@
 </div>
 
 
-
-
-
-<!-- <div class=" mx-10 ">
-  <ng-container *ngIf="courses.length">
-    <ng-container *ngFor="let course of courses">
-      <app-course-tile
-      [course]="course"
-      (onToggleCourse)="onCourseToggle($event)"
-      (onRemoveCourse)="doRemoveCourse($event)"
-      (onCopyCourse)="onCopyCourse($event)"
-      ></app-course-tile>
-    </ng-container>
-  </ng-container>
-</div>
- -->
 
