@@ -11,6 +11,5 @@ export class StudentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
 }

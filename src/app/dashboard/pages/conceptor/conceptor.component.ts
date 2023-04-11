@@ -11,6 +11,7 @@ export class ConceptorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

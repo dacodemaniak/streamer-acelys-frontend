@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MediaServicesService {
+export class MediaService {
 
   private readonly endpoint: string = `${environment.apiRootUri}medias`
 
@@ -30,6 +30,13 @@ export class MediaServicesService {
         take(1),
         map((media: any) => media)
       )
+  }
+
+  public add(media: MediaType): Observable<any> {
+    return this._httpClient.post<MediaType>(
+      this.endpoint,
+      media
+    )
   }
 
 }
