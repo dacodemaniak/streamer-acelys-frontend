@@ -7,6 +7,7 @@ import { ToastService } from 'src/app/core/toast.service';
 import { CourseService } from 'src/app/course/services/course.service';
 import { CourseListType } from 'src/app/course/types/course-list-type';
 import { ModuleType } from 'src/app/course/types/module-type';
+import { StudentService } from 'src/app/student/services/student.service';
 
 @Component({
   selector: 'app-course-list',
@@ -21,6 +22,7 @@ export class CourseListComponent implements OnInit {
 
   constructor(
     private _courseService: CourseService,
+    private _studentService: StudentService,
     private _toastService: ToastService,
     private _dialog: MatDialog
   ) {}
@@ -31,20 +33,15 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
-
-        // si l'id est egal a 1 qui correspond a celui du concepteur alors je push
-
-        /*   this.coursesConceptor = this.courses.filter((course) => {
-          return course.conceptorId = this.currentUserID;
-        })
- */
-        //recuperer l'utilisateur courant
-        /*        this._userService.getCurrentUser().pipe(take(1)).subscribe((user) => {
-          this.currentUserId = user.id;
-        }); */
       });
 
-    // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
+    this._studentService
+      .findOne(3)
+      .pipe(take(1))
+      .subscribe((response: any) => {
+        console.log(response);
+        this.coursesConceptor = response.courses;
+      });
   }
 
   onCourseToggle(course: CourseListType): void {
