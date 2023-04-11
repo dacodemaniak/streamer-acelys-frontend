@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs';
 import { MediaType } from 'src/app/course/types/media-type';
-import { MediaServicesService } from 'src/app/medias/services/media-services.service';
+import { MediaService } from 'src/app/medias/services/media.service';
 
 @Component({
   selector: 'app-add-media',
@@ -17,7 +17,7 @@ export class AddMediaComponent implements OnInit {
   public idMedia: EventEmitter<number> = new EventEmitter<number>()
 
 
-  constructor(private _service: MediaServicesService) { }
+  constructor(private _service: MediaService) { }
 
   ngOnInit(): void {
     this._service.findAll()

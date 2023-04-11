@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MediaType } from 'src/app/course/types/media-type';
 import { ModuleType } from 'src/app/course/types/module-type';
-import { MediaServicesService } from 'src/app/medias/services/media-services.service';
+import { MediaService } from 'src/app/medias/services/media.service';
 import { ModuleService } from '../../services/module.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-module',
@@ -18,14 +20,15 @@ export class CreateModuleComponent implements OnInit {
   public createMediaVisible: boolean = false
   public medias: Array<MediaType> = new Array<MediaType>()
 
-
   constructor(private _formBuilder: FormBuilder,
-    private _mediaService: MediaServicesService,
+    private _mediaService: MediaService,
     private _moduleService: ModuleService,
-    private _router: Router) { }
+    private _router: Router,
+    private _localStorageService: LocalStorageService,
+    private _snackBar: MatSnackBar) { }
+
 
   /** FORM METHODS */
-
   ngOnInit(): void {
     this.moduleForm = this._formBuilder.group({
       name: [
@@ -50,19 +53,22 @@ export class CreateModuleComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const conceptor: any = this._localStorageService.getMemberFromStorage()
+    const newConceptor: any = {
+      id: conceptor.id
+    }
     const module: ModuleType = {
       name: this.c['name'].value,
       objective: this.c['objective'].value,
       selected: false,
-      medias: this.medias
+      medias: this.medias,
+      creator: newConceptor
     }
     this._moduleService.add(module)
-      .subscribe((ModuleType: ModuleType) => {
+      .subscribe((moduleType: ModuleType) => {
         this._router.navigate(['/'])
       })
   }
-
-
 
   /** ADD MEDIA METHOD */
   public showAddMedia(): void {
@@ -79,6 +85,7 @@ export class CreateModuleComponent implements OnInit {
       .subscribe({
         next: (media: MediaType) => {
           this.medias.push(media)
+          this._snackBar.open(`"${media.title}" was added.`, "Close");
         },
         error: (error: any) => {
           console.log('Something went wrong')
@@ -102,6 +109,19 @@ export class CreateModuleComponent implements OnInit {
     } else {
       this.createMediaVisible = !this.createMediaVisible
     }
+  }
+
+  public addNewMedia(id: number): void {
+    this._mediaService.findOne(id)
+      .subscribe({
+        next: (media: MediaType) => {
+          this.medias.push(media)
+          this._snackBar.open(`"${media.title}" was created.`, "Close");
+        },
+        error: (error: any) => {
+          console.log('Something went wrong')
+        }
+      })
   }
 
   public closeCreate(value: boolean) {

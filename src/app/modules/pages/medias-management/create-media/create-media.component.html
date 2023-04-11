@@ -33,15 +33,8 @@
 
       <mat-form-field class="w-full">
         <mat-label>Media type</mat-label>
-        <select matNativeControl required>
-          <option value="video">Video</option>
-          <option value="slide">Slide</option>
-          <option value="document">Document</option>
-          <option value="audio">Audio</option>
-          <option value="image">Image</option>
-          <option value="animation">Animation</option>
-          <option value="interactive">Interactive</option>
-          <option value="pdf">PDF</option>
+        <select #types matNativeControl required (change)="onSelected(types.value)">
+          <option *ngFor="let key of optionsMethod">{{key}}</option>
         </select>
       </mat-form-field>
     </form>
