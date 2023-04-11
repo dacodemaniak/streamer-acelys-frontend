@@ -5,6 +5,7 @@ import { UpdateModuleComponent } from './pages/update-module/update-module.compo
 import { AddMediaComponent } from './pages/medias-management/add-media/add-media.component';
 import { CreateMediaComponent } from './pages/medias-management/create-media/create-media.component';
 import { CreateModuleComponent } from './pages/create-module/create-module.component';
+import { SearchBarComponent } from './pages/medias-management/search-bar/search-bar.component';
 
 
 
@@ -13,7 +14,8 @@ import { CreateModuleComponent } from './pages/create-module/create-module.compo
     CreateModuleComponent,
     UpdateModuleComponent,
     CreateMediaComponent,
-    AddMediaComponent
+    AddMediaComponent,
+    SearchBarComponent
   ],
   imports: [
     SharedModule,

@@ -7,12 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConceptorComponent implements OnInit {
   public tiles: Array<any> = []
-  public isAdmin!: boolean;
-  public isConceptor!: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

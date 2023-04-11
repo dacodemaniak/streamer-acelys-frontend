@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user/services/user.service';
+import { environment } from 'src/environments/environment';
+import { LocalStorageService } from '../core/services/local-storage.service';
+import { Member } from '../user/models/member';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,39 +9,27 @@ import { UserService } from '../user/services/user.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  /**
-   * Tiles to display in the HTML template
-   */
-  // public tiles: Array<Tile> = []
-
-  /**
-   * Specify if a "user" is admin or not (default true)
-   */
   public isAdmin: boolean = true
+  public currentUser!: Member;
 
-  public currentUser = {
-    role: 'CONCEPTOR'
-  };
+  private _envKey: string = `${environment.storage.member.key}`;
+  private _localStorageService = LocalStorageService.getInstance();
 
-  constructor(
-    private _userService: UserService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-
+    this.getUserDatas()
   }
 
-  // Display the role of the current user in the dashboard, and return the string base on role
-  showRole(currentUser: any): string {
-    if (currentUser.role === 'MANAGER') {
-      return 'Manager'
-    } else if (currentUser.role === 'STUDENT') {
-      return 'Student'
-    } else if (currentUser.role === 'CONCEPTOR') {
-      return 'Conceptor'
-    } else {
-      return 'User'
+  getUserDatas() {
+    const currentUserJson = this._localStorageService.getItem(this._envKey);
+    if (currentUserJson) {
+      this.currentUser = new Member(currentUserJson);
     }
+  }
+
+  showRole(currentUser: Member): string {
+    return currentUser.getRoleName();
   }
 
 }

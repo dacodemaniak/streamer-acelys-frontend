@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { Member } from 'src/app/user/models/member';
 import { UserService } from 'src/app/user/services/user.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +16,10 @@ export class HeaderComponent implements OnInit {
   public user: any
 
   public menu: boolean = false;
-  public isMemberConnected: boolean = false;
 
+  private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
+
+  private _member: Member = new Member(this._localStorageService.getMemberFromStorage());
 
   constructor(
     private _userService: UserService,
@@ -35,8 +39,12 @@ export class HeaderComponent implements OnInit {
     this.menu = !this.menu;
   }
 
-  signOut(): void {
+  public goToDashboard(): void {
+    const role = this._member.getRoleName().toLowerCase();
+    this._router.navigate(['/dashboard', role]);
+  }
+
+  public signOut(): void {
     this._userService.logout()
-    this._router.navigate(['/', 'user'])
   }
 }
