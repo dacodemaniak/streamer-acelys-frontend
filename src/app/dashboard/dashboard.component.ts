@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from '../core/services/local-storage.service';
+import { CreateMediaComponent } from '../medias/create-media/create-media.component';
 import { Member } from '../user/models/member';
 
 @Component({
@@ -15,7 +18,10 @@ export class DashboardComponent implements OnInit {
   private _envKey: string = `${environment.storage.member.key}`;
   private _localStorageService = LocalStorageService.getInstance();
 
-  constructor() { }
+  constructor(
+    private _router: Router,
+    private _matDialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getUserDatas()
@@ -27,6 +33,13 @@ export class DashboardComponent implements OnInit {
 
   showRole(currentUser: Member): string {
     return currentUser.getRoleName();
+  }
+
+  goToMediaAdd() {
+    // this._router.navigate(['dashboard/conceptor/media/add']);
+    // TODO : Create a media with Modal
+    this._matDialog.open(CreateMediaComponent,
+      {});
   }
 
 }
