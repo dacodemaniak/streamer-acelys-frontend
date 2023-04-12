@@ -17,11 +17,13 @@ export class MediasRoutingModule {
     // },
     {
       path: 'add',
-      component: CreateMediaComponent
+      component: CreateMediaComponent,
+      data: { title: 'Dashboard | Add Media', breadcrumb: 'Create Media' },
     },
     {
       path: 'update',
-      component: UpdateMediaComponent
+      component: UpdateMediaComponent,
+      data: { title: 'Dashboard | Update Media', breadcrumb: 'Update Media' },
     },
     // {
     //   path: '**',
