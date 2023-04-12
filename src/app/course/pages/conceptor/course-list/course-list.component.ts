@@ -20,6 +20,7 @@ export class CourseListComponent implements OnInit {
   public coursesConceptor: Array<CourseListType> = [];
   panelOpenState = false;
   panel!: MatExpansionPanel;
+  creatorId: any = this._localStorageService.getMemberFromStorage().id;
 
   constructor(
     private _localStorageService: LocalStorageService,
@@ -38,7 +39,7 @@ export class CourseListComponent implements OnInit {
       });
 
     this._studentService
-      .findOne(3)
+      .findOne(this.creatorId)
       .pipe(take(1))
       .subscribe((response: any) => {
         this.coursesConceptor = response.courses;
@@ -90,7 +91,6 @@ export class CourseListComponent implements OnInit {
 
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
-    console.log(course);
 
     const newCreator: any = {
       id: this._localStorageService.getMemberFromStorage().id,
