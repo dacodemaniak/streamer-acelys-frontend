@@ -35,7 +35,6 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
-        console.log(this.courses);
       });
 
     this._studentService
@@ -43,10 +42,32 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: any) => {
         this.coursesConceptor = response.courses;
+        console.log(this.coursesConceptor);
       });
   }
 
   doRemoveCourse(course: CourseListType): void {
+    this._courseService
+      .remove(course.id!)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: HttpResponse<any>) => {
+          const message: string = `${course.title} was removed. ${
+            course.modules!.length
+          } modules were affected`;
+          this._toastService.show(message);
+        },
+        error: (error: any) => {
+          const badMessage: string = `Sorry, ${course.title} was already removed`;
+          this._toastService.show(badMessage);
+        },
+        complete: () => {
+          this.courses.splice(this.courses.indexOf(course), 1);
+        },
+      });
+  }
+
+  doRemoveCourseConceptor(course: CourseListType): void {
     this._courseService
       .remove(course.id!)
       .pipe(take(1))
