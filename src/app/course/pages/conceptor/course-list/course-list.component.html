@@ -45,9 +45,9 @@
             </mat-action-row>
           </mat-expansion-panel-header>
           <ng-container *ngFor="let media of module.medias" >
-            <mat-panel-description class="flex justify-around justify-items-center " >
+            <mat-panel-description class="flex justify-around" >
               <p > {{media.title}} </p>
-              <p>time : {{media.duration}} min</p>
+              <p class="flex-grow text-right mr-4 " >time : {{media.duration}} min</p>
               <p>Type media : {{media.typeMedia.title}}</p>
             </mat-panel-description>
           </ng-container>

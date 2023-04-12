@@ -21,8 +21,6 @@ export class CourseService {
   }
 
   copyCourse(course: CourseListType): Observable<CourseListType[]> {
-    console.log(course);
-
     return this._httpClient.post<any>(this.endPoint, course);
   }
 

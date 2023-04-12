@@ -65,11 +65,4 @@ export class ListComponent implements OnInit {
         },
       });
   }
-
-  /* onCopyCourse(course: CourseListType) {
-    this._courseService
-      .copyCourse(course)
-      .pipe(take(1))
-      .subscribe(() => console.log(`${course}`));
-  } */
 }

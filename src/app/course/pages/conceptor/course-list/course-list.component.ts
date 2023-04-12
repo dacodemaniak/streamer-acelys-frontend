@@ -90,6 +90,7 @@ export class CourseListComponent implements OnInit {
 
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
+    console.log(course);
 
     const newCreator: any = {
       id: this._localStorageService.getMemberFromStorage().id,
