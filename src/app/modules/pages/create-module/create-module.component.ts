@@ -49,7 +49,7 @@ export class CreateModuleComponent implements OnInit {
   }
 
   onNoClick(): void {
-
+    this._router.navigate(['/'])
   }
 
   onSubmit(): void {
@@ -66,6 +66,7 @@ export class CreateModuleComponent implements OnInit {
     }
     this._moduleService.add(module)
       .subscribe((moduleType: ModuleType) => {
+        this._snackBar.open(`"${module.name}" was created.`, "Close");
         this._router.navigate(['/'])
       })
   }

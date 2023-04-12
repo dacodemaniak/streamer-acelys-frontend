@@ -32,7 +32,7 @@ export class AppRoutingModule {
       ] */
     },
     {
-      path: 'modules/update',
+      path: 'modules/:id/update',
       component: UpdateModuleComponent,
       /*  canActivate: [
   AuthGuard
