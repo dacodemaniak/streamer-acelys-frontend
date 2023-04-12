@@ -5,7 +5,6 @@ import { ToastService } from './../../core/toast.service';
 import { CourseService } from '../services/course.service';
 import { CourseListType } from '../types/course-list-type';
 import { ModuleType } from '../types/module-type';
-import { log } from 'console';
 
 @Component({
   selector: 'app-list',

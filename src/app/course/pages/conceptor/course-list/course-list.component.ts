@@ -42,7 +42,6 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: any) => {
         this.coursesConceptor = response.courses;
-        console.log(this.coursesConceptor);
       });
   }
 
@@ -97,6 +96,10 @@ export class CourseListComponent implements OnInit {
     };
     course.creator = newCreator;
 
-    this._courseService.copyCourse(course).subscribe();
+    this._courseService.copyCourse(course).subscribe({
+      complete: () => {
+        this.coursesConceptor.splice(this.courses.indexOf(course), 1);
+      },
+    });
   }
 }
