@@ -21,7 +21,7 @@ export class ModulesRoutingModule {
       component: CreateModuleComponent
     },
     {
-      path: 'update',
+      path: ':id/update',
       data: { title: 'Dashboard | Update a module', breadcrumb: 'Update a module' },
       component: UpdateModuleComponent
     },
