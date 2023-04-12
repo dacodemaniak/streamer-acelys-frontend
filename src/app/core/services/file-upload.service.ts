@@ -1,13 +1,13 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
-  private _endpoint = `${environment.uploadRootUri}/`
+  private _endpoint = `${environment.uploadRootUri}`
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -15,13 +15,19 @@ export class FileUploadService {
     const formData: FormData = new FormData();
     formData.append('file', file);
 
-    const request = new HttpRequest('POST', `${this._endpoint}/upload`, formData, {
+    const request = new HttpRequest('POST', `${this._endpoint}upload`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
 
-    return this._httpClient.request(request);
-
+    return this._httpClient.request(request).pipe(
+      map((event: HttpEvent<any>) => {
+        if (event.type === HttpEventType.Response) {
+          return event.body.url;
+        }
+        return null;
+      })
+    );
   }
 
   getFiles(): Observable<any> {
