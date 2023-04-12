@@ -83,6 +83,7 @@ export class CourseListComponent implements OnInit {
         },
         complete: () => {
           this.courses.splice(this.courses.indexOf(course), 1);
+          this.coursesConceptor.splice(this.courses.indexOf(course), 1);
         },
       });
   }
