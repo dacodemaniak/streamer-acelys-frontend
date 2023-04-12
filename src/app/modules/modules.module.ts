@@ -6,6 +6,7 @@ import { AddMediaComponent } from './pages/medias-management/add-media/add-media
 import { CreateMediaComponent } from './pages/medias-management/create-media/create-media.component';
 import { CreateModuleComponent } from './pages/create-module/create-module.component';
 import { SearchBarComponent } from './pages/medias-management/search-bar/search-bar.component';
+import { ModulesRoutingModule } from './modules-routing.module';
 
 
 
@@ -19,7 +20,8 @@ import { SearchBarComponent } from './pages/medias-management/search-bar/search-
   ],
   imports: [
     SharedModule,
-    CommonModule
+    CommonModule,
+    ModulesRoutingModule
   ]
 })
 export class ModulesModule { }
