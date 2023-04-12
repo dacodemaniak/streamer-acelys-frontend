@@ -29,7 +29,7 @@ export class DashboardRoutingModule {
               path: 'courses',
               component: CourseListComponent,
               canActivate: [RoleGuard],
-              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | All Course', breadcrumb: 'Managed my courses' },
+              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Managed my courses', breadcrumb: 'Managed my courses' },
             },
             {
               path: 'media',
