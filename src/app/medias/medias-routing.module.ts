@@ -10,23 +10,23 @@ import { UpdateMediaComponent } from './update-media/update-media.component';
 })
 export class MediasRoutingModule {
   public static routes: Routes = [
+    // {
+    //   path: '',
+    //   redirectTo: 'medias/add',
+    //   pathMatch: 'full'
+    // },
     {
-      path: '',
-      redirectTo: 'medias/add',
-      pathMatch: 'full'
-    },
-    {
-      path: 'medias/add',
+      path: 'add',
       component: CreateMediaComponent
     },
     {
-      path: 'medias/update',
+      path: 'update',
       component: UpdateMediaComponent
     },
-    {
-      path: '**',
-      redirectTo: 'medias/add',
-      pathMatch: 'full'
-    }
+    // {
+    //   path: '**',
+    //   redirectTo: 'medias/add',
+    //   pathMatch: 'full'
+    // }
   ]
 }

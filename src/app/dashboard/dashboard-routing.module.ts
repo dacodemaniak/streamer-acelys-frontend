@@ -30,7 +30,12 @@ export class DashboardRoutingModule {
               component: CourseListComponent,
               canActivate: [RoleGuard],
               data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | All Course', breadcrumb: 'Managed my courses' },
-            }
+            },
+            {
+              path: 'media',
+              loadChildren: () => import('../medias/medias.module').then((m) => m.MediasModule),
+            },
+
           ]
         },
         {
