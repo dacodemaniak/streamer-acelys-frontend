@@ -35,6 +35,7 @@ export class CourseTileComponent implements OnInit {
 
   onUpdateClick(course: any): void {
     sessionStorage.setItem("ModifiedCourse",JSON.stringify(course ));
+    console.log("heho2");
     this._router.navigate(["/", "course", "add"]);//go to course with the modified course stocked
   }
 

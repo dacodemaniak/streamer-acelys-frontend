@@ -15,8 +15,16 @@
 
     <ng-container *ngIf="useModule">
         <ng-container *ngIf="modules.length">
-            <ul class="module-list">
+            <div cdkDropList class="module-list" (cdkDropListDropped)="drop($event)">
+                <div class="title" *ngFor="let module of modules" cdkDrag>
+                    
+                    {{module.name}}
+                
+                </div>
+              </div>
+            <!-- <ul class="module-list">
                 <li *ngFor="let module of modules">
+                    
                     <div class="title">{{ module.name }}</div>
                     <div class="remove">
                         <button mat-button (click)="removeModule(module)">
@@ -24,7 +32,7 @@
                         </button>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
         </ng-container>
         <button mat-raised-button type="button" color="warn" (click)="addModule()">
             Add Module

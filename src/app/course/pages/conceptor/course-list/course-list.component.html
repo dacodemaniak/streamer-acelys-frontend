@@ -55,7 +55,7 @@
         <span>View course</span>
       </button>
       <button mat-menu-item>
-        <span>Update course</span>
+        <span>Update course (click)="goToUpdateCourse(course)"</span>
       </button>
       <button mat-menu-item  >
         <span class="hot-action" (click)="doRemoveCourse(course)">Remove course</span>
@@ -131,7 +131,7 @@
       <button mat-menu-item>
         <span>View course</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="goToUpdateCourse(course)"><!-- A SUPPRIMER -->
         <span>Update course</span>
       </button>
       <button mat-menu-item  >

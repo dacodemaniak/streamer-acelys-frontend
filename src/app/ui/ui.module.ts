@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -28,5 +29,7 @@ export class UiModule {
     MatMenuModule,
     MatSlideToggleModule,
     MatExpansionModule,
+    DragDropModule
+    
   ];
 }
