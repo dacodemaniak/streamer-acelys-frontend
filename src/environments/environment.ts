@@ -15,6 +15,7 @@ export const environment = {
       key: 'memberData',
     }
   },
+  theme: 'dark',
   version: require('../../package.json').version
 };
 
