@@ -6,6 +6,7 @@ import { CreateMediaComponent } from './create-media/create-media.component';
 import { MediasRoutingModule } from './medias-routing.module';
 import { UpdateMediaComponent } from './update-media/update-media.component';
 import { ListMediaComponent } from './list-media/list-media.component';
+import { MediaTileComponent } from './components/media-tile/media-tile.component';
 
 
 
@@ -14,6 +15,7 @@ import { ListMediaComponent } from './list-media/list-media.component';
     CreateMediaComponent,
     UpdateMediaComponent,
     ListMediaComponent,
+    MediaTileComponent,
 
   ],
   imports: [
