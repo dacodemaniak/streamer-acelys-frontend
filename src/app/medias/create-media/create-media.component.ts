@@ -83,7 +83,7 @@ export class CreateMediaComponent implements OnInit {
     } else {
       this.submitMediaWithURL();
     }
-    this.mediaForm.reset();
+    // this.mediaForm.reset();
   }
 
   onNoClick() {
@@ -119,6 +119,9 @@ export class CreateMediaComponent implements OnInit {
         // TODO Display Success Message
         console.log(response);
         this._snackBar.open(`"${media.title}" was created.`, "Close");
+      },
+      complete: () => {
+        this.mediaForm.reset();
       }
     });
   }
@@ -152,6 +155,9 @@ export class CreateMediaComponent implements OnInit {
               console.log(response);
 
               this._snackBar.open(`"${media.title}" was created.`, "Close");
+            },
+            complete: () => {
+              this.mediaForm.reset();
             }
           });
           this.fileInfos = this._fileUpload.getFiles();
