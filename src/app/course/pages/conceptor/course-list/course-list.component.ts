@@ -46,27 +46,6 @@ export class CourseListComponent implements OnInit {
       });
   }
 
-  doRemoveCourse(course: CourseListType): void {
-    this._courseService
-      .remove(course.id!)
-      .pipe(take(1))
-      .subscribe({
-        next: (response: HttpResponse<any>) => {
-          const message: string = `${course.title} was removed. ${
-            course.modules!.length
-          } modules were affected`;
-          this._toastService.show(message);
-        },
-        error: (error: any) => {
-          const badMessage: string = `Sorry, ${course.title} was already removed`;
-          this._toastService.show(badMessage);
-        },
-        complete: () => {
-          this.courses.splice(this.courses.indexOf(course), 1);
-        },
-      });
-  }
-
   doRemoveCourseConceptor(course: CourseListType): void {
     this._courseService
       .remove(course.id!)
@@ -91,11 +70,12 @@ export class CourseListComponent implements OnInit {
 
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
-
     const newCreator: any = {
       id: this._localStorageService.getMemberFromStorage().id,
     };
     course.creator = newCreator;
+    /* course.modules!.creator = newCreator */
+    course.modules?.forEach((m) => (m.creator = newCreator));
 
     this._courseService.copyCourse(course).subscribe();
   }
