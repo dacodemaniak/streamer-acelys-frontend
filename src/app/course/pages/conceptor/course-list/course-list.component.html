@@ -45,10 +45,13 @@
             </mat-action-row>
           </mat-expansion-panel-header>
           <ng-container *ngFor="let media of module.medias" >
-            <mat-panel-description class="flex justify-around dark:text-white" >
+            <mat-panel-description class=" grid grid-cols-2 gap-4 dark:text-white" >
               <p > {{media.title}} </p>
-              <p class="flex-grow text-right mr-4 " >time : {{media.duration}} min</p>
-              <p>Type media : {{media.typeMedia.title}}</p>
+              <div class="flex justify-end">
+                <p class="mr-2"> {{media.typeMedia.title}}</p>
+                <p>.</p>
+                <p class="ml-2"> {{media.duration }} min</p>
+              </div>
             </mat-panel-description>
           </ng-container>
         </mat-expansion-panel>
@@ -120,10 +123,13 @@
             </mat-action-row>
           </mat-expansion-panel-header>
           <ng-container *ngFor="let media of module.medias" >
-            <mat-panel-description class="flex justify-around dark:text-white " >
+            <mat-panel-description class=" grid grid-cols-2 gap-4 dark:text-white" >
               <p > {{media.title}} </p>
-              <p class="flex-grow text-right mr-4 ">time : {{media.duration}} min</p>
-              <p>Type media : {{media.typeMedia.title}}</p>
+              <div class="flex justify-end">
+                <p class="mr-2"> {{media.typeMedia.title}}</p>
+                <p>.</p>
+                <p class="ml-2"> {{media.duration }} min</p>
+              </div>
             </mat-panel-description>
           </ng-container>
         </mat-expansion-panel>
