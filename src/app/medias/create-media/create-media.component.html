@@ -1,10 +1,11 @@
-<div class="flex flex-col  justify-start lg:items-center h-ful  w-full">
+<div class="flex flex-col justify-start lg:items-center h-ful w-full">
 
-  <div class="pt-0 px-2 flex flex-col items-center justify-center">
-    <h2 class="text-4xl leading-tight pt-8">Create a media</h2>
+  <div class="flex flex-col items-center justify-center">
+    <h2 class="text-4xl leading-tight">Create a media</h2>
   </div>
-  <div class="pt-10 px-2 flex flex-col items-center justify-center">
-    <form [formGroup]="mediaForm" mat-dialog-content>
+
+  <div class="flex flex-col items-center justify-center">
+    <form [formGroup]="mediaForm" mat-dialog-content class="space-y-2">
 
       <mat-form-field class="w-full">
         <input matInput formControlName="title" placeholder="Media title...">
@@ -33,23 +34,16 @@
 
       <mat-form-field class="w-full">
         <mat-label>Media type</mat-label>
-        <select matNativeControl required>
-          <option value="video">Video</option>
-          <option value="slide">Slide</option>
-          <option value="document">Document</option>
-          <option value="audio">Audio</option>
-          <option value="image">Image</option>
-          <option value="animation">Animation</option>
-          <option value="interactive">Interactive</option>
-          <option value="pdf">PDF</option>
-        </select>
+        <mat-select #types formControlName="typeMedia" required>
+          <mat-option *ngFor="let key of optionsMethod" [value]="key">{{key}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </form>
 
-    <div mat-dialog-actions class="mt-20">
-      <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
-      <button cdkFocusInitial mat-flat-button color="primary" [disabled]="mediaForm.invalid" (click)="onSubmit()"
-        class="mx-4">Create</button>
+    <div mat-dialog-actions class="">
+      <button mat-flat-button color="warn" mat-dialog-close class="mx-4 btn">Cancel</button>
+      <button mat-flat-button color="primary" mat-dialog-close [disabled]="mediaForm.invalid" (click)="onSubmit()"
+        class="mx-4 btn primary">Create</button>
     </div>
   </div>
 

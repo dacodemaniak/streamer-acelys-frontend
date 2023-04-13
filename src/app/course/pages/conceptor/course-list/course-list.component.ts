@@ -39,6 +39,14 @@ export class CourseListComponent implements OnInit {
         this.courses = response;
       });
 
+    this._studentService
+      .findOne(3)
+      .pipe(take(1))
+      .subscribe((response: any) => {
+        this.coursesConceptor = response.courses;
+        console.log(this.coursesConceptor);
+      });
+  }
     // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
   }
 
@@ -52,21 +60,6 @@ export class CourseListComponent implements OnInit {
     this._router.navigate(["/", "course", "add"]);
   }
 
-  onCourseToggle(course: CourseListType): void {
-    if (course.isSelected) {
-      this.courses
-        .filter((inCourse: CourseListType) => inCourse.isSelected)
-        .forEach((inCourse: CourseListType) => {
-          if (course.id !== inCourse.id) {
-            inCourse.isSelected = false;
-            // Close all modules too...
-            inCourse.modules!.forEach(
-              (module: ModuleType) => (module.selected = false)
-            );
-          }
-        });
-    }
-  }
 
   doRemoveCourse(course: CourseListType): void {
     this._courseService
@@ -89,8 +82,30 @@ export class CourseListComponent implements OnInit {
       });
   }
 
+  doRemoveCourseConceptor(course: CourseListType): void {
+    this._courseService
+      .remove(course.id!)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: HttpResponse<any>) => {
+          const message: string = `${course.title} was removed. ${
+            course.modules!.length
+          } modules were affected`;
+          this._toastService.show(message);
+        },
+        error: (error: any) => {
+          const badMessage: string = `Sorry, ${course.title} was already removed`;
+          this._toastService.show(badMessage);
+        },
+        complete: () => {
+          this.courses.splice(this.courses.indexOf(course), 1);
+        },
+      });
+  }
+
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
+    console.log(course);
 
     const newCreator: any = {
       id: this._localStorageService.getMemberFromStorage().id,
