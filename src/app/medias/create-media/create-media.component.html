@@ -1,11 +1,18 @@
-<div class="flex flex-col justify-start lg:items-center h-ful w-full">
+<div class="flex flex-col space-y-8">
 
-  <div class="flex flex-col items-center justify-center">
-    <h2 class="text-4xl leading-tight">Create a media</h2>
+  <div class="text-center">
+    <h2 class="text-2xl sm:text-4xl leading-tight">Create a media</h2>
   </div>
 
-  <div class="flex flex-col items-center justify-center">
-    <form [formGroup]="mediaForm" mat-dialog-content class="space-y-2">
+  <div class="flex flex-col justify-between space-y-8">
+    <form [formGroup]="mediaForm" class="space-y-2">
+
+      <mat-form-field class="w-full">
+        <mat-label>Media type</mat-label>
+        <mat-select #types formControlName="typeMedia" required>
+          <mat-option *ngFor="let key of optionsMethod" [value]="key">{{key}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
       <mat-form-field class="w-full">
         <input matInput formControlName="title" placeholder="Media title...">
@@ -25,7 +32,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="w-full">
+      <mat-form-field class="w-full" *ngIf="!['Document', 'Image', 'Slide', 'PDF'].includes(c['typeMedia'].value)">
         <input matInput formControlName="url" placeholder="Media url...">
         <mat-error *ngIf="c['url'].errors && c['url'].touched">
           Url is required
@@ -33,19 +40,16 @@
       </mat-form-field>
 
       <!-- Upload file UI -->
-      <input type="file" formControlName="file" placeholder="Media file...">
-
-      <mat-form-field class="w-full">
-        <mat-label>Media type</mat-label>
-        <mat-select #types formControlName="typeMedia" required>
-          <mat-option *ngFor="let key of optionsMethod" [value]="key">{{key}}</mat-option>
-        </mat-select>
-      </mat-form-field>
     </form>
 
-    <div mat-dialog-actions class="">
-      <button mat-flat-button color="warn" mat-dialog-close class="mx-4 btn">Cancel</button>
-      <button mat-flat-button color="primary" mat-dialog-close [disabled]="mediaForm.invalid" (click)="onSubmit()"
+    <div class="text-center">
+      <input type="file" class="" (change)="selectFile($event)"
+        *ngIf="['Document', 'Image', 'Slide', 'PDF'].includes(c['typeMedia'].value)">
+    </div>
+
+    <div mat-dialog-actions class="flex justify-center">
+      <button mat-flat-button color="warn" class="mx-2 btn">Cancel</button>
+      <button mat-flat-button color="primary" [disabled]="mediaForm.invalid" (click)="onSubmit()"
         class="mx-4 btn primary">Create</button>
     </div>
   </div>
