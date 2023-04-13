@@ -13,6 +13,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -31,7 +32,8 @@ export class UiModule {
     MatSlideToggleModule,
     MatExpansionModule,
     DragDropModule,    
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
 
   ];
 }

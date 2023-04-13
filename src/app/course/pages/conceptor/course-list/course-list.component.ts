@@ -38,6 +38,11 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
+        this.coursesConceptor.forEach((c) => {
+          c.modules = c.modules?.sort(
+            (s1: ModuleType, s2: ModuleType) => (s1.order! - s2.order!) * 1
+          );
+        });
       });
 
     this._studentService
@@ -45,10 +50,20 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: any) => {
         this.coursesConceptor = response.courses;
+        console.log(this.coursesConceptor);
+
+        this.coursesConceptor.forEach((c) => {
+          c.modules = c.modules?.sort(
+            (s1: ModuleType, s2: ModuleType) => (s1.order! - s2.order!) * 1
+          );
+        });
       });
+    //trie des modules
+    
+
+    console.log(this.coursesConceptor);
   }
-    // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
-  
+  // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
 
   goToAddCourse(): void {
     sessionStorage.removeItem("ModifiedCourse");
@@ -56,10 +71,9 @@ export class CourseListComponent implements OnInit {
     this._router.navigate(["/", "course", "add"]);
   }
   goToUpdateCourse(course: any): void {
-    sessionStorage.setItem("ModifiedCourse",JSON.stringify( course));
+    sessionStorage.setItem("ModifiedCourse", JSON.stringify(course));
     this._router.navigate(["/", "course", "add"]);
   }
-
 
   doRemoveCourse(course: CourseListType): void {
     this._courseService

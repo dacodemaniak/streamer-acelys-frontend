@@ -21,7 +21,7 @@ export class CourseService {
     return this._httpClient.post<any>(this.endPoint, value);
   }
   update(value: any): Observable<CourseType> {
-    return this._httpClient.post<any>(this.endPoint, value);
+    return this._httpClient.post<any>(this.endPoint+"/update", value);
   }
 
 
