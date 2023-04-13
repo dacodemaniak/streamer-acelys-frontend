@@ -77,7 +77,13 @@ export class CreateMediaComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.upload()
+    const typeMediaValue = this.mediaForm.get('typeMedia')?.value;
+    if (typeMediaValue && ['Document', 'Image', 'Slide', 'PDF'].includes(typeMediaValue)) {
+      this.submitMediaWithFile();
+    } else {
+      this.submitMediaWithURL();
+    }
+    this.mediaForm.reset();
   }
 
   onNoClick() {
@@ -95,7 +101,29 @@ export class CreateMediaComponent implements OnInit {
     }
   }
 
-  async upload(): Promise<void> {
+  private submitMediaWithURL() {
+    const typeMediaID = this.options.get(this.mediaForm.value.typeMedia);
+    const conceptor: Member = this._localStorageService.getMemberFromStorage()
+    const newConceptor: any = { id: conceptor.id }
+    const typeMedia: any = { id: typeMediaID, value: this.mediaForm.value.typeMedia }
+    const media: MediaType = {
+      title: this.c['title'].value,
+      summary: this.c['summary'].value,
+      duration: this.c['duration'].value,
+      url: this.c['url'].value,
+      typeMedia: typeMedia,
+      creator: newConceptor,
+    }
+    this._mediaService.add(media).pipe(take(1)).subscribe({
+      next: (response: any) => {
+        // TODO Display Success Message
+        console.log(response);
+        this._snackBar.open(`"${media.title}" was created.`, "Close");
+      }
+    });
+  }
+
+  private async submitMediaWithFile(): Promise<void> {
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
@@ -118,16 +146,18 @@ export class CreateMediaComponent implements OnInit {
             typeMedia: typeMedia,
             creator: newConceptor,
           };
-          console.log(media);
           this._mediaService.add(media).pipe(take(1)).subscribe({
             next: (response: any) => {
+              // TODO Display Success Message
               console.log(response);
+
+              this._snackBar.open(`"${media.title}" was created.`, "Close");
             }
           });
           this.fileInfos = this._fileUpload.getFiles();
         } catch (error) {
           this.message = 'Could not upload the file!';
-          console.log(this.message);
+          this._snackBar.open(`"${this.message}"`, "Close");
 
           this.currentFile = undefined;
         }

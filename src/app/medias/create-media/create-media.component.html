@@ -46,8 +46,8 @@
     </form>
 
     <div mat-dialog-actions class="">
-      <button mat-flat-button color="warn" mat-dialog-close class="mx-4 btn">Cancel</button>
-      <button mat-flat-button color="primary" mat-dialog-close [disabled]="mediaForm.invalid" (click)="onSubmit()"
+      <button mat-flat-button color="warn" class="mx-4 btn">Cancel</button>
+      <button mat-flat-button color="primary" [disabled]="mediaForm.invalid" (click)="onSubmit()"
         class="mx-4 btn primary">Create</button>
     </div>
   </div>
