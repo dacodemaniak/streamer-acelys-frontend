@@ -70,12 +70,16 @@ export class CourseListComponent implements OnInit {
 
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
+    console.log(course);
+
     const newCreator: any = {
       id: this._localStorageService.getMemberFromStorage().id,
     };
     course.creator = newCreator;
-    /* course.modules!.creator = newCreator */
-    course.modules?.forEach((m) => (m.creator = newCreator));
+    course.modules?.forEach((m) => {
+      m.creator = newCreator;
+      m.medias.forEach((media) => (media.creator = newCreator));
+    });
 
     this._courseService.copyCourse(course).subscribe();
   }
