@@ -24,11 +24,7 @@ export class HeaderComponent implements OnInit {
     this._localStorageService.getMemberFromStorage()
   );
 
-  constructor(
-    private _userService: UserService,
-    private _router: Router,
-    private _toastService: ToastService
-  ) {
+  constructor(private _userService: UserService, private _router: Router) {
     this.user$ = this._userService.user$;
   }
 
