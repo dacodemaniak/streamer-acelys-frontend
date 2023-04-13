@@ -35,7 +35,15 @@ export class DashboardRoutingModule {
               path: 'media',
               loadChildren: () => import('../medias/medias.module').then((m) => m.MediasModule),
             },
-            // TODO : Mettre les autres routes pour module
+            {
+              path: 'module',
+              loadChildren: () => import('../modules/modules.module').then((m) => m.ModulesModule),
+            },
+            // TODO : Mettre les autres routes pour course
+            {
+              path: 'course',
+              loadChildren: () => import('../course/course.module').then((m) => m.CourseModule),
+            }
           ]
         },
         {

@@ -11,6 +11,7 @@ import { Member } from '../user/models/member';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
   public isAdmin: boolean = true
   public currentUser!: Member;
 
@@ -36,6 +37,14 @@ export class DashboardComponent implements OnInit {
 
   goToMediaAdd() {
     this._router.navigate(['dashboard/conceptor/media/add']);
+  }
+
+  goToModuleAdd() {
+    this._router.navigate(['dashboard/conceptor/module/add']);
+  }
+
+  goToCourseAdd() {
+    this._router.navigate(['dashboard/conceptor/course/add']);
   }
 
 }
