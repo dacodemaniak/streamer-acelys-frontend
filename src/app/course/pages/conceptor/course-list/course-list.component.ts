@@ -97,6 +97,6 @@ export class CourseListComponent implements OnInit {
     };
     course.creator = newCreator;
 
-    this._courseService.copyCourse(course).subscribe({});
+    this._courseService.copyCourse(course).subscribe();
   }
 }
