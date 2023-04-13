@@ -18,21 +18,11 @@
             <div cdkDropList class="module-list" (cdkDropListDropped)="drop($event)">
                 <div class="title" *ngFor="let module of modules" cdkDrag>
                     
-                    {{module.name}}
+                    <mat-icon class="dragIcon" color="primary">drag_indicator</mat-icon><span>{{module.name}}</span>
                 
                 </div>
               </div>
-            <!-- <ul class="module-list">
-                <li *ngFor="let module of modules">
-                    
-                    <div class="title">{{ module.name }}</div>
-                    <div class="remove">
-                        <button mat-button (click)="removeModule(module)">
-                            <mat-icon color="error">delete</mat-icon>
-                        </button>
-                    </div>
-                </li>
-            </ul> -->
+            
         </ng-container>
         <button mat-raised-button type="button" color="warn" (click)="addModule()">
             Add Module

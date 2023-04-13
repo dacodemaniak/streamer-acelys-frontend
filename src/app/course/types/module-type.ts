@@ -9,5 +9,5 @@ export type ModuleType = {
   totalTime?: string
   creator?: Member
   medias: Array<MediaType>
-
+  order ?:number
 }

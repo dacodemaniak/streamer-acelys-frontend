@@ -48,7 +48,7 @@ export class CourseListComponent implements OnInit {
       });
   }
     // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
-  }
+  
 
   goToAddCourse(): void {
     sessionStorage.removeItem("ModifiedCourse");

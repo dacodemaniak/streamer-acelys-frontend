@@ -60,8 +60,8 @@
       <button mat-menu-item>
         <span>View course</span>
       </button>
-      <button mat-menu-item>
-        <span>Update course (click)="goToUpdateCourse(course)"</span>
+      <button mat-menu-item (click)="goToUpdateCourse(course)">
+        <span> Update course </span>
       </button>
       <button mat-menu-item  >
         <span class="hot-action" (click)="doRemoveCourseConceptor(course)">Remove course</span>

@@ -17,8 +17,13 @@ export class CourseService {
   }
 
   add(value: any): Observable<CourseType> {
+    console.log(value);
     return this._httpClient.post<any>(this.endPoint, value);
   }
+  update(value: any): Observable<CourseType> {
+    return this._httpClient.post<any>(this.endPoint, value);
+  }
+
 
   copyCourse(course: CourseListType): Observable<CourseListType[]> {
     return this._httpClient.post<any>(this.endPoint, course);
