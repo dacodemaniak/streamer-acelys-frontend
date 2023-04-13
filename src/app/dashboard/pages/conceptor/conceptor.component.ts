@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dashboard-conceptor',
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class ConceptorComponent implements OnInit {
   public tiles: Array<any> = []
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit(): void {
 
+  }
+
+  isConceptorRoute(): boolean {
+    return this._router.url === '/dashboard/conceptor';
   }
 
 }

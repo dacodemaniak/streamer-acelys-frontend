@@ -21,6 +21,7 @@ export class CourseListComponent implements OnInit {
   public coursesConceptor: Array<CourseListType> = [];
   panelOpenState = false;
   panel!: MatExpansionPanel;
+  creatorId: any = this._localStorageService.getMemberFromStorage().id;
 
   constructor(
     private _localStorageService: LocalStorageService,
@@ -40,11 +41,10 @@ export class CourseListComponent implements OnInit {
       });
 
     this._studentService
-      .findOne(3)
+      .findOne(this.creatorId)
       .pipe(take(1))
       .subscribe((response: any) => {
         this.coursesConceptor = response.courses;
-        console.log(this.coursesConceptor);
       });
   }
     // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
@@ -99,19 +99,19 @@ export class CourseListComponent implements OnInit {
         },
         complete: () => {
           this.courses.splice(this.courses.indexOf(course), 1);
+          this.coursesConceptor.splice(this.courses.indexOf(course), 1);
         },
       });
   }
 
   onCopyCourse(course: CourseListType) {
     this.coursesConceptor.push(course);
-    console.log(course);
 
     const newCreator: any = {
       id: this._localStorageService.getMemberFromStorage().id,
     };
     course.creator = newCreator;
 
-    this._courseService.copyCourse(course).subscribe();
+    this._courseService.copyCourse(course).subscribe({});
   }
 }

@@ -10,5 +10,6 @@ export type MediaType = {
   createdAt?: Date
   url: string,
   creator?: Member,
-  typeMedia: TypeMediaType
+  typeMedia: TypeMediaType,
+  file?: any
 }

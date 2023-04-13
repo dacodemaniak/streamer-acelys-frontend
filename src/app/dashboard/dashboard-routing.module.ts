@@ -29,13 +29,21 @@ export class DashboardRoutingModule {
               path: 'courses',
               component: CourseListComponent,
               canActivate: [RoleGuard],
-              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | All Course', breadcrumb: 'Managed my courses' },
+              data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Managed my courses', breadcrumb: 'Managed my courses' },
             },
-            // {
-            //   path: 'media',
-            //   loadChildren: () => import('../medias/medias.module').then((m) => m.MediasModule),
-            // },
-            // TODO : Mettre les autres routes pour module
+            {
+              path: 'media',
+              loadChildren: () => import('../medias/medias.module').then((m) => m.MediasModule),
+            },
+            {
+              path: 'module',
+              loadChildren: () => import('../modules/modules.module').then((m) => m.ModulesModule),
+            },
+            // TODO : Mettre les autres routes pour course
+            {
+              path: 'course',
+              loadChildren: () => import('../course/course.module').then((m) => m.CourseModule),
+            }
           ]
         },
         {

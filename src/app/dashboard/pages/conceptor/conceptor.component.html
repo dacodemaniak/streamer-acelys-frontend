@@ -1,3 +1,5 @@
-<h1>Actions for Conceptor</h1>
-<a href="http://localhost:4200/dashboard/conceptor/courses">Go to courses page</a>
+<section id="actionForConceptor" *ngIf="isConceptorRoute()">
+    <h1>Actions for Conceptor</h1>
+    <a href="http://localhost:4200/dashboard/conceptor/courses">Go to courses page</a>
+</section>
 <router-outlet></router-outlet>
