@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit {
   }
 
   public goToDashboard(): void {
-    const role = this._member.getRoleName().toLowerCase();
-    this._router.navigate(['/dashboard', role]);
+    const role = this._member.getRoleName();
+    this._router.navigate(['/dashboard', role.toLowerCase()]);
   }
 
   public signOut(): void {
