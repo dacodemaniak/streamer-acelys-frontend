@@ -19,6 +19,13 @@ export class MediaService {
     )
   }
 
+  // http://localhost:5000/api/v1/medias/creator/{id}
+  public findByCreator(creatorId: number): Observable<MediaType[]> {
+    return this._httpClient.get<MediaType[]>(
+      `${this.endpoint}/creator/${creatorId}`
+    )
+  }
+
   public findOne(id: number): Observable<MediaType> {
     return this._httpClient.get<any>(
       this.endpoint + '/' + id
