@@ -8,12 +8,14 @@ import { CourseType } from '../../types/course-type';
 })
 export class ViewCourseComponent implements OnInit {
   public course: CourseType;
+  public user: any;
 
   constructor() {
     this.course = JSON.parse(sessionStorage.getItem('ModifiedCourse') + '');
+    this.user = JSON.parse(localStorage.getItem('memberData') + '');
   }
 
   ngOnInit(): void {
-    console.log(this.course);
+    console.log(this.user);
   }
 }
