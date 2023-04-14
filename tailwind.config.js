@@ -5,6 +5,7 @@ module.exports = {
   content: [
     "./src/**/*.{html,scss,ts}",
   ],
+  darkMode: 'class',
   important: true,
   theme: {
     extend: {
