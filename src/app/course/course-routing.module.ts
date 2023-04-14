@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from '../dashboard/guards/role.guard';
 import { CourseHandlerComponent } from './course-handler/course-handler.component';
 import { ListComponent } from './list/list.component';
+import { CourseListComponent } from './pages/conceptor/course-list/course-list.component';
 import { ViewCourseComponent } from './pages/view-course/view-course.component';
 
 @NgModule({
@@ -13,15 +14,10 @@ export class CourseRoutingModule {
   public static routes: Routes = [
     // {
     //   path: '',
-    //   redirectTo: 'list',
+    //   redirectTo: 'courses',
     //   pathMatch: 'full',
     // },
-    {
-      path: 'list',
-      component: ListComponent,
-      canActivate: [RoleGuard],
-      data: { allowedRoles: ['MANAGER'], title: 'Dashboard | All Course', breadcrumb: 'All Course' },
-    },
+
     {
       path: 'add',
       component: CourseHandlerComponent,
@@ -46,11 +42,18 @@ export class CourseRoutingModule {
       path: 'view',
       component: ViewCourseComponent,
     },
-    // {
-    //   path: 'conceptor',
-    //   component: CourseListComponent,
-    //   data: { title: 'Dashboard | Create a new module', breadcrumb: 'Create ' },
-    // },
+    {
+      path: '',
+      canActivate: [RoleGuard],
+      component: CourseListComponent,
+      data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Managed my courses', breadcrumb: 'Managed my courses' },
+    },
+    {
+      path: 'list',
+      component: ListComponent,
+      canActivate: [RoleGuard],
+      data: { allowedRoles: ['MANAGER'], title: 'Dashboard | All Course', breadcrumb: 'All Course' },
+    },
     // {
     //   path: '**',
     //   redirectTo: 'list',
