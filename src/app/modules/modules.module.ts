@@ -7,6 +7,7 @@ import { CreateMediaComponent } from './pages/medias-management/create-media/cre
 import { CreateModuleComponent } from './pages/create-module/create-module.component';
 import { SearchBarComponent } from './pages/medias-management/search-bar/search-bar.component';
 import { ModulesRoutingModule } from './modules-routing.module';
+import { ExistingModuleComponent } from './module-management/existing-module/existing-module.component';
 
 
 
@@ -16,7 +17,8 @@ import { ModulesRoutingModule } from './modules-routing.module';
     UpdateModuleComponent,
     CreateMediaComponent,
     AddMediaComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ExistingModuleComponent
   ],
   imports: [
     SharedModule,

@@ -12,7 +12,12 @@ export class ModuleService {
   private readonly endpoint: string = `${environment.apiRootUri}modules`
 
   constructor(private _httpClient: HttpClient) { }
-
+  
+  public findAll(): Observable<ModuleType[]> {
+    return this._httpClient.get<ModuleType[]>(
+      this.endpoint
+    )
+  }
   public add(module: ModuleType): Observable<any> {
     return this._httpClient.post<ModuleType>(
       this.endpoint,

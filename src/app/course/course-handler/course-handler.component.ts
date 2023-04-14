@@ -12,6 +12,7 @@ import { LocalStorageService } from "src/app/core/services/local-storage.service
 import { CreateMediaComponent } from "src/app/medias/create-media/create-media.component";
 import { MediaType } from "../types/media-type";
 import { AddMediaComponent } from "src/app/modules/pages/medias-management/add-media/add-media.component";
+import { ExistingModuleComponent } from "src/app/modules/module-management/existing-module/existing-module.component";
 
 @Component({
   selector: "app-course-handler",
@@ -144,7 +145,32 @@ export class CourseHandlerComponent implements OnInit {
         }
       });
   }
-  addExistingModule(): void {}
+  addExistingModule(): void {
+    this._dialog
+    .open(ExistingModuleComponent, {
+      height: "flex",
+      width: "flex",
+      data: true,
+    })
+    .afterClosed()
+    .subscribe((result: ModuleType | undefined) => {
+      if (result !== undefined) {
+        
+        console.log(result);
+        let module: ModuleType = {
+          id:undefined,
+          name: result.name,
+          objective: result.objective,
+          selected:false,
+          medias:result.medias
+        };
+        this.modules.push(module);
+
+        // result.medias = [];
+        // this.modules.push(result);
+      }
+    });
+  }
 
   removeModule(module: ModuleType): void {
     this.modules.splice(this.modules.indexOf(module), 1);
