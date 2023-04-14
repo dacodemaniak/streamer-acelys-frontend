@@ -17,7 +17,7 @@
         />
       </mat-form-field>
     </div>
-    <p>List of Modules :</p>
+    <p >List of Modules :</p>
     <ng-container *ngIf="useModule">
       <mat-accordion *ngIf="modules.length" class="ModuleList">
         <div
@@ -25,8 +25,8 @@
           class="module-list"
           (cdkDropListDropped)="drop($event)"
         >
-          <mat-expansion-panel *ngFor="let module of modules" cdkDrag>
-            <mat-expansion-panel-header>
+          <mat-expansion-panel  [disabled]="module.medias.length==0" *ngFor="let module of modules" cdkDrag>
+            <mat-expansion-panel-header >
               <mat-panel-title>
                 <mat-icon class="dragIcon" color="primary"
                   >drag_indicator</mat-icon
@@ -36,7 +36,7 @@
                 {{ module.medias!.length }} items
               </mat-panel-description>
               <mat-action-row>
-                <button
+                <button [ngClass]="{'correctButton':module.medias.length==0}"
                   mat-button
                   color="primary"
                   mat-icon-button
@@ -60,11 +60,11 @@
                     >drag_indicator</mat-icon
                   >{{ media.title }}
 
-                  <p class="flex-grow text-left mr-4">
-                    time : {{ media.duration }} min
+                  <p class="flex-grow text-left ml-2 mr-4">
+                     | Duration : {{ media.duration }} min
                   </p>
 
-                  <p>Type media : {{ media.typeMedia.title }}</p>
+                  <p class="mr-4">Type media : {{ media.typeMedia.title }}</p>
 
                   <button
                     mat-button
@@ -82,7 +82,11 @@
                   <button mat-menu-item>
                     <span>Update media</span>
                   </button>
-                  <button mat-menu-item class="hot-action" (click)="removeMedia(module, media)">
+                  <button
+                    mat-menu-item
+                    class="hot-action"
+                    (click)="removeMedia(module, media)"
+                  >
                     <span class="hot-action">Remove media</span>
                   </button>
                 </mat-menu>
@@ -101,7 +105,11 @@
               <button mat-menu-item (click)="updateModule(module)">
                 <span>Update module</span>
               </button>
-              <button mat-menu-item class="hot-action" (click)="removeModule(module)">
+              <button
+                mat-menu-item
+                class="hot-action"
+                (click)="removeModule(module)"
+              >
                 <span>Remove module</span>
               </button>
             </mat-menu>
@@ -119,7 +127,8 @@
               </div>
             
         </ng-container>  -->
-      <button class="mr-4"
+      <button
+        class="mr-4"
         mat-raised-button
         type="button"
         color="warn"
@@ -127,7 +136,7 @@
       >
         Add new module
       </button>
-      <button 
+      <button
         mat-raised-button
         type="button"
         color="warn"

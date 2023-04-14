@@ -19,10 +19,10 @@
 
 <div class="mx-10">
   <mat-accordion *ngIf="coursesConceptor.length">
-    <mat-expansion-panel class="dark:bg-neutral-600"   *ngFor="let course of coursesConceptor">
+    <mat-expansion-panel [disabled]="course.modules?.length==0" class="dark:bg-neutral-600"   *ngFor="let course of coursesConceptor">
       <mat-expansion-panel-header>
         <mat-panel-title class="dark:text-white">
-          {{course.title}}
+         <span> {{course.title}}</span>
         </mat-panel-title>
         <mat-panel-description  class="flex-row-reverse dark:text-white">
           <ng-container *ngIf="course.modules!.length > 0; else noModules" >
@@ -31,11 +31,11 @@
           <ng-template #noModules >no module</ng-template>
         </mat-panel-description>
         <mat-action-row>
-          <button mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menu"  (click)="$event.stopPropagation()">...</button>
+          <button [ngClass]="{'correctButton':course.modules?.length==0}" mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menu"  (click)="$event.stopPropagation()">...</button>
         </mat-action-row>
       </mat-expansion-panel-header>
       <mat-accordion  *ngFor="let module of course.modules">
-        <mat-expansion-panel class="mb-2 dark:bg-neutral-600">
+        <mat-expansion-panel [disabled]="module.medias.length==0" class="mb-2 dark:bg-neutral-600">
           <mat-expansion-panel-header>
             <mat-panel-title class="dark:text-white">
               {{module.name}}
@@ -47,7 +47,7 @@
               <ng-template #noMedias >no media</ng-template>
             </mat-panel-description>
             <mat-action-row >
-              <button mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menuModule"  (click)="$event.stopPropagation()">...</button>
+              <button [ngClass]="{'correctButton':module.medias.length==0}"  mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menuModule"  (click)="$event.stopPropagation()">...</button>
             </mat-action-row>
           </mat-expansion-panel-header>
           <ng-container *ngFor="let media of module.medias" >

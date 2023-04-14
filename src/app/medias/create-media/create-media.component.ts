@@ -100,7 +100,7 @@ export class CreateMediaComponent implements OnInit {
 
   onNoClick() {
     this.onModal
-      ? this.dialogRef.close(this.mediaForm.value)
+      ? this.dialogRef.close()
       : this.newItemEvent.emit(false);
   }
 
