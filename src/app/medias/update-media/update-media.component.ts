@@ -95,9 +95,7 @@ export class UpdateMediaComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // TODO Assign all the updated value to the mediaToUpdate
-    // TODO Call the service to update
-    // TODO Next Toast or error
+    console.log("update");
     console.log(this.mediaForm.value);
     const typeMediaValue = this.mediaForm.get("typeMedia")?.value;
     if (
@@ -136,6 +134,7 @@ export class UpdateMediaComponent implements OnInit {
       title: this.mediaForm.value.typeMedia,
     };
     const media: MediaType = {
+      id: this._mediaID,
       title: this.c['title'].value,
       summary: this.c['summary'].value,
       duration: this.c['duration'].value,
@@ -150,8 +149,7 @@ export class UpdateMediaComponent implements OnInit {
         .pipe(take(1))
         .subscribe({
           next: (response: any) => {
-            // TODO Display Success Message
-            console.log(response);
+            this._router.navigate(['dashboard/conceptor/media']);
             this._snackBar.open(`"${media.title}" was created.`, 'Close');
           },
           complete: () => {
@@ -182,6 +180,7 @@ export class UpdateMediaComponent implements OnInit {
             title: this.mediaForm.value.typeMedia,
           };
           const media: MediaType = {
+            id: this._mediaID,
             title: this.c['title'].value,
             summary: this.c['summary'].value,
             duration: this.c['duration'].value,
@@ -196,11 +195,9 @@ export class UpdateMediaComponent implements OnInit {
               .pipe(take(1))
               .subscribe({
                 next: (response: any) => {
-                  // TODO Display Success Message
-                  console.log(response);
-
+                  this._router.navigate(['dashboard/conceptor/media']);
                   this._snackBar.open(
-                    `"${media.title}" was created.`,
+                    `"${media.title}" was updated.`,
                     'Close'
                   );
                 },
