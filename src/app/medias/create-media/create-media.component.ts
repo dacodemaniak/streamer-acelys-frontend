@@ -22,6 +22,7 @@ import { LocalStorageService } from "src/app/core/services/local-storage.service
 import { MediaType } from "src/app/course/types/media-type";
 import { ModuleService } from "src/app/modules/services/module.service";
 import { Member } from "src/app/user/models/member";
+import { MediaModel } from "../models/media-model";
 import { MediaService } from "../services/media.service";
 
 @Component({
@@ -34,6 +35,14 @@ export class CreateMediaComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<boolean>();
 
   public actionTitle: string = 'Create';
+
+  // Need this to wait display the form
+  public media: MediaModel = new MediaModel({
+    _title: 'My Title',
+    _summary: 'My Summary',
+    _duration: 120,
+    _typeMedia: { id: 1, title: 'Video' }
+  })
 
   public mediaForm: FormGroup = new FormGroup({});
   public selectedOption: string = "";

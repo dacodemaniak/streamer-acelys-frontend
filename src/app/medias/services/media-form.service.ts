@@ -11,6 +11,7 @@ import { MediaService } from './media.service';
 })
 export class MediaFormService {
   private _form: FormGroup = new FormGroup({});
+  public media!: MediaType;
 
   private readonly conceptor: Member = this._localStorageService.getMemberFromStorage();
   private readonly conceptorID: any = { id: this.conceptor.id };
@@ -93,15 +94,20 @@ export class MediaFormService {
       creator: this.conceptorID,
     };
 
-    return this._mediaService.add(media).pipe(
+    return this._mediaService.update(this._media).pipe(
       map(_ => this._media)
     )
 
   }
 
   private _buildForm(): void {
+
+    // console.log(this._options.get(this._media.typeMedia.title))
+    // console.log(this._media.typeMedia.title);
     const optionsArray = Array.from(this._options.entries());
     const index = optionsArray.findIndex(([key, value]) => key === this._media.typeMedia.title);
+    console.log(index);
+    // console.log(this.optionsMethod[this._options.get(this._media.typeMedia.title)]);
 
     this._form = this._formBuilder.group({
       title: [this._media.title, [Validators.required, Validators.minLength(8)]],

@@ -2,8 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnInit, Optional, Output } from
 import {
   AbstractControl,
   FormBuilder,
-  FormGroup,
-  Validators,
+  FormGroup
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -81,18 +80,10 @@ export class UpdateMediaComponent implements OnInit {
         this.mediaForm = this._mediaFormService.form;
       },
       error: (error) => {
-        console.log(error);
+        console.log('Something went wrong')
       },
     })
 
-
-    this.mediaForm = this._formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(8)]],
-      summary: [''],
-      duration: ['', [Validators.required]],
-      url: ['', [Validators.required]],
-      typeMedia: ['', [Validators.required]],
-    });
   }
 
   get c(): { [key: string]: AbstractControl } {
@@ -107,6 +98,16 @@ export class UpdateMediaComponent implements OnInit {
     // TODO Assign all the updated value to the mediaToUpdate
     // TODO Call the service to update
     // TODO Next Toast or error
+    console.log(this.mediaForm.value);
+    const typeMediaValue = this.mediaForm.get("typeMedia")?.value;
+    if (
+      typeMediaValue &&
+      ["Document", "Image", "Slide", "PDF"].includes(typeMediaValue)
+    ) {
+      this.submitMediaWithFile();
+    } else {
+      this.submitMediaWithURL();
+    }
   }
 
   onNoClick() {
@@ -145,7 +146,7 @@ export class UpdateMediaComponent implements OnInit {
     this.onModal
       ? this.dialogRef.close(media)
       : this._mediaService
-        .add(media)
+        .update(media)
         .pipe(take(1))
         .subscribe({
           next: (response: any) => {
@@ -191,7 +192,7 @@ export class UpdateMediaComponent implements OnInit {
           this.onModal
             ? this.dialogRef.close(media)
             : this._mediaService
-              .add(media)
+              .update(media)
               .pipe(take(1))
               .subscribe({
                 next: (response: any) => {
