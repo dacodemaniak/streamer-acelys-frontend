@@ -9,6 +9,8 @@ import { SearchBarComponent } from './pages/medias-management/search-bar/search-
 import { ModulesRoutingModule } from './modules-routing.module';
 import { ExistingModuleComponent } from './module-management/existing-module/existing-module.component';
 import { ViewModuleComponent } from './pages/view-module/view-module.component';
+import { ListModuleComponent } from './pages/list-module/list-module.component';
+import { ModuleTileComponent } from './pages/list-module/module-tile/module-tile.component';
 
 
 
@@ -19,9 +21,11 @@ import { ViewModuleComponent } from './pages/view-module/view-module.component';
     CreateMediaComponent,
     AddMediaComponent,
     SearchBarComponent,
-    ExistingModuleComponent
+    ExistingModuleComponent,
     SearchBarComponent,
-    ViewModuleComponent
+    ViewModuleComponent,
+    ListModuleComponent,
+    ModuleTileComponent
   ],
   imports: [
     SharedModule,
