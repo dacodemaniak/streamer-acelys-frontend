@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { RemoveCourseDialogComponent } from '../../dialogs/remove-course-dialog/remove-course-dialog.component';
-import { CourseListType } from '../../types/course-list-type';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { RemoveCourseDialogComponent } from "../../dialogs/remove-course-dialog/remove-course-dialog.component";
+import { CourseListType } from "../../types/course-list-type";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-course-tile',
-  templateUrl: './course-tile.component.html',
-  styleUrls: ['./course-tile.component.scss'],
+  selector: "app-course-tile",
+  templateUrl: "./course-tile.component.html",
+  styleUrls: ["./course-tile.component.scss"],
 })
 export class CourseTileComponent implements OnInit {
   @Input() public course!: CourseListType;
@@ -17,7 +18,7 @@ export class CourseTileComponent implements OnInit {
   @Output() public onCopyCourse: EventEmitter<CourseListType> =
     new EventEmitter();
 
-  constructor(private _dialog: MatDialog) {}
+  constructor(private _dialog: MatDialog, private _router: Router) {}
 
   ngOnInit(): void {}
 
@@ -32,11 +33,17 @@ export class CourseTileComponent implements OnInit {
     this.onToggleCourse.emit(this.course);
   }
 
+  onUpdateClick(course: any): void {
+    sessionStorage.setItem("ModifiedCourse",JSON.stringify(course ));
+    console.log("heho2");
+    this._router.navigate(["/", "course", "add"]);//go to course with the modified course stocked
+  }
+
   public onRemoveClick(course: CourseListType): void {
     this._dialog
       .open(RemoveCourseDialogComponent, {
-        width: '20em',
-        height: '30em',
+        width: "20em",
+        height: "30em",
         data: course,
       })
       .afterClosed()

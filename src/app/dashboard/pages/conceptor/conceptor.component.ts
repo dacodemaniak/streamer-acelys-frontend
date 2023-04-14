@@ -17,20 +17,20 @@ export class ConceptorComponent implements OnInit {
   ngOnInit(): void {
     this.tiles.push(
       {
-        title: 'My courses',
+        title: 'Course Management',
         summary: 'Create, edit or delete your courses',
         action: [...this._rootAction, 'courses'],
       },
-      // {
-      //   title: 'My modules',
-      //   summary: 'Create, edit or delete your modules',
-      //   action: [...this._rootAction, 'modules'],
-      // },
-      // {
-      //   title: 'My medias',
-      //   summary: 'Create, edit or delete your medias',
-      //   action: [...this._rootAction, 'medias'],
-      // }
+      {
+        title: 'My modules',
+        summary: 'Create, edit or delete your modules',
+        action: [...this._rootAction, 'module'],
+      },
+      {
+        title: 'Media Hub',
+        summary: 'Create, edit or delete your medias',
+        action: [...this._rootAction, 'media'],
+      }
     )
     console.log(this.tiles);
   }
