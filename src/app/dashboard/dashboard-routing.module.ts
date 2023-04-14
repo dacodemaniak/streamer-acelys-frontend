@@ -19,13 +19,18 @@ export class DashboardRoutingModule {
   public static routes: Routes = [
     {
       path: '',
+      pathMatch: 'full',
+      redirectTo: `${DashboardRoutingModule._currentUser}`
+    },
+    {
+      path: '',
       component: DashboardComponent,
       canActivate: [RoleGuard],
       data: { allowedRoles: ['CONCEPTOR', 'MANAGER', 'STUDENT'], title: 'Dashboard', breadcrumb: 'Dashboard' },
       children: [
         // {
         //   path: '',
-        //   redirectTo: `${DashboardRoutingModule._currentUser}`,
+        //   redirectTo: 'conceptor',
         //   pathMatch: 'full'
         // },
         {
@@ -51,24 +56,28 @@ export class DashboardRoutingModule {
               canActivate: [RoleGuard],
               data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Managed my courses', breadcrumb: 'Course' },
               loadChildren: () => import('../course/course.module').then((m) => m.CourseModule),
+            },
+            {
+              path: '**',
+              redirectTo: '/dashboard/conceptor',
+              pathMatch: 'full'
             }
           ]
         },
         {
           path: 'manager',
           component: ManagerComponent,
-          // canActivateChild: [RoleGuard],
+          canActivate: [RoleGuard],
           data: { allowedRoles: ['MANAGER'], title: 'Dashboard | Manager' },
         },
         {
           path: 'student',
           component: StudentComponent,
-          // canActivate: [RoleGuard],
+          canActivate: [RoleGuard],
           data: { allowedRoles: ['STUDENT'], title: 'Dashboard | Student' },
         }
       ],
     },
-    // { path: '**', redirectTo: '/dashboard' },
   ];
 
 }

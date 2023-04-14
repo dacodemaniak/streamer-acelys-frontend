@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateModuleComponent } from './pages/create-module/create-module.component';
+import { ListModuleComponent } from './pages/list-module/list-module.component';
 import { UpdateModuleComponent } from './pages/update-module/update-module.component';
 import { ViewModuleComponent } from './pages/view-module/view-module.component';
-import { ListModuleComponent } from './pages/list-module/list-module.component';
 
 
 @NgModule({
@@ -12,11 +12,6 @@ import { ListModuleComponent } from './pages/list-module/list-module.component';
 })
 export class ModulesRoutingModule {
   public static routes: Routes = [
-    // {
-    //   path: '',
-    //   redirectTo: 'modules/add',
-    //   pathMatch: 'full'
-    // },
     {
       path: 'add',
       data: { title: 'Dashboard | Create a new module', breadcrumb: 'Create a new module' },
@@ -39,7 +34,7 @@ export class ModulesRoutingModule {
     },
     // {
     //   path: '**',
-    //   redirectTo: 'modules/add',
+    //   redirectTo: '/dashboard/conceptor/module',
     //   pathMatch: 'full'
     // }
   ]

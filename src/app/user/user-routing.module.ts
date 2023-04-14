@@ -17,7 +17,8 @@ export class UserRoutingModule {
     {
       path: 'login',
       component: LoginComponent,
-      canActivate: [NoAuthGuard]
+      canActivate: [NoAuthGuard],
+      data: { title: 'HTTP | Sign In' },
     },
     {
       path: '**',

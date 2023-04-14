@@ -37,7 +37,7 @@ export class MediasRoutingModule {
     },
     // {
     //   path: '**',
-    //   redirectTo: 'list',
+    //   redirectTo: '/dashboard/conceptor/media',
     //   pathMatch: 'full'
     // }
   ]
