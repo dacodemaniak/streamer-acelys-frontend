@@ -20,8 +20,18 @@
         </mat-form-field>
       </form>
 
-      <button mat-flat-button color="primary" class="w-full my-4" (click)="addMedia()">Add an existing media</button>
-      <button mat-flat-button color="primary" class="w-full my-3" (click)="createMedia()">Create a media</button>
+      <div class="w-full space-y-2">
+        <ng-container *ngIf="medias">
+          <ul *ngFor="let media of medias" class="list-none w-full">
+            <li class="bg-slate-100 px-6 py-4 flex flex-row justify-between">{{media.title}} <mat-icon
+                (click)="removeMedia(media)" color="primary">delete</mat-icon></li>
+          </ul>
+        </ng-container>
+      </div>
+
+      <button mat-flat-button color="primary" class="w-full my-4" (click)="showAddMedia()">Add an existing
+        media</button>
+      <button mat-flat-button color="primary" class="w-full my-3" (click)="showCreateMedia()">Create a media</button>
 
       <div mat-dialog-actions class="mt-20">
         <button mat-flat-button color="warn" (click)="onNoClick()" class="mx-4">Cancel</button>
@@ -33,11 +43,12 @@
   </div>
 
   <ng-container *ngIf="addMediaVisible">
-    <app-add-media></app-add-media>
+    <app-add-media (idMedia)="addMedia($event)"></app-add-media>
   </ng-container>
 
   <ng-container *ngIf="createMediaVisible">
-    <app-create-media [visibility]="createMediaVisible" (newItemEvent)="closeCreate($event)"></app-create-media>
+    <app-create-media [visibility]="createMediaVisible" (newItemEvent)="closeCreate($event)"
+      (idNewMedia)="addNewMedia($event)"></app-create-media>
   </ng-container>
 
 </div>

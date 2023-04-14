@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MediasModule } from '../medias/medias.module';
 import { SharedModule } from '../shared/shared.module';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { TileComponent } from './components/tile/tile.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -16,11 +18,13 @@ import { StudentComponent } from './pages/student/student.component';
     ConceptorComponent,
     StudentComponent,
     ManagerComponent,
-    TileComponent
+    TileComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    MediasModule,
     DashboardRoutingModule
   ]
 })

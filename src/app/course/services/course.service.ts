@@ -20,12 +20,8 @@ export class CourseService {
     return this._httpClient.post<any>(this.endPoint, value);
   }
 
-  /*   copyCourse(course: CourseListType): Observable<CourseListType[]> {
-    return this._httpClient.post<CourseListType[]>(this.endPoint, course);
-  } */
   copyCourse(course: CourseListType): Observable<CourseListType[]> {
-    const copyCourse: CourseType = JSON.parse(JSON.stringify(course));
-    return this._httpClient.post<any>(this.endPoint, copyCourse);
+    return this._httpClient.post<any>(this.endPoint, course);
   }
 
   public remove(id: number): Observable<HttpResponse<any>> {

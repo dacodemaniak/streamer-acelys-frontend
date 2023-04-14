@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { take } from 'rxjs';
+import { MediaType } from 'src/app/course/types/media-type';
+import { MediaService } from 'src/app/medias/services/media.service';
 
 @Component({
   selector: 'app-add-media',
@@ -7,14 +10,34 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AddMediaComponent implements OnInit {
 
+  public medias: MediaType[] = []
+  public searchText: string = ''
 
-  constructor() { }
+  @Output()
+  public idMedia: EventEmitter<number> = new EventEmitter<number>()
+
+
+  constructor(private _service: MediaService) { }
 
   ngOnInit(): void {
+    this._service.findAll()
+      .pipe(
+        take(1)
+      ).subscribe((medias: MediaType[]) => {
+        this.medias = medias
+        this.medias.sort((s1: MediaType, s2: MediaType) => s1.id! - s2.id!)
+      })
+
   }
 
-  public addMedia() {
-    console.log("he")
+  public addMedia(id: number) {
+    this.idMedia.emit(id)
+  }
+
+
+  public onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue
+    // console.log(this.searchText)
   }
 
 }

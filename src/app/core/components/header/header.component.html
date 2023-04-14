@@ -1,14 +1,17 @@
-<div class="bg-primary-500">
-  <nav class="2xl:container 2xl:mx-auto sm:py-6 sm:px-7 py-5 px-4">
+<div class="bg-primary-500 dark:bg-primary-900">
+  <nav class="mx-auto max-w-7xl p-6 lg:px-8">
     <!-- For large and Medium-sized Screen -->
-    <div class="flex justify-between">
+    <div class="flex justify-between items-center gap-x-6">
       <div class="flex space-x-3 items-center">
-        <h1 class="font-normal text-2xl leading-6 text-stone-100">STREAM</h1>
+        <h1 class="font-normal text-2xl leading-6 text-stone-100 dark:text-stone-50 cursor-pointer"
+          (click)="goToDashboard()">STREAM
+        </h1>
       </div>
       <div class="hidden sm:flex flex-row space-x-4">
-        <button class="btn-border-header btn-border-color" *ngIf="user$ | async" (click)="signOut()">
-          Sign
-          Out</button>
+        <member-avatar *ngIf="user$ | async"></member-avatar>
+        <!-- <button class="btn outlined dark:border-header dark:border-color" *ngIf="user$ | async" (click)="signOut()">
+          Sign Out
+        </button> -->
       </div>
 
 
@@ -34,10 +37,8 @@
     <!-- Mobile and small-screen devices -->
     <div [ngClass]="'mt-4 ' + (menu ? ' ' : 'hidden sm:hidden')" class="sm:hidden">
       <div class="flex flex-col gap-4 mt-4 mx-auto">
-        <button class="btn-border-header btn-border-color w-full" *ngIf="user$ | async">Sign
-          Out</button>
-        <button class="btn-border-header btn-border-color w-full">Sign
-          Out</button>
+        <button class="btn-border-header btn-border-color w-full text-white dark:border-header dark:border-color"
+          *ngIf="user$ | async">Sign Out</button>
       </div>
     </div>
   </nav>
