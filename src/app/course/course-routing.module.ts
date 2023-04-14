@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CourseHandlerComponent } from './course-handler/course-handler.component';
 import { ListComponent } from './list/list.component';
+import { ViewCourseComponent } from './pages/view-course/view-course.component';
 
 @NgModule({
   imports: [RouterModule.forChild(CourseRoutingModule.routes)],
@@ -18,13 +19,18 @@ export class CourseRoutingModule {
       path: 'list',
       component: ListComponent,
       data: { title: 'Dashboard | All Course', breadcrumb: 'All Course' },
-
     },
     {
       path: 'add',
       component: CourseHandlerComponent,
-      data: { title: 'Dashboard | Create a new Course', breadcrumb: 'Create a new course' },
-
+      data: {
+        title: 'Dashboard | Create a new Course',
+        breadcrumb: 'Create a new course',
+      },
+    },
+    {
+      path: 'view',
+      component: ViewCourseComponent,
     },
     // {
     //   path: 'conceptor',
