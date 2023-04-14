@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToCourseAdd() {
+    sessionStorage.removeItem('ModifiedCourse');
     this._router.navigate(['dashboard/conceptor/course/add']);
   }
 
