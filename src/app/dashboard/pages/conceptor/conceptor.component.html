@@ -1,5 +1,9 @@
 <section id="actionForConceptor" *ngIf="isConceptorRoute()">
-    <h1>Actions for Conceptor</h1>
-    <a href="http://localhost:4200/dashboard/conceptor/courses">Go to courses page</a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+        <ng-container *ngFor="let tile of tiles">
+            <app-tile [tileInfo]="tile"></app-tile>
+        </ng-container>
+    </div>
 </section>
+
 <router-outlet></router-outlet>
