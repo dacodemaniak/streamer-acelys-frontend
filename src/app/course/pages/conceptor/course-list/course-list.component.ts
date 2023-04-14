@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionPanel } from '@angular/material/expansion';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
@@ -9,6 +10,7 @@ import { ToastService } from 'src/app/core/toast.service';
 import { CourseService } from 'src/app/course/services/course.service';
 import { CourseListType } from 'src/app/course/types/course-list-type';
 import { ModuleType } from 'src/app/course/types/module-type';
+import { ModuleService } from 'src/app/modules/services/module.service';
 import { StudentService } from 'src/app/student/services/student.service';
 
 @Component({
@@ -28,9 +30,11 @@ export class CourseListComponent implements OnInit {
     private _courseService: CourseService,
     private _studentService: StudentService,
     private _toastService: ToastService,
+    private _moduleService: ModuleService,
     private _dialog: MatDialog,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this._courseService
@@ -85,9 +89,8 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: HttpResponse<any>) => {
-          const message: string = `${course.title} was removed. ${
-            course.modules!.length
-          } modules were affected`;
+          const message: string = `${course.title} was removed. ${course.modules!.length
+            } modules were affected`;
           this._toastService.show(message);
         },
         error: (error: any) => {
@@ -114,5 +117,28 @@ export class CourseListComponent implements OnInit {
     });
 
     this._courseService.copyCourse(course).subscribe();
+  }
+
+
+  //CRUD MODULES
+
+  deleteModule(id: number): void {
+    this._moduleService
+      .delete(id)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: HttpResponse<any>) => {
+          this._snackBar.open(`The module was deleted.`, "Close");
+          this.ngOnInit()
+        },
+      });
+
+  }
+
+  editModule(id: number) {
+    this._router.navigate([`dashboard/conceptor/module/${id}/update`])
+  }
+  viewModule(id: number) {
+    this._router.navigate([`dashboard/conceptor/module/${id}/view`])
   }
 }

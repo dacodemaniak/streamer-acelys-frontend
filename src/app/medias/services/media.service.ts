@@ -48,7 +48,7 @@ export class MediaService {
 
   public update(media: MediaType): Observable<any> {
     return this._httpClient.put<MediaType>(
-      this.endpoint,
+      this.endpoint + '/' + media.id,
       media,
       {
         observe: 'response'
