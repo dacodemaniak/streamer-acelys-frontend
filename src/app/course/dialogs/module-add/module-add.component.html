@@ -16,5 +16,5 @@
 
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button cdkFocusInitial mat-button [disabled]="form.invalid" (click)="onSubmit()">Add</button>
+    <button cdkFocusInitial mat-button [disabled]="form.invalid" (click)="onSubmit()">{{(addOrUpdate)?"Add":"Update"}}</button>
 </div>

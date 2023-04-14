@@ -5,6 +5,8 @@ import { ToastService } from './../../core/toast.service';
 import { CourseService } from '../services/course.service';
 import { CourseListType } from '../types/course-list-type';
 import { ModuleType } from '../types/module-type';
+import { log } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +18,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private _courseService: CourseService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private _router : Router
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +29,11 @@ export class ListComponent implements OnInit {
       .subscribe((response: CourseListType[]) => {
         this.courses = response;
       });
+  }
+  goToAddCourse():void{
+    sessionStorage.removeItem("ModifiedCourse");
+    console.log("heho");
+    this._router.navigate(['/', 'course', 'add']);
   }
 
   onCourseToggle(course: CourseListType): void {

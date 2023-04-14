@@ -5,7 +5,7 @@
     <h1> My own list</h1>
 
     <div class="col xs2 ml-4">
-      <button mat-raised-button class="colorWhite dark:bg-neutral-600 dark:text-white" [routerLink]="['/', 'course', 'add']">
+      <button mat-raised-button class="colorWhite dark:bg-neutral-600 dark:text-white" (click)="goToAddCourse()">
         +
       </button>
     </div>
@@ -63,8 +63,8 @@
       <button mat-menu-item>
         <span class="dark:text-white">View course</span>
       </button>
-      <button mat-menu-item>
-        <span class="dark:text-white">Update course</span>
+      <button mat-menu-item (click)="goToUpdateCourse(course)">
+        <span class="dark:text-white"> Update course </span>
       </button>
       <button mat-menu-item  >
         <span class="hot-action dark:text-white" (click)="doRemoveCourseConceptor(course)">Remove course</span>
