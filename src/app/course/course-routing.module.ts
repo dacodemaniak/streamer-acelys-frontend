@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from '../dashboard/guards/role.guard';
 import { CourseHandlerComponent } from './course-handler/course-handler.component';
 import { ListComponent } from './list/list.component';
 import { ViewCourseComponent } from './pages/view-course/view-course.component';
@@ -18,7 +19,8 @@ export class CourseRoutingModule {
     {
       path: 'list',
       component: ListComponent,
-      data: { title: 'Dashboard | All Course', breadcrumb: 'All Course' },
+      canActivate: [RoleGuard],
+      data: { allowRole: ['MANAGER'], title: 'Dashboard | All Course', breadcrumb: 'All Course' },
     },
     {
       path: 'add',
