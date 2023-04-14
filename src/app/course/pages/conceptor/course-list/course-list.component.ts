@@ -74,7 +74,7 @@ export class CourseListComponent implements OnInit {
 
   goToUpdateCourse(course: any): void {
     sessionStorage.setItem('ModifiedCourse', JSON.stringify(course));
-    this._router.navigate(['/', 'dashboard', 'conceptor', 'course', 'edit']);
+    this._router.navigate([...this._pathForConceptor, 'course', 'edit']);
   }
 
   goToViewCourse(course: any): void {
