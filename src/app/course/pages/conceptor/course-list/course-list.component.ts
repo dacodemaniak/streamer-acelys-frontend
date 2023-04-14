@@ -30,7 +30,7 @@ export class CourseListComponent implements OnInit {
     private _toastService: ToastService,
     private _dialog: MatDialog,
     private _router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._courseService
@@ -50,7 +50,7 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response: any) => {
         this.coursesConceptor = response.courses;
-        console.log(this.coursesConceptor);
+        // console.log(this.coursesConceptor);
 
         this.coursesConceptor.forEach((c) => {
           c.modules = c.modules?.sort(
@@ -60,23 +60,26 @@ export class CourseListComponent implements OnInit {
       });
     //trie des modules
 
-    console.log(this.coursesConceptor);
+    // console.log(this.coursesConceptor);
   }
   // recuperer tous les cours associer aux conceptor et les mettre dans coursesConceptor
 
-  goToAddCourse(): void {
-    sessionStorage.removeItem('ModifiedCourse');
-    console.log('heho');
-    this._router.navigate(['/', 'course', 'add']);
-  }
+  private _pathForConceptor: String[] = ['/', 'dashboard', 'conceptor']
+
+  // goToAddCourse(): void {
+  //   sessionStorage.removeItem('ModifiedCourse');
+  //   console.log('heho');
+  //   this._router.navigate([...this._pathForConceptor, 'course', 'add']);
+  // }
+
   goToUpdateCourse(course: any): void {
     sessionStorage.setItem('ModifiedCourse', JSON.stringify(course));
-    this._router.navigate(['/', 'course', 'add']);
+    this._router.navigate(['/', 'dashboard', 'conceptor', 'course', 'edit']);
   }
 
   goToViewCourse(course: any): void {
     sessionStorage.setItem('ModifiedCourse', JSON.stringify(course));
-    this._router.navigate(['/', 'course', 'view']);
+    this._router.navigate([...this._pathForConceptor, 'course', 'view']);
   }
 
   doRemoveCourseConceptor(course: CourseListType): void {
@@ -85,9 +88,8 @@ export class CourseListComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: HttpResponse<any>) => {
-          const message: string = `${course.title} was removed. ${
-            course.modules!.length
-          } modules were affected`;
+          const message: string = `${course.title} was removed. ${course.modules!.length
+            } modules were affected`;
           this._toastService.show(message);
         },
         error: (error: any) => {
