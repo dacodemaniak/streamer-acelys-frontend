@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { AbstractControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { LocalStorageService } from "src/app/core/services/local-storage.service";
+import { CreateMediaComponent } from "src/app/medias/create-media/create-media.component";
+import { ExistingModuleComponent } from "src/app/modules/module-management/existing-module/existing-module.component";
+import { AddMediaComponent } from "src/app/modules/pages/medias-management/add-media/add-media.component";
 import { ModuleAddComponent } from "../dialogs/module-add/module-add.component";
 import { FormCourseBuilderService } from "../services/course-handler/form-course-builder.service";
 import { CourseService } from "../services/course.service";
 import { CourseType } from "../types/course-type";
-import { ModuleType } from "../types/module-type";
-import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
-import { LocalStorageService } from "src/app/core/services/local-storage.service";
-import { CreateMediaComponent } from "src/app/medias/create-media/create-media.component";
 import { MediaType } from "../types/media-type";
-import { AddMediaComponent } from "src/app/modules/pages/medias-management/add-media/add-media.component";
-import { ExistingModuleComponent } from "src/app/modules/module-management/existing-module/existing-module.component";
+import { ModuleType } from "../types/module-type";
 
 @Component({
   selector: "app-course-handler",
@@ -51,7 +51,12 @@ export class CourseHandlerComponent implements OnInit {
     this.form = this._formBuilder.form;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // If the current page is add then clear the form
+    if (this.updateOrCreate === "Add") {
+      this.form.reset();
+    }
+  }
 
   get c(): { [key: string]: AbstractControl } {
     return this.form.controls;
@@ -71,9 +76,17 @@ export class CourseHandlerComponent implements OnInit {
         }
       });
   }
-  
 
+  // * Remove the data when I unload the component
 
+  @HostListener('window:beforeunload')
+  removeDataToSessionStorage() {
+    sessionStorage.removeItem("ModifiedCourse");
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem("ModifiedCourse");
+  }
 
   addMedia(parent: ModuleType): void {
     this._dialog
@@ -87,7 +100,7 @@ export class CourseHandlerComponent implements OnInit {
         if (result !== undefined) {
           console.log(result);
           let media: MediaType = {
-            id:undefined,
+            id: undefined,
             title: result.title,
             summary: result.summary,
             duration: result.duration,
@@ -112,10 +125,10 @@ export class CourseHandlerComponent implements OnInit {
       .afterClosed()
       .subscribe((result: MediaType | undefined) => {
         if (result !== undefined) {
-          
+
           console.log(result);
           let media: MediaType = {
-            id:undefined,
+            id: undefined,
             title: result.title,
             summary: result.summary,
             duration: result.duration,
@@ -141,35 +154,35 @@ export class CourseHandlerComponent implements OnInit {
       .afterClosed()
       .subscribe((result: ModuleType | undefined) => {
         if (result !== undefined) {
-          
+
         }
       });
   }
   addExistingModule(): void {
     this._dialog
-    .open(ExistingModuleComponent, {
-      height: "flex",
-      width: "flex",
-      data: true,
-    })
-    .afterClosed()
-    .subscribe((result: ModuleType | undefined) => {
-      if (result !== undefined) {
-        
-        console.log(result);
-        let module: ModuleType = {
-          id:undefined,
-          name: result.name,
-          objective: result.objective,
-          selected:false,
-          medias:result.medias
-        };
-        this.modules.push(module);
+      .open(ExistingModuleComponent, {
+        height: "flex",
+        width: "flex",
+        data: true,
+      })
+      .afterClosed()
+      .subscribe((result: ModuleType | undefined) => {
+        if (result !== undefined) {
 
-        // result.medias = [];
-        // this.modules.push(result);
-      }
-    });
+          console.log(result);
+          let module: ModuleType = {
+            id: undefined,
+            name: result.name,
+            objective: result.objective,
+            selected: false,
+            medias: result.medias
+          };
+          this.modules.push(module);
+
+          // result.medias = [];
+          // this.modules.push(result);
+        }
+      });
   }
 
   removeModule(module: ModuleType): void {
@@ -189,9 +202,9 @@ export class CourseHandlerComponent implements OnInit {
       event.currentIndex
     );
   }
-  removeMedia(module : ModuleType, media : MediaType):void{
-    const i : number =this.modules.indexOf(module);
-    
+
+  removeMedia(module: ModuleType, media: MediaType): void {
+    const i: number = this.modules.indexOf(module);
     this.modules[i].medias.splice(this.modules[i].medias.indexOf(media), 1);
   }
 
@@ -212,21 +225,20 @@ export class CourseHandlerComponent implements OnInit {
       modules: orderedModules,
       creator: { id: this._localStorageService.getMemberFromStorage().id },
     };
-    
+
     course.modules = course.modules?.sort(
       (s1: ModuleType, s2: ModuleType) => (s1.order! - s2.order!) * 1
     );
     console.log(course);
-    
 
     if (this.updateCourse) {
       course.id = this.course.id;
       this._courseService.update(course).subscribe((courseType: CourseType) => {
-        this._router.navigate(["/", "dashboard", "conceptor", "courses"]);
+        this._router.navigate(["/", "dashboard", "conceptor", "course"]);
       });
     } else {
       this._courseService.add(course).subscribe((courseType: CourseType) => {
-        this._router.navigate(["/", "dashboard", "conceptor", "courses"]);
+        this._router.navigate(["/", "dashboard", "conceptor", "course"]);
       });
     }
   }

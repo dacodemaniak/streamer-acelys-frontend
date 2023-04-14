@@ -43,25 +43,25 @@ export class AppRoutingModule {
         AuthGuard
       ] */
     },
-    {
-      path: 'course',
-      loadChildren: () =>
-        import('./course/course.module').then((m) => m.CourseModule),
-      /* canActivate: [AuthGuard] */
-    },
+    // {
+    //   path: 'course',
+    //   loadChildren: () =>
+    //     import('./course/course.module').then((m) => m.CourseModule),
+    //   canActivate: [AuthGuard]
+    // },
     {
       path: 'user',
       loadChildren: () =>
         import('./user/user.module').then((m) => m.UserModule),
     },
-    {
-      path: 'medias',
-      loadChildren: () => import('./medias/medias.module').then((m) => m.MediasModule),
-    },
-    {
-      path: 'modules',
-      loadChildren: () => import('./modules/modules.module').then((m) => m.ModulesModule),
-    },
+    // {
+    //   path: 'medias',
+    //   loadChildren: () => import('./medias/medias.module').then((m) => m.MediasModule),
+    // },
+    // {
+    //   path: 'modules',
+    //   loadChildren: () => import('./modules/modules.module').then((m) => m.ModulesModule),
+    // },
     {
       path: '**',
       component: NotFoundComponent,
