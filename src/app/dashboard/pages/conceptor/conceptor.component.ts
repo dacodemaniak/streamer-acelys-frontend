@@ -19,7 +19,7 @@ export class ConceptorComponent implements OnInit {
       {
         title: 'Course Management',
         summary: 'Create, edit or delete your courses',
-        action: [...this._rootAction, 'courses'],
+        action: [...this._rootAction, 'course'],
       },
       {
         title: 'My modules',
