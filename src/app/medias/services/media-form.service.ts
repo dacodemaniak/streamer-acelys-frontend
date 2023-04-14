@@ -100,13 +100,16 @@ export class MediaFormService {
   }
 
   private _buildForm(): void {
+    const optionsArray = Array.from(this._options.entries());
+    const index = optionsArray.findIndex(([key, value]) => key === this._media.typeMedia.title);
+
     this._form = this._formBuilder.group({
       title: [this._media.title, [Validators.required, Validators.minLength(8)]],
       summary: [this._media.summary],
       duration: [this._media.duration, [Validators.required]],
       url: [this._media.url],
-      typeMedia: [this._media.typeMedia, [Validators.required]],
-      file: [this._media.file],
+      typeMedia: [this.optionsMethod[index], [Validators.required]],
+      file: [null],
     })
   }
 }

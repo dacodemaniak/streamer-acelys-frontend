@@ -15,6 +15,7 @@ import { MediaType } from 'src/app/course/types/media-type';
 import { ModuleService } from 'src/app/modules/services/module.service';
 import { Member } from 'src/app/user/models/member';
 import { CreateMediaComponent } from '../create-media/create-media.component';
+import { MediaFormService } from '../services/media-form.service';
 import { MediaService } from '../services/media.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class UpdateMediaComponent implements OnInit {
 
   public mediaForm: FormGroup = new FormGroup({});
   public mediaToUpdate: MediaType | undefined;
+  private _mediaID: any;
 
   public selectedOption: string = '';
 
@@ -56,6 +58,7 @@ export class UpdateMediaComponent implements OnInit {
     private _mediaService: MediaService,
     private _moduleService: ModuleService,
     private _router: Router,
+    private _mediaFormService: MediaFormService,
     private _activatedRoute: ActivatedRoute,
     private _localStorageService: LocalStorageService,
     private _snackBar: MatSnackBar,
@@ -65,9 +68,23 @@ export class UpdateMediaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Retrive the ID from th query params
     this._activatedRoute.queryParams.subscribe((params) => {
-      console.log(params);
+      this._mediaID = params['id']
     });
+
+    // Find the media to update in the service
+    this._mediaService.findOne(this._mediaID).subscribe({
+      next: (media: MediaType) => {
+        this.media = media;
+        this._mediaFormService.buildForm(this.media);
+        this.mediaForm = this._mediaFormService.form;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
+
 
     this.mediaForm = this._formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(8)]],
