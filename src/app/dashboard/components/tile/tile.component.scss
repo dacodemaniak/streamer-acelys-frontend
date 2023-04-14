@@ -1,6 +1,7 @@
 .card {
   @apply rounded-xl hover:scale-[1.01] transition-all;
   @apply flex flex-row sm:flex-col gap-2 sm:gap-0;
+  @apply dark:text-white;
 
   &:focus {
     @apply outline-none;
