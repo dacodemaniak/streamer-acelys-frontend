@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { MediaType } from 'src/app/course/types/media-type';
 import { MediaService } from '../../services/media.service';
@@ -24,7 +25,7 @@ export class MediaTileComponent implements OnInit {
     pdf: 'picture_as_pdf',
   };
 
-  constructor(private _mediaService: MediaService) { }
+  constructor(private _mediaService: MediaService, private _router: Router) { }
 
   ngOnInit(): void { }
 
@@ -33,8 +34,10 @@ export class MediaTileComponent implements OnInit {
     return this.typeMediaIcon[t];
   }
 
-  deleteModule(mediaID: number | undefined): void {
+  deleteMedia(mediaID: number | undefined): void {
     const data: MediaType | undefined = this.mediaInfo;
+    // TODO : Add dialog to confirm deletion
+
     this._mediaService
       .remove(mediaID!)
       .pipe(take(1))
@@ -45,10 +48,19 @@ export class MediaTileComponent implements OnInit {
       });
   }
 
-  editModule(arg0: MediaType | undefined) {
-    throw new Error('Method not implemented.');
+  goToEditMedia(mediaInfos: MediaType | undefined) {
+    // Pass the media info
+    const data: NavigationExtras = {
+      queryParams: {
+        id: mediaInfos?.id,
+      },
+    }
+
+    // Go to edit page
+    this._router.navigate(['/dashboard/conceptor/media/update'], data);
   }
-  viewModule(arg0: number | undefined) {
+
+  viewMedia(arg0: number | undefined) {
     throw new Error('Method not implemented.');
   }
 }
