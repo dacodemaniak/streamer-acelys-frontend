@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { take } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ToastService } from 'src/app/core/toast.service';
@@ -17,9 +18,11 @@ export class ListMediaComponent implements OnInit {
   private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
   private _currentUser: Member = this._localStorageService.getMemberFromStorage();
 
+
   constructor(
     private _mediaService: MediaService,
     private _toastService: ToastService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +31,11 @@ export class ListMediaComponent implements OnInit {
         this.medias = response;
       }
     )
+  }
+
+  handleMediaInfoChange(mediaDeleted: MediaType) {
+    this.medias = this.medias.filter(media => media.id !== mediaDeleted.id);
+    this._snackBar.open(`"${mediaDeleted!.title}" was deleted.`, "Close");
   }
 
 }

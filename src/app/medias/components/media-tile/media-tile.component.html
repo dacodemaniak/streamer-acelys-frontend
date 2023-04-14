@@ -23,7 +23,7 @@
                     class="material-icons">open_in_new</i></button>
             <button mat-button class="p-2 hover:bg-sky-400 transition-all" (click)="editModule(mediaInfo)"><i
                     class="material-icons">edit</i></button>
-            <button mat-button class="p-2 hover:bg-red-500 transition-all" (click)="deleteModule(mediaInfo)"><i
+            <button mat-button class="p-2 hover:bg-red-500 transition-all" (click)="deleteModule(mediaInfo?.id)"><i
                     class="material-icons ">delete_forever</i></button>
         </div>
     </mat-menu>

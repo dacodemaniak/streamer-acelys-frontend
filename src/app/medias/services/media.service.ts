@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, take, tap } from 'rxjs';
 import { MediaType } from 'src/app/course/types/media-type';
@@ -43,6 +43,25 @@ export class MediaService {
     return this._httpClient.post<MediaType>(
       this.endpoint,
       media
+    )
+  }
+
+  public update(media: MediaType): Observable<any> {
+    return this._httpClient.put<MediaType>(
+      this.endpoint,
+      media,
+      {
+        observe: 'response'
+      }
+    )
+  }
+
+  public remove(id: number): Observable<HttpResponse<any>> {
+    return this._httpClient.delete<MediaType>(
+      this.endpoint + '/' + id,
+      {
+        observe: 'response'
+      }
     )
   }
 

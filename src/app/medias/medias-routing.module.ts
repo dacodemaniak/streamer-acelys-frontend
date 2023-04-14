@@ -33,7 +33,7 @@ export class MediasRoutingModule {
       path: '',
       component: ListMediaComponent,
       canActivate: [RoleGuard],
-      data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Managed My Media', breadcrumb: 'Update Media' },
+      data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Media Hub', breadcrumb: 'Media Hub' },
     },
     // {
     //   path: '**',
