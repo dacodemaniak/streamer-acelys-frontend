@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Optional, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { MediaType } from 'src/app/course/types/media-type';
 import { MediaService } from 'src/app/medias/services/media.service';
@@ -17,7 +18,9 @@ export class AddMediaComponent implements OnInit {
   public idMedia: EventEmitter<number> = new EventEmitter<number>()
 
 
-  constructor(private _service: MediaService) { }
+  constructor(private _service: MediaService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public onModal: boolean,
+    @Optional() public dialogRef: MatDialogRef<AddMediaComponent>) { }
 
   ngOnInit(): void {
     this._service.findAll()
@@ -31,7 +34,17 @@ export class AddMediaComponent implements OnInit {
   }
 
   public addMedia(id: number) {
-    this.idMedia.emit(id)
+    if(this.onModal){
+    this._service.findOne(id)
+      .pipe(
+        take(1)
+      ).subscribe((media: MediaType) => {
+        
+        this.dialogRef.close(media)
+      })
+    
+    }else{this.idMedia.emit(id)}
+    
   }
 
 

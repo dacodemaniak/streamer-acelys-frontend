@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from '../dashboard/guards/role.guard';
 import { CreateMediaComponent } from './create-media/create-media.component';
+import { ListMediaComponent } from './list-media/list-media.component';
 import { UpdateMediaComponent } from './update-media/update-media.component';
 
 
@@ -12,22 +14,30 @@ export class MediasRoutingModule {
   public static routes: Routes = [
     // {
     //   path: '',
-    //   redirectTo: 'medias/add',
+    //   redirectTo: 'list',
     //   pathMatch: 'full'
     // },
     {
       path: 'add',
       component: CreateMediaComponent,
-      data: { title: 'Dashboard | Add Media', breadcrumb: 'Create Media' },
+      canActivate: [RoleGuard],
+      data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Add Media', breadcrumb: 'Create Media' },
     },
     {
       path: 'update',
       component: UpdateMediaComponent,
-      data: { title: 'Dashboard | Update Media', breadcrumb: 'Update Media' },
+      canActivate: [RoleGuard],
+      data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Update Media', breadcrumb: 'Update Media' },
+    },
+    {
+      path: '',
+      component: ListMediaComponent,
+      canActivate: [RoleGuard],
+      data: { allowedRoles: ['CONCEPTOR'], title: 'Dashboard | Media Hub', breadcrumb: 'Media Hub' },
     },
     // {
     //   path: '**',
-    //   redirectTo: 'medias/add',
+    //   redirectTo: 'list',
     //   pathMatch: 'full'
     // }
   ]
