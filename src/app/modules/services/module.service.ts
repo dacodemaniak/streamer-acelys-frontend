@@ -54,4 +54,10 @@ export class ModuleService {
       }
     )
   }
+
+  public delete(id: number): any {
+    return this._httpClient.delete<ModuleType>(
+      this.endpoint + '/' + id
+    )
+  }
 }

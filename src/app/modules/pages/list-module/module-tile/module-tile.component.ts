@@ -30,20 +30,20 @@ export class ModuleTileComponent implements OnInit {
   deleteModule(moduleID: number | undefined): void {
     const data: ModuleType | undefined = this.moduleInfo;
     console.log("delte!")
-    // this._moduleService
-    //   .remove(moduleID!)
-    //   .pipe(take(1))
-    //   .subscribe({
-    //     next: (response: HttpResponse<any>) => {
-    //       this.moduleInfoChange.emit(data);
-    //     },
-    //   });
+    this._moduleService
+      .delete(moduleID!)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: HttpResponse<any>) => {
+          this.moduleInfoChange.emit(data);
+        },
+      });
   }
 
   editModule(moduleID: number | undefined) {
     this._router.navigate([`dashboard/conceptor/module/${moduleID}/update`])
   }
-  viewModule(arg0: number | undefined) {
-    throw new Error('Method not implemented.');
+  viewModule(moduleID: number | undefined) {
+    this._router.navigate([`dashboard/conceptor/module/${moduleID}/view`])
   }
 }
