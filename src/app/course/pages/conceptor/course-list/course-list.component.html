@@ -25,7 +25,10 @@
           {{course.title}}
         </mat-panel-title>
         <mat-panel-description  class="flex-row-reverse dark:text-white">
-          {{ course.modules!.length }} items
+          <ng-container *ngIf="course.modules!.length > 0; else noModules" >
+            {{ course.modules!.length }} {{course.modules!.length <= 1 ? "module" : "modules"}}
+          </ng-container>
+          <ng-template #noModules >pas de module</ng-template>
         </mat-panel-description>
         <mat-action-row>
           <button mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menu"  (click)="$event.stopPropagation()">...</button>
@@ -38,7 +41,10 @@
               {{module.name}}
             </mat-panel-title>
             <mat-panel-description class="flex-row-reverse dark:text-white">
-              {{module.medias.length }} media
+              <ng-container *ngIf="module.medias.length > 0; else noMedias" >
+                {{module.medias.length }} {{module.medias.length <= 1 ? "media" : "medias"}}
+              </ng-container>
+              <ng-template #noMedias >pas de media</ng-template>
             </mat-panel-description>
             <mat-action-row >
               <button mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menuModule"  (click)="$event.stopPropagation()">...</button>
@@ -103,7 +109,10 @@
           {{course.title}}
         </mat-panel-title>
         <mat-panel-description class="flex-row-reverse dark:text-white">
-          {{ course.modules!.length }} items
+          <ng-container *ngIf="course.modules!.length > 0; else noModules" >
+            {{ course.modules!.length }} {{course.modules!.length <= 1 ? "module" : "modules"}}
+          </ng-container>
+          <ng-template #noModules >pas de module</ng-template>
         </mat-panel-description>
         <mat-action-row>
           <button mat-button color="primary" class="dark:text-white"  mat-icon-button [matMenuTriggerFor]="menu"  (click)="$event.stopPropagation()">...</button>
@@ -116,7 +125,10 @@
               {{module.name}}
             </mat-panel-title>
             <mat-panel-description  class="flex-row-reverse dark:text-white" >
-              {{module.medias.length }} media
+              <ng-container *ngIf="module.medias.length > 0; else noMedias" >
+                {{module.medias.length }} {{module.medias.length <= 1 ? "media" : "medias"}}
+              </ng-container>
+              <ng-template #noMedias >pas de media</ng-template>
             </mat-panel-description>
             <mat-action-row>
               <button mat-button color="primary" class="dark:text-white" mat-icon-button [matMenuTriggerFor]="menuModule" (click)="$event.stopPropagation()">...</button>
