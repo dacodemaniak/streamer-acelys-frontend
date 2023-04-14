@@ -11,23 +11,35 @@ import { ViewCourseComponent } from './pages/view-course/view-course.component';
 })
 export class CourseRoutingModule {
   public static routes: Routes = [
-    {
-      path: '',
-      redirectTo: 'list',
-      pathMatch: 'full',
-    },
+    // {
+    //   path: '',
+    //   redirectTo: 'list',
+    //   pathMatch: 'full',
+    // },
     {
       path: 'list',
       component: ListComponent,
       canActivate: [RoleGuard],
-      data: { allowRole: ['MANAGER'], title: 'Dashboard | All Course', breadcrumb: 'All Course' },
+      data: { allowedRoles: ['MANAGER'], title: 'Dashboard | All Course', breadcrumb: 'All Course' },
     },
     {
       path: 'add',
       component: CourseHandlerComponent,
+      canActivate: [RoleGuard],
       data: {
+        allowedRoles: ['CONCEPTOR'],
         title: 'Dashboard | Create a new Course',
         breadcrumb: 'Create a new course',
+      },
+    },
+    {
+      path: 'edit',
+      component: CourseHandlerComponent,
+      canActivate: [RoleGuard],
+      data: {
+        allowedRoles: ['CONCEPTOR'],
+        title: 'Dashboard | Edit course details',
+        breadcrumb: 'Edit course details',
       },
     },
     {
@@ -39,10 +51,10 @@ export class CourseRoutingModule {
     //   component: CourseListComponent,
     //   data: { title: 'Dashboard | Create a new module', breadcrumb: 'Create ' },
     // },
-    {
-      path: '**',
-      redirectTo: 'list',
-      pathMatch: 'full',
-    },
+    // {
+    //   path: '**',
+    //   redirectTo: 'list',
+    //   pathMatch: 'full',
+    // },
   ];
 }
