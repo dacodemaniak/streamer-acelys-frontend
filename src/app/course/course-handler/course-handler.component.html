@@ -82,7 +82,7 @@
                   <button mat-menu-item>
                     <span>Update media</span>
                   </button>
-                  <button mat-menu-item>
+                  <button mat-menu-item class="hot-action" (click)="removeMedia(module, media)">
                     <span class="hot-action">Remove media</span>
                   </button>
                 </mat-menu>
@@ -90,19 +90,19 @@
             </div>
 
             <mat-menu #menuModule="matMenu">
-              <button mat-menu-item>
-                <span (click)="addMedia(module)">Add new media</span>
+              <button mat-menu-item (click)="addMedia(module)">
+                <span>Add new media</span>
               </button>
-              <button mat-menu-item>
-                <span (click)="addExistingMedia(module)">Add existing media</span>
+              <button mat-menu-item (click)="addExistingMedia(module)">
+                <span>Add existing media</span>
               </button>
 
               <mat-divider></mat-divider>
-              <button mat-menu-item>
-                <span (click)="updateModule(module)">Update module</span>
+              <button mat-menu-item (click)="updateModule(module)">
+                <span>Update module</span>
               </button>
-              <button mat-menu-item>
-                <span class="hot-action" (click)="removeModule(module)">Remove module</span>
+              <button mat-menu-item class="hot-action" (click)="removeModule(module)">
+                <span>Remove module</span>
               </button>
             </mat-menu>
           </mat-expansion-panel>

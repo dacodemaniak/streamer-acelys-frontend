@@ -189,8 +189,15 @@ export class CourseHandlerComponent implements OnInit {
       event.currentIndex
     );
   }
+  removeMedia(module : ModuleType, media : MediaType):void{
+    const i : number =this.modules.indexOf(module);
+    
+    this.modules[i].medias.splice(this.modules[i].medias.indexOf(media), 1);
+  }
 
   onSubmit(): void {
+    console.log(this.modules);
+
     let orderedModules: any[] = [];
     let i = 0;
     this.modules.forEach((m) => {
@@ -205,7 +212,12 @@ export class CourseHandlerComponent implements OnInit {
       modules: orderedModules,
       creator: { id: this._localStorageService.getMemberFromStorage().id },
     };
+    
+    course.modules = course.modules?.sort(
+      (s1: ModuleType, s2: ModuleType) => (s1.order! - s2.order!) * 1
+    );
     console.log(course);
+    
 
     if (this.updateCourse) {
       course.id = this.course.id;

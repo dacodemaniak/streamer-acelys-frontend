@@ -12,12 +12,19 @@ export class ModuleService {
   private readonly endpoint: string = `${environment.apiRootUri}modules`
 
   constructor(private _httpClient: HttpClient) { }
-  
+
   public findAll(): Observable<ModuleType[]> {
     return this._httpClient.get<ModuleType[]>(
       this.endpoint
     )
   }
+
+  public findByCreator(creatorId: number): Observable<ModuleType[]> {
+    return this._httpClient.get<ModuleType[]>(
+      `${this.endpoint}/creator/${creatorId}`
+    )
+  }
+
   public add(module: ModuleType): Observable<any> {
     return this._httpClient.post<ModuleType>(
       this.endpoint,
@@ -45,6 +52,12 @@ export class ModuleService {
       {
         observe: 'response'
       }
+    )
+  }
+
+  public delete(id: number): any {
+    return this._httpClient.delete<ModuleType>(
+      this.endpoint + '/' + id
     )
   }
 }

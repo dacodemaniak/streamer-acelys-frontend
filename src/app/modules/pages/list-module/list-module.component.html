@@ -1,0 +1,14 @@
+<div class="space-y-8">
+  <section class="text-center sm:text-left">
+    <div class="flex flex-col">
+      <h1>My modules</h1>
+      <p class="text-neutral-700 dark:text-neutral-300 mt-2">Streamline and organize all your modules with
+        ease.</p>
+    </div>
+  </section>
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <ng-container *ngFor="let module of modules">
+      <app-module-tile [moduleInfo]="module" (moduleInfoChange)="handleModuleInfoChange($event)"></app-module-tile>
+    </ng-container>
+  </section>
+</div>

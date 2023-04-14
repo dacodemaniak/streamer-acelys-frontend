@@ -1,0 +1,16 @@
+<ng-container *ngIf="isDataAvailable">
+  <div class="flex flex-col  justify-start lg:items-center h-ful">
+    <h1 class="text-4xl leading-tight pt-8">Module</h1>
+    <h2 class="text-3xl leading-tight">{{module.name}}</h2>
+    <p>This module was created by {{conceptor.firstName}} {{conceptor.lastName}}.</p>
+    <div class="w-full space-y-2">
+      <span *ngIf="medias.length > 0">Medias contenus dans ce module :</span>
+      <span *ngIf="medias.length == 0">Ce module ne contient pas de médias.</span>
+      <ng-container *ngIf="medias">
+        <ul *ngFor="let media of medias" class="list-none w-full">
+          <li class="bg-slate-100 px-6 py-4 flex flex-row justify-between">{{media.title}} </li>
+        </ul>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
