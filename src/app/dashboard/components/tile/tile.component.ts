@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Tile } from '../../models/tile';
 
 @Component({
   selector: 'app-tile',
@@ -7,13 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
-  @Input() public tileInfo: any;
+  @Input() public tileInfo!: Tile
+    ;
 
   constructor(
     private _router: Router
   ) { }
 
   ngOnInit(): void {
+    console.log(this.tileInfo.svg
+    );
   }
 
   public onClick(object: any): void {
