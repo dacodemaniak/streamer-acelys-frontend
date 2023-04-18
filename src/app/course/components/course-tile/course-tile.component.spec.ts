@@ -1,5 +1,5 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -15,12 +15,14 @@ describe('CourseTileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CourseTileComponent],
-      imports: [MatDialogModule, RouterTestingModule, MatSnackBarModule, MatMenuModule]
+      imports: [MatDialogModule, RouterTestingModule, MatSnackBarModule, MatMenuModule, HttpClientTestingModule],
+      providers: [CourseService]
     })
       .compileComponents();
 
     service = TestBed.inject(CourseService);
     fixture = TestBed.createComponent(CourseTileComponent);
+
     component = fixture.componentInstance;
     component.course = {
       "id": 2,
@@ -167,7 +169,15 @@ describe('CourseTileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a title', () => {
+    expect(component.course.title).toEqual('Deleniti animi ratione.');
+  })
+
+  it('should have a objective', () => {
+    expect(component.course.objective).toEqual('Corporis sed dolorum dolore veritatis.');
+  })
 });
