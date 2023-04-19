@@ -237,3 +237,7 @@ mat-form-field mat-select span.mat-select-value-text {
     @apply dark:text-white;
   }
 }
+
+button.mat-flat-button.mat-primary.mat-button-disabled {
+  @apply dark:bg-neutral-500;
+}
