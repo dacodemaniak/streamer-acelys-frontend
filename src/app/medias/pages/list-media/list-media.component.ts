@@ -5,7 +5,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { ToastService } from 'src/app/core/toast.service';
 import { MediaType } from 'src/app/course/types/media-type';
 import { Member } from 'src/app/user/models/member';
-import { MediaService } from '../services/media.service';
+import { MediaService } from '../../services/media.service';
 
 @Component({
   selector: 'app-list-media',

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from '../dashboard/guards/role.guard';
-import { CreateMediaComponent } from './create-media/create-media.component';
-import { ListMediaComponent } from './list-media/list-media.component';
-import { UpdateMediaComponent } from './update-media/update-media.component';
+import { CreateMediaComponent } from './pages/create-media/create-media.component';
+import { ListMediaComponent } from './pages/list-media/list-media.component';
+import { UpdateMediaComponent } from './pages/update-media/update-media.component';
 
 
 @NgModule({

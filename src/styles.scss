@@ -194,3 +194,50 @@ h6 {
   @apply text-base font-bold;
   @apply dark:text-neutral-200;
 }
+
+// matform global styles
+
+// mat-form-field .mat-form-field-underline {
+//   @apply dark:text-teal-500;
+//   // color: white !important;
+// }
+
+// .mat-input-element::placeholder {
+//   color: white !important;
+// }
+
+input.mat-input-element {
+  @apply dark:text-white;
+}
+
+input.mat-input-element::placeholder {
+  color: white !important;
+}
+
+mat-form-field label.mat-form-field-label {
+  @apply dark:text-white;
+}
+
+mat-form-field div.mat-form-field-wrapper div.mat-form-field-underline {
+  @apply dark:bg-slate-50/30;
+}
+
+mat-form-field.mat-form-field-label {
+  @apply dark:text-teal-500;
+}
+
+mat-form-field mat-select span.mat-select-value-text {
+  @apply dark:text-white;
+}
+
+.mat-select-panel {
+  @apply dark:bg-neutral-700;
+
+  span.mat-option-text {
+    @apply dark:text-white;
+  }
+}
+
+button.mat-flat-button.mat-primary.mat-button-disabled {
+  @apply dark:bg-neutral-500;
+}

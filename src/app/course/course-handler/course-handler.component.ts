@@ -4,7 +4,7 @@ import { AbstractControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { LocalStorageService } from "src/app/core/services/local-storage.service";
-import { CreateMediaComponent } from "src/app/medias/create-media/create-media.component";
+import { CreateMediaComponent } from "src/app/medias/pages/create-media/create-media.component";
 import { ExistingModuleComponent } from "src/app/modules/module-management/existing-module/existing-module.component";
 import { AddMediaComponent } from "src/app/modules/pages/medias-management/add-media/add-media.component";
 import { ModuleAddComponent } from "../dialogs/module-add/module-add.component";
