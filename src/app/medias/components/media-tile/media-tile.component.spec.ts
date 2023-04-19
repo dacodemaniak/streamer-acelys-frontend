@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MediaTileComponent } from './media-tile.component';
 
 describe('MediaTileComponent', () => {
@@ -8,7 +11,8 @@ describe('MediaTileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MediaTileComponent]
+      declarations: [MediaTileComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatMenuModule]
     })
       .compileComponents();
   });
@@ -19,7 +23,7 @@ describe('MediaTileComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

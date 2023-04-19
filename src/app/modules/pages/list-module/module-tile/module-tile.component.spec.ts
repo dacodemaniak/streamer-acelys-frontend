@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ModuleTileComponent } from './module-tile.component';
 
 describe('ModuleTileComponent', () => {
@@ -8,9 +11,11 @@ describe('ModuleTileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModuleTileComponent ]
+      declarations: [ModuleTileComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule, MatMenuModule]
+
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
