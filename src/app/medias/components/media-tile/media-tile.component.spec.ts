@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MediaTileComponent } from './media-tile.component';
 
 describe('MediaTileComponent', () => {
@@ -8,7 +10,8 @@ describe('MediaTileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MediaTileComponent]
+      declarations: [MediaTileComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule]
     })
       .compileComponents();
   });

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListMediaComponent } from './list-media.component';
 
 describe('ListMediaComponent', () => {
@@ -8,7 +10,8 @@ describe('ListMediaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ListMediaComponent]
+      declarations: [ListMediaComponent],
+      imports: [HttpClientTestingModule, MatSnackBarModule]
     })
       .compileComponents();
   });

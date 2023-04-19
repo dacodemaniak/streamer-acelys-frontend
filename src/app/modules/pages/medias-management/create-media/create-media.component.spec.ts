@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CreateMediaComponent } from './create-media.component';
 
 describe('CreateMediaComponent', () => {
@@ -8,9 +11,10 @@ describe('CreateMediaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateMediaComponent ]
+      declarations: [CreateMediaComponent],
+      imports: [ReactiveFormsModule, HttpClientTestingModule, MatSnackBarModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
