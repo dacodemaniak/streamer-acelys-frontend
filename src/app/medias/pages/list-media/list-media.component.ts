@@ -49,14 +49,18 @@ export class ListMediaComponent implements OnInit {
       });
   }
 
-  filterByType(type: string) {
+  allMedias(): void {
+    this.mediasFiltered = this.medias;
+  }
+
+  filterByType(type: string): void {
     this.mediasFiltered = this.medias;
     this.mediasFiltered = this.mediasFiltered.filter(
       (media) => media.typeMedia.title.toLowerCase() === type.toLowerCase()
     );
   }
 
-  handleMediaInfoChange(mediaDeleted: MediaType) {
+  handleMediaInfoChange(mediaDeleted: MediaType): void {
     this.medias = this.medias.filter((media) => media.id !== mediaDeleted.id);
     this._snackBar.open(`"${mediaDeleted!.title}" was deleted.`, 'Close');
   }
