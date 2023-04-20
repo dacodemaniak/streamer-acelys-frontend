@@ -10,14 +10,28 @@ import { MediaService } from '../../services/media.service';
 @Component({
   selector: 'app-list-media',
   templateUrl: './list-media.component.html',
-  styleUrls: ['./list-media.component.scss']
+  styleUrls: ['./list-media.component.scss'],
 })
 export class ListMediaComponent implements OnInit {
   public medias: MediaType[] = [];
+  public toggleFilter: boolean = false;
+  public mediasFiltered: MediaType[] = [];
 
-  private _localStorageService: LocalStorageService = LocalStorageService.getInstance();
-  private _currentUser: Member = this._localStorageService.getMemberFromStorage();
+  public typeMediasChips: string[] = [
+    'Video',
+    'Slide',
+    'Document',
+    'Image',
+    'Audio',
+    'Animation',
+    'Interactive ',
+    'PDF',
+  ];
 
+  private _localStorageService: LocalStorageService =
+    LocalStorageService.getInstance();
+  private _currentUser: Member =
+    this._localStorageService.getMemberFromStorage();
 
   constructor(
     private _mediaService: MediaService,
@@ -26,16 +40,24 @@ export class ListMediaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._mediaService.findByCreator(this._currentUser.id!).pipe(take(1)).subscribe(
-      (response: MediaType[]) => {
+    this._mediaService
+      .findByCreator(this._currentUser.id!)
+      .pipe(take(1))
+      .subscribe((response: MediaType[]) => {
         this.medias = response;
-      }
-    )
+        this.mediasFiltered = [...this.medias];
+      });
+  }
+
+  filterByType(type: string) {
+    this.mediasFiltered = this.medias;
+    this.mediasFiltered = this.mediasFiltered.filter(
+      (media) => media.typeMedia.title.toLowerCase() === type.toLowerCase()
+    );
   }
 
   handleMediaInfoChange(mediaDeleted: MediaType) {
-    this.medias = this.medias.filter(media => media.id !== mediaDeleted.id);
-    this._snackBar.open(`"${mediaDeleted!.title}" was deleted.`, "Close");
+    this.medias = this.medias.filter((media) => media.id !== mediaDeleted.id);
+    this._snackBar.open(`"${mediaDeleted!.title}" was deleted.`, 'Close');
   }
-
 }

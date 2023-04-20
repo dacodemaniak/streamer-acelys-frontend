@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,8 +15,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -31,9 +32,9 @@ export class UiModule {
     MatMenuModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    DragDropModule,    
+    DragDropModule,
     MatSelectModule,
-    MatDividerModule
-
+    MatDividerModule,
+    MatChipsModule
   ];
 }
