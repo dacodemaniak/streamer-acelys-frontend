@@ -1,0 +1,8 @@
+.chips {
+    @apply px-2 py-1 text-sm rounded-md cursor-pointer transition-all;
+    @apply dark:text-primary-300 border dark:border-primary-400;
+}
+
+.hoverChips {
+    @apply bg-primary-300;
+}
