@@ -24,8 +24,8 @@
         <div class="w-full space-y-2">
           <ng-container *ngIf="medias">
             <ul *ngFor="let media of medias" class="list-none w-full">
-              <li class="bg-slate-100 px-6 py-4 flex flex-row justify-between">{{media.title}} <mat-icon
-                  (click)="removeMedia(media)" color="primary">delete</mat-icon></li>
+              <li class="bg-slate-100 px-6 py-4 flex flex-row justify-between dark:bg-neutral-700">{{media.title}}
+                <mat-icon (click)="removeMedia(media)" color="primary">delete</mat-icon></li>
             </ul>
           </ng-container>
         </div>
