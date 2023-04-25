@@ -54,7 +54,7 @@ export class CourseHandlerComponent implements OnInit {
   ngOnInit(): void {
     // If the current page is add then clear the form
     if (this.updateOrCreate === "Add") {
-      this.form.reset();
+      this.form.reset(); //hop
     }
   }
 
